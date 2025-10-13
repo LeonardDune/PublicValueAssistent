@@ -1,0 +1,134 @@
+name: "canvas-team-environment"
+description: "Map team ecosystem en environment context voor canvas foundation"
+
+metadata:
+  author: "Canvas Orchestrator"
+  version: "1.0"
+  last-updated: "2025-10-10"
+  module: "value-ecosystem-design"
+  framework: "PVC Toolkit - Phase 1"
+  estimated-duration: "45-60 min"
+  cis-integration: "brainstorming-coach"
+
+variables:
+  - user_name: "{user_name}"
+  - envisioned_future: {}
+  - extended_team: []
+  - environment_context: {}
+  - orchestrating_team: {}
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "extended-team-mapping"
+    name: "Extended Team Identification & Logic of Engagement"
+    description: "Identificeer en categoriseer alle stakeholders die betrokken zijn"
+    duration: "20 min"
+    inputs:
+      - envisioned_future
+    outputs:
+      - extended_team: []
+      - engagement_logics: {}
+    instructions: |
+      Gebruik PVC Extended Team & Logics of Engagement worksheet:
+
+      Categoriseer stakeholders per rol:
+      - **Key Implementers:** Mensen die operationeel kunnen bijdragen
+      - **Key Authorizers:** Degenen die goedkeuring kunnen geven
+      - **Key Evaluators:** Zij die impact kunnen beoordelen
+
+      Voor elke stakeholder bepalen:
+      - **Huidige relatie niveau:** Neutraal, positief, negatief
+      - **Betrokkenheid:** Strategisch, operationeel, beide
+      - **Commitment potentieel:** Hoog, medium, laag
+      - **Engagement strategie:** Welke benadering werkt?
+
+      Focus op pragmatische mapping zonder diepgaande politieke analyse.
+
+  - id: "orchestrating-team-crafting"
+    name: "Orchestrating Team Development"
+    description: "Vorm de kern team voor projectuitvoering"
+    duration: "15 min"
+    inputs:
+      - extended_team
+    outputs:
+      - orchestrating_team: {}
+    instructions: |
+      Gebruik PVC Orchestrating Team worksheet:
+
+      Selecteer kern teamleden die:
+      - **Actor:** Hoofdverantwoordelijke voor project
+      - **Team Administrator:** Coördineert en beheert ritme
+      - **Strategische Leden:** Bijdragen aan visie & planning
+
+      Definieer voor elk lid:
+      - **Commitment niveau:** Bereidheid om tijd/energie te investeren
+      - **Vaardigheden:** Wat brengen ze mee?
+      - **Vermissing:** Wat ontbreekt er nog?
+
+      Creëer team governance structuur voor besluitvorming.
+
+  - id: "environment-context-mapping"
+    name: "Environment Context Understanding"
+    description: "Verken de bredere context waarin we werken"
+    duration: "15 min"
+    inputs: []
+    outputs:
+      - environment_context: {}
+    instructions: |
+      Gebruik PVC Understanding the Issue History worksheet:
+
+      Verken context dimensies:
+      - **Geografisch bereik:** Lokaal, regionaal, nationaal
+      - **Historische context:** Vorige pogingen en leerpunten
+      - **Huidige initiatieven:** Wat loopt er al?
+      - **Trends:** Sociale, economische, technologische ontwikkelingen
+
+      Focus op relevante context die vision haalbaar maakt.
+      Identificeer opportunities en constraints voor plan.
+
+  - id: "team-environment-integration"
+    name: "Team-Environment Alignment Assessment"
+    description: "Evalueer alignment tussen team capaciteiten en environment realiteit"
+    call-agent: "cis-brainstorming-coach"
+    duration: "10 min"
+    inputs:
+      - orchestrating_team
+      - environment_context
+    outputs:
+      - team_environment_alignment: {}
+    instructions: |
+      Beoordeel team-environment fit:
+
+      **Capacity Check:**
+      - Beschikt team over nodige vaardigheden voor vision?
+      - Wat ontbreekt er voor succesvolle uitvoering?
+      - Welke samenwerkingen zouden versterking bieden?
+
+      **Environment Reality:**
+      - Biedt context voldoende ondersteuning?
+      - Welke obstakels moeten we navigeren?
+      - Welke opportunities kunnen we benutten?
+
+      Gebruik CIS Brainstorming Coach voor creative gap-filling ideeën.
+      Houd focus pragmatisch - geen diepgaande feasibility studies.
+
+deliverables:
+  - "Extended Team Mapping": "Complete stakeholder overview met engagement strategies"
+  - "Orchestrating Team Structure": "Kern team samenstelling en governance"
+  - "Environment Context Analysis": "Relevante context factoren voor project"
+  - "Team-Environment Alignment Report": "Fit assessment en gap identificatie"
+
+success-criteria:
+  - Extended team comprehensief gemapped met engagement logica
+  - Orchestrating team duidelijk gedefinieerd met rollen
+  - Environment context relevant en pragmatisch geanalyseerd
+  - Team-environment alignment beoordeeld en gaps geïdentificeerd
+  - Klaar voor PVP + Purpose elementen
+
+validation-checklist:
+  - [ ] Stakeholders geategoriseerd per rol en belang
+  - [ ] Orchestrating team roles duidelijk gedefinieerd
+  - [ ] Environment scan covers relevante dimensies
+  - [ ] Alignment assessment identifies key gaps/opportunities
+
+template: "{installed_path}/team-environment-mapping-template.md"

@@ -1,0 +1,107 @@
+name: "canvas-stakeholders-basics"
+description: "Map stakeholder interests en values touchpoints voor canvas foundation (Fase 1 niveau)"
+
+metadata:
+  author: "Canvas Orchestrator"
+  version: "1.0"
+  last-updated: "2025-10-10"
+  module: "value-ecosystem-design"
+  framework: "PVC Toolkit - Phase 1"
+  estimated-duration: "30-45 min"
+  cis-integration: "design-thinking-coach"
+
+variables:
+  - user_name: "{user_name}"
+  - envisioned_future: {}
+  - extended_team: []
+  - public_value_proposition: {}
+  - stakeholder_interests: []
+  - values_touchpoints: {}
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "stakeholder-interests-mapping"
+    name: "Stakeholder Interests Identification"
+    description: "Identificeer primaire belangen en behoeften per stakeholder groep"
+    duration: "15 min"
+    inputs:
+      - extended_team
+      - public_value_proposition
+    outputs:
+      - stakeholder_interests: []
+    instructions: |
+      Bouw voort op extended team van vorige workflow:
+
+      Voor elke stakeholder groep identificeer:
+      - **Primaire Belangen:** Wat motiveert deze groep?
+      - **Huidige Uitdagingen:** Wat zijn hun pijnpunten?
+      - **Verwachte Voordelen:** Wat hopen ze te winnen?
+      - **Potentiële Bezorgdheden:** Wat zou hen kunnen tegenhouden?
+
+      Focus op pragmatische interests - niet diep psychologische analyse.
+
+  - id: "values-touchpoints-identification"
+    name: "Values Touchpoints Discovery"
+    description: "Verken welke waarden resoneren bij stakeholders (hoofdlijnen)"
+    duration: "15 min"
+    inputs:
+      - stakeholder_interests
+      - purpose_values
+    outputs:
+      - values_touchpoints: {}
+    instructions: |
+      Koppel bestaande purpose values aan stakeholders:
+
+      Voor elke stakeholder groep:
+      - **Resonerende Waarden:** Welke van onze kern waarden spreken hen aan?
+      - **Waarden Conflicten:** Welke waarden zouden spanning kunnen veroorzaken?
+      - **Touchpoints:** Where/when raken waarden hun dagelijkse realiteit?
+      - **Messaging Opportunities:** Hoe kunnen we values-based communiceren?
+
+      Houd focus pragmatisch en canvas-relevant.
+
+  - id: "engagement-implications"
+    name: "Engagement Strategy Implications"
+    description: "Vertaal interests en values naar engagement benaderingen"
+    call-agent: "cis-design-thinking-coach"
+    duration: "10 min"
+    inputs:
+      - stakeholder_interests
+      - values_touchpoints
+    outputs:
+      - engagement_implications: {}
+    instructions: |
+      Leid gebruiker naar engagement strategie inzichten:
+
+      **Voor elke stakeholder groep:**
+      - Communication style gebaseerd op values
+      - Timing en kanalen gebaseerd op interests
+      - Trust-building approach
+      - Resistance mitigation strategies
+
+      Gebruik CIS Design Thinking Coach voor:
+      - Creative engagement ideation
+      - Values-based messaging development
+      - Stakeholder journey empathy building
+
+      Houd pragmatic focus op canvas niveau.
+
+deliverables:
+  - "Stakeholder Interests Overview": "Primaire belangen en behoeften per groep"
+  - "Values Touchpoints Map": "Welke waarden resoneren bij stakeholders"
+  - "Engagement Strategy Insights": "Pragmatische engagement benaderingen"
+
+success-criteria:
+  - Stakeholder interests helder geïdentificeerd per groep
+  - Values touchpoints relevante verbanden gelegd
+  - Engagement implications actionable voor Phase 1
+  - Input van CIS Design Thinking Coach toegevoegde waarde
+  - Klaar voor capacity/support basics workflow
+
+validation-checklist:
+  - [ ] Interests grounded in empirical stakeholder insights
+  - [ ] Values touchpoints connected to purpose values
+  - [ ] Engagement implications realistic for Phase 1
+  - [ ] CIS integration contributes meaningful perspectives
+
+template: "{installed_path}/stakeholders-basics-template.md"

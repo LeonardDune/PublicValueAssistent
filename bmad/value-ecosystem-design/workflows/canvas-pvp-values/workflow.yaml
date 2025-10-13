@@ -1,0 +1,148 @@
+name: "canvas-pvp-values"
+description: "Craft Public Value Proposition en identificeer key values voor canvas foundation"
+
+metadata:
+  author: "Canvas Orchestrator"
+  version: "1.0"
+  last-updated: "2025-10-10"
+  module: "value-ecosystem-design"
+  framework: "PVC Toolkit - Phase 1"
+  estimated-duration: "45-60 min"
+  cis-integration: "brainstorming-coach"
+
+variables:
+  - user_name: "{user_name}"
+  - problem_statement: ""
+  - envisioned_future: {}
+  - extended_team: []
+  - public_value_proposition: {}
+  - purpose_values: []
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "pvp-hypothesis-crafting"
+    name: "Public Value Proposition Development"
+    description: "Creëer kernhypothese hoe public value gecreëerd zal worden"
+    duration: "15 min"
+    inputs:
+      - problem_statement
+      - envisioned_future
+    outputs:
+      - pvp_hypothesis: {}
+    instructions: |
+      Gebruik PVC Public Value Proposition worksheet:
+
+      Leid gebruiker door structured hypothesis creation:
+      - "Welke actie nemen we?" (Intervention)
+      - "Waarom doen we dit?" (Value creation rationale)
+      - "Voor wie creëren we waarde?" (Primary beneficiary)
+      - "Wat is het concrete verschil?" (Expected impact)
+
+      Créér "Als... dan..." statement:
+      "Als we [actie] doen, dan kunnen we [waarde] creëren voor [groep] door [manier]"
+
+      Focus op inspirerend en pragmatisch niveau.
+
+  - id: "pains-gains-mapping"
+    name: "Pains & Gains Stakeholder Analysis"
+    description: "Map pijnpunten en voordelen per stakeholder groep"
+    duration: "15 min"
+    inputs:
+      - pvp_hypothesis
+      - extended_team
+    outputs:
+      - pains_gains_matrix: {}
+    instructions: |
+      Gebruik PVC Pains & Gains worksheet voor stakeholders:
+
+      Voor elke key stakeholder groep:
+      - **Primaire Pijn:** Wat is hun belangrijkste probleem?
+      - **Primaire Gain:** Welk voordeel levert onze PVP?
+
+      Categoriseer stakeholders:
+      - Direct geimpacteerd (primary beneficiaries)
+      - Indirect betrokken (implementers, authorizers)
+      - Evaluators (impact assessors)
+
+      Baseer op extended team insights van vorige workflow.
+
+  - id: "dimensions-values-exploration"
+    name: "Dimensions of Value & Core Values Identification"
+    description: "Verken value dimensions en identificeer kern waarden (hoofdlijnen)"
+    duration: "15 min"
+    inputs:
+      - pains_gains_matrix
+    outputs:
+      - purpose_values: []
+    instructions: |
+      Gebruik PVC Dimensions of Value worksheet:
+
+      **Ons initiatief raakt deze value dimensions:**
+
+      Individueel:
+      - Mijn rechten: ________________________________________
+      - Mijn welzijn: ________________________________________
+
+      Collectief:
+      - Onze rechten: ________________________________________
+      - Ons welzijn: ________________________________________
+
+      **Kern waarden identificatie (hoofdlijnen):**
+
+      Selecteer 3-5 meest relevante waarden uit inventories:
+      - ________ (waarom relevant?)
+      - ________ (waarom relevant?)
+      - ________ (waarom relevant?)
+      - ________ (waarom relevant?)
+      - ________ (waarom relevant?)
+
+      Houd focus pragmatisch - diepgaande values analysis komt in Fase 2.
+
+  - id: "pvp-values-integration"
+    name: "PVP-Values Integration & Validation"
+    description: "Integreer values in PVP en valideer coherence"
+    call-agent: "cis-brainstorming-coach"
+    duration: "10 min"
+    inputs:
+      - pvp_hypothesis
+      - purpose_values
+      - pains_gains_matrix
+    outputs:
+      - public_value_proposition: {}
+      - values_alignment_check: {}
+    instructions: |
+      Beoordeel PVP-values alignment:
+
+      **Check coherence:**
+      - Ondersteunt PVP de geïdentificeerde waarden?
+      - Zijn benefits consistent met stakeholder pains/gains?
+      - Is rationale values-gedreven?
+
+      Gebruik CIS Brainstorming Coach voor:
+      - Values reframing suggesties
+      - Stakeholder perspective validation
+      - PVP strengthening ideeën
+
+      Houd focus inspirerend en bondig.
+
+deliverables:
+  - "Public Value Proposition": "Kernhypothese met rationale en beneficiaries"
+  - "Pains & Gains Analysis": "Stakeholder impact mapping"
+  - "Dimensions of Value Assessment": "Value dimensions overview"
+  - "Purpose Values Identification": "3-5 kern waarden met rationale"
+
+success-criteria:
+  - PVP duidelijk geformuleerd als testable hypothese
+  - Stakehold pains en gains geïdentificeerd
+  - Value dimensions relevant voor context
+  - Kern waarden pragmatisch geselecteerd (hoofdlijnen)
+  - Values alignment gecheckt met brainstorming input
+
+validation-checklist:
+  - [ ] PVP volgt "Als... dan..." structuur
+  - [ ] Stakeholder impacts mapped voor key groups
+  - [ ] Value dimensions relevant voor publiek domein
+  - [ ] Kern waarden gebaseerd op problem + future insights
+  - [ ] CIS integratie voegt creative value toe
+
+template: "{installed_path}/pvp-values-crafting-template.md"

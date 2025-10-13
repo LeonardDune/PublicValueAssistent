@@ -1,0 +1,234 @@
+name: "PVC Ecosystem Design Workflow"
+description: "Design multi-level public service ecosystem with comprehensive performance indicators"
+
+metadata:
+  author: "PVC Agent"
+  version: "1.0"
+  last-updated: "2025-01-09"
+  module: "BMM"
+  framework: "PVC-Public Service Logic"
+  estimated-duration: "2-3 days"
+  cis-integration: "innovation-strategist, brainstorming-coach"
+
+variables:
+  - user_name: "{user_name}"
+  - ecosystem_boundaries: {}
+  - governance_framework: {}
+  - performance_kpis: {}
+  - monitoring_framework: {}
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "ecosystem-analysis-1"
+    name: "Ecosystem Boundaries Definition"
+    description: "Define scope and boundaries of the public service ecosystem"
+    duration: "120 min"
+    inputs:
+      - stakeholder_profiles
+      - pvc_problem
+      - pvc_future
+    outputs:
+      - ecosystem_boundaries: {}
+      - scope_matrix: {}
+    instructions: |
+      Define geographical scope: local, regional, national, international levels.
+      Define functional scope: service delivery boundaries and value creation processes.
+      Define temporal scope: short-term (0-2 years), medium-term (3-5 years), long-term (5+ years).
+      Create inclusion/exclusion criteria for ecosystem participation.
+
+  - id: "ecosystem-analysis-2"
+    name: "Actor Network Analysis"
+    description: "Create comprehensive network map of all ecosystem actors and relationships"
+    duration: "120 min"
+    inputs:
+      - ecosystem_boundaries
+      - stakeholder_profiles
+    outputs:
+      - actor_network: {}
+      - dependency_map: {}
+    instructions: |
+      Categorize actors by level: individual, organizational, institutional, systemic.
+      Map resource dependencies and information flows between actors.
+      Identify power dynamics and governance relationships.
+      Create influence network diagram with relationship strength indicators.
+
+  - id: "ecosystem-analysis-3"
+    name: "Value Co-creation Pathways Design"
+    description: "Design mechanismen for collective value creation across actor network"
+    agent-call: "cis-innovation-strategist"
+    duration: "120 min"
+    inputs:
+      - actor_network
+      - final_hierarchy
+    outputs:
+      - value_pathways: {}
+      - co_creation_mechanisms: {}
+    instructions: |
+      Identify value creation domains per ecosystem level (individual, organizational, systemic).
+      Design co-creation mechanismen: resident panels, service platforms, innovation networks.
+      Define value distribution principles based on stakeholder equity.
+      Establish incentives and motivation systems for participation.
+
+  - id: "governance-architecture"
+    name: "Multi-level Governance Design"
+    description: "Create governance structures for different ecosystem scales"
+    duration: "180 min"
+    inputs:
+      - dependency_map
+      - actor_network
+    outputs:
+      - governance_framework: {}
+      - decision_processes: {}
+    instructions: |
+      Design governance layers: operational, tactical, strategic levels.
+      Define decision-making processes: consensus-based, representative, expert-based.
+      Create accountability mechanismen with performance monitoring.
+      Establish escalation procedures and conflict resolution protocols.
+
+  - id: "process-integration"
+    name: "Process Integration Design"
+    description: "Design integrated processes connecting all ecosystem actors"
+    duration: "120 min"
+    inputs:
+      - governance_framework
+      - value_pathways
+    outputs:
+      - integrated_processes: {}
+      - interface_specifications: {}
+    instructions: |
+      Design service delivery processes with cross-actor handovers.
+      Specify information exchange protocols and data standards.
+      Create resource coordination mechanisms and scheduling approaches.
+      Design innovation and learning processes for continuous improvement.
+
+  - id: "technology-architecture"
+    name: "Technology Integration Architecture"
+    description: "Design technological infrastructure for ecosystem connectiviteit"
+    duration: "120 min"
+    inputs:
+      - integrated_processes
+      - actor_capabilities
+    outputs:
+      - technology_architecture: {}
+      - integration_principles: {}
+    instructions: |
+      Identify technological components: shared platforms, data exchanges, identity systems.
+      Design integration principles: API-first, federated identity, event-driven architecture.
+      Specify security and privacy requirements for multi-actor data sharing.
+      Create technology governance and standards framework.
+
+  - id: "implementation-planning"
+    name: "Ecosystem Implementation Roadmap"
+    description: "Create phased implementation approach with risk mitigation"
+    duration: "120 min"
+    inputs:
+      - technology_architecture
+      - governance_framework
+    outputs:
+      - implementation_roadmap: {}
+      - risk_mitigation: {}
+    instructions: |
+      Define implementation phases: core ecosystem, expansion, optimization.
+      Establish success criteria per phase with stakeholder commitment requirements.
+      Develop resource allocation strategy and capability development plans.
+      Create contingency planning for risks and adaptive response mechanisms.
+
+  - id: "risk-mitigation"
+    name: "Risk Assessment & Mitigation Framework"
+    description: "Comprehensive risk analysis for ecosystem implementation"
+    duration: "120 min"
+    inputs:
+      - implementation_roadmap
+      - actor_network
+    outputs:
+      - risk_assessment: {}
+      - mitigation_strategies: {}
+    instructions: |
+      Analyze coordination risks: trust issues, commitment gaps, communication barriers.
+      Assess technological risks: interoperability failures, security breaches, dependency issues.
+      Evaluate institutional risks: policy changes, regulatory conflicts, funding uncertainty.
+      Develop mitigation strategies with monitoring and response procedures.
+
+  - id: "performance-framework"
+    name: "Comprehensive Performance Monitoring System"
+    description: "Implement evidence-based KPIs and monitoring infrastructure"
+    duration: "120 min"
+    inputs:
+      - risk_mitigation
+      - final_hierarchy
+    outputs:
+      - performance_kpis: {}
+      - monitoring_framework: {}
+    instructions: |
+      Implement comprehensive KPI framework based on scientific literature:
+
+      Structural Network Indicators (SNA):
+      - Centrality Measures: degree, betweenness, closeness centrality
+      - Cohesion Measures: density, clustering coefficient, reciprocity
+      - Resilience Indicators: connected components, adaptability, recovery capacity
+
+      Collaboration Performance Indicators:
+      - Effectiveness: service quality, user satisfaction, outcome achievement
+      - Efficiency: cost-benefit ratios, resource utilization, value-for-money
+      - Innovation: adoption rates, knowledge creation, learning velocity
+      - Inclusie: participation rates by category, equity metrics
+
+      Sustainable Development Indicators (Triple Bottom Line):
+      - Economische: financial viability, value distribution, ROI stability
+      - Sociale: community impact, stakeholder equity, social capital
+      - Ecologische: environmental impact, resource stewardship
+
+      Ecosystem Health Indicators:
+      - Collaborative capacity: trust levels, communication quality
+      - Adaptive capacity: response to changes, innovation absorption
+      - Systemic resilience: recovery from disruptions, system robustness
+
+  - id: "feedback-loops"
+    name: "Dynamic Feedback Loops & Learning Systems"
+    description: "Establish continuous improvement mechanisms and adaptive governance"
+    agent-call: "cis-brainstorming-coach"
+    duration: "120 min"
+    inputs:
+      - monitoring_framework
+      - governance_framework
+    outputs:
+      - feedback_loops: {}
+      - learning_systems: {}
+    instructions: |
+      Design data-driven decision making with real-time network analytics.
+      Implement stakeholder impact assessment with SNA-based ripple analysis.
+      Create resilience testing protocols and adaptive crisis management.
+      Establish collaborative learning cycles and knowledge sharing optimization.
+      Define sustainability safeguards with triple bottom line constraint checking.
+
+deliverables:
+  - "Ecosystem Boundaries Definition": "Multi-level scope and participation criteria"
+  - "Actor Network Analysis": "Comprehensive network mapping and dependency analysis"
+  - "Value Co-creation Pathways": "Mechanisms and incentives for collective value creation"
+  - "Governance Architecture": "Multi-level governance structures and decision processes"
+  - "Integrated Process Flows": "Cross-actor processes and interface specifications"
+  - "Technology Integration Blueprint": "Platform architecture and integration principles"
+  - "Implementation Roadmap": "Phased approach with resource allocation and risk mitigation"
+  - "Performance Monitoring Framework": "Evidence-based KPIs and continuous evaluation system"
+
+success-criteria:
+  - Ecosystem boundaries clearly defined with stakeholder consensus
+  - Actor network comprehensively mapped with dependency identification
+  - Value co-creation pathways designed with equitable distribution principles
+  - Governance structures established with clear accountability mechanisms
+  - Process integration enables seamless cross-actor collaboration
+  - Technology architecture supports interoperable ecosystem operation
+  - Implementation roadmap accounts for all identified risks and dependencies
+  - Performance indicators provide comprehensive ecosystem health monitoring
+
+validation-checklist:
+  - [ ] Boundaries inclusive yet focused on core value creation
+  - [ ] Actor dependencies thoroughly analyzed and power dynamics addressed
+  - [ ] Value distribution principles promote equity and sustainability
+  - [ ] Governance scales appropriately with ecosystem complexity
+  - [ ] Process interfaces minimize friction and maximize transparency
+  - [ ] Technology stack enables rather than constrains collaboration
+  - [ ] Implementation phases logical and capability-appropriate
+  - [ ] Risk mitigation comprehensive across all ecosystem dimensions
+  - [ ] KPI framework evidence-based and scientifically grounded
+  - [ ] Feedback loops enable continuous adaptation and improvement

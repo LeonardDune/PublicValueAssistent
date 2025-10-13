@@ -1,0 +1,145 @@
+name: "canvas-future-visioning"
+description: "Inspireer en ontwikkel een pragmatische toekomstvisie voor canvas foundation"
+
+metadata:
+  author: "Canvas Orchestrator"
+  version: "1.0"
+  last-updated: "2025-10-10"
+  module: "value-ecosystem-design"
+  framework: "PVC Toolkit - Phase 1"
+  estimated-duration: "45-60 min"
+  cis-integration: "design-thinking-coach, storyteller"
+
+variables:
+  - user_name: "{user_name}"
+  - problem_statement: ""
+  - success_metrics: []
+  - future_scenarios: []
+  - envisioned_future: {}
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "success-definition"
+    name: "Success Metrics Establishment"
+    description: "Definieer concrete outcome metrics voor gewenste toekomsttoestand"
+    duration: "10 min"
+    inputs:
+      - problem_statement
+    outputs:
+      - success_metrics: []
+    instructions: |
+      Vertaal probleem naar meetbare success indicators:
+
+      Stel SMART metrics op voor de toekomstvisie:
+      - **Specifiek:** Welke concrete verbetering?
+      - **Meetbaar:** Hoe kwantificeren we succes?
+      - **Acceptabel:** Relevant voor stakeholders?
+      - **Realistisch:** Haalbaar in canvas context?
+      - **Tijdsgebonden:** Wanneer zichtbaar?
+
+      Focus op stakeholder-relevant outcomes, niet technische metrics.
+      Gebruik probleem insights om betekenisvolle success criteria te bepalen.
+
+  - id: "what-ifs-ideation"
+    name: "What Ifs Creative Exploration"
+    description: "Verken alternatieve interventies via What Ifs ideation"
+    call-agent: "cis-design-thinking-coach"
+    duration: "20 min"
+    inputs:
+      - success_metrics
+    outputs:
+      - what_ifs_scenarios: []
+    instructions: |
+      Gebruik PVC What Ifs Sketch worksheet voor structured ideation:
+
+      Leid gebruiker door creative exploration:
+      1. "What if we completely eliminated the core problem?"
+      2. "What if budget/speed/time were not a constraint?"
+      3. "What if we leveraged unexpected partnerships?"
+      4. "What if we changed how people interact with the system?"
+
+      Gebruik CIS Design Thinking Coach voor:
+      - Structured ideation facilitation
+      - Constraint removal exercises
+      - Stakeholder perspective incorporation
+      - Idea convergence guidance
+
+      Houd focus op canvas-pragmatisch niveau (geen implementatie details).
+
+  - id: "scenario-crafting"
+    name: "Future Scenario Development"
+    description: "Vorm ideeën om tot coherente toekomstscenario's"
+    call-agent: "cis-storyteller"
+    duration: "20 min"
+    inputs:
+      - what_ifs_scenarios
+    outputs:
+      - future_scenarios: []
+      - envisioned_future: draft
+    instructions: |
+      Transformeer What Ifs in narrative future scenarios:
+
+      Voor elk scenario ontwikkelen:
+      - **Kern Verhaal:** Wat gebeurt er voor de belangrijkste stakeholders?
+      - **Verander Dynamiek:** Welke key shifts vinden plaats?
+      - **Stakeholder Impact:** Wie wint/verliest wat?
+      - **Emotional Resonance:** Waarom inspireert dit?
+
+      Gebruik CIS Storyteller voor:
+      - Narrative structure development
+      - Stakeholder journey storytelling
+      - Emotional connection building
+      - Scenario validation against success metrics
+
+      Creëer 3-5 concrete scenario's, niet abstracte visie statements.
+
+  - id: "vision-consolidation"
+    name: "Vision Consolidation & Commitment"
+    description: "Consolideer naar één krachtige envisioned future"
+    duration: "10 min"
+    inputs:
+      - future_scenarios
+      - success_metrics
+    outputs:
+      - envisioned_future: {}
+      - stakeholder_commitment: assessed
+    instructions: |
+      Leid gebruiker naar selectie van optimale scenario:
+
+      Evaluatie criteria:
+      - **Stakeholder Alignment:** Welke visie spreekt meeste groepen aan?
+      - **Realisme vs Inspiratie:** Pragmatisch maar motiverend?
+      - **Strategic Fit:** Passeert bij canvas ontwikkelvolgorde?
+      - **Commitment Level:** Klaar om hiervoor te werken?
+
+      Creëer geconsolideerde vision statement:
+      - Concrete future state description
+      - Key transformation points
+      - Stakeholder benefit articulation
+      - Success metrics alignment
+
+      Beoordeel commitment voor volgende fases.
+
+deliverables:
+  - "Success Metrics Definition": "Concrete outcome criteria voor toekomstvisie"
+  - "What Ifs Exploration Notes": "Creative ideation output categories"
+  - "Future Scenarios Narratives": "3-5 ontwikkelde toekomstscenario's"
+  - "Envisioned Future Statement": "Geconsolideerde visie voor canvas"
+  - "Stakeholder Commitment Assessment": "Commitment niveau verificatie"
+
+success-criteria:
+  - Success metrics stakeholdingsgericht en measurable
+  - What Ifs ideation genereert creative alternatives
+  - Future scenarios emotionally compelling en stakeholder-relevant
+  - Geconsolideerde visie pragmatisch doch inspirerend
+  - Stakeholder commitment voor canvas voortzetting zichtbaar
+  - Klaar voor team & environment mapping
+
+validation-checklist:
+  - [ ] Success metrics stakeholder-relevant en meetbaar
+  - [ ] What Ifs ideation gaat beyond incremental changes
+  - [ ] Future scenarios stakeholder journeys includeren
+  - [ ] Vision statement concrete en actionable
+  - [ ] Commitment assessment stakeholder buy-in laat zien
+
+template: "{installed_path}/future-visioning-template.md"

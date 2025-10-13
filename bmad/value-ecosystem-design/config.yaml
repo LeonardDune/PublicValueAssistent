@@ -1,0 +1,42 @@
+# Value Based Ecosystem Design Module Configuration
+module_name: Value Based Ecosystem Design
+module_code: value-ecosystem-design
+author: Renzo
+description: Een complete module voor het ontwerpen van publieke dienst ecosystemen voor het oplossen van maatschappelijke vraagstukken, gebaseerd op een waardengedreven oriëntatie, met een professionele twee-fasen aanpak van waardenonderzoek naar ecosysteem ontwerp.
+
+# Module paths
+module_root: "{project-root}/bmad/value-ecosystem-design"
+installer_path: "{project-root}/bmad/value-ecosystem-design"
+
+# Component counts
+agents:
+  count: 8
+  list: ["canvas-orchestrator", "ecosystem-orchestrator", "master-orchestrator", "legal-agent", "ethical-agent", "stakeholder-analyst", "business-architect", "semanticist"]
+
+workflows:
+  count: 15
+  list: ["canvas-foundation", "ecosystem-design", "value-hierarchy", "stakeholder-analysis", "validation-ethics", "validation-legal", "implementation-planning", "comprehensive-integration", "iterative-canvas-update", "iterative-ecosystem-update", "comprehensive-pvc-vsd", "correct-course", "create-story", "dev-story", "review-story"]
+
+tasks:
+  count: 3
+  list: ["consistency-validator", "completeness-checker", "context-registrar"]
+
+# Module-specific settings
+phase_management:
+  canvas_phase: "creativiteit & pragmatiek"
+  ecosystem_phase: "wetenschappelijke onderbouwing"
+  iterative_cross_phase: true
+
+agent_orchestration:
+  hierarchical_layers: 3
+  interactive_protocols: true
+  bidirectional_dialogue: true
+
+knowledge_management:
+  specialized_stores: ["legal", "ethical", "stakeholder", "business", "semantic"]
+  rag_enabled: true
+  hallucination_prevention: true
+
+# Output configuration
+output_folder: "{project-root}/docs/value-ecosystem-design"
+data_folder: "{project-root}/bmad/value-ecosystem-design/data"

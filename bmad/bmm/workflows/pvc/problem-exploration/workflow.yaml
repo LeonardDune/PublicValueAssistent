@@ -1,0 +1,167 @@
+name: "PVC Problem Exploration Workflow"
+description: "Explore and analyze public sector problems with stakeholder input and divergent thinking"
+
+metadata:
+  author: "PVC Agent"
+  version: "1.0"
+  last-updated: "2025-01-09"
+  module: "BMM"
+  framework: "PVC-VSD"
+  estimated-duration: "4-6 hours"
+  cis-integration: "brainstorming-coach, creative-problem-solver"
+
+variables:
+  - user_name: "{user_name}"
+  - problem_statement: ""
+  - envisioned_future: ""
+  - stakeholder_context: {}
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "divergent-phase-1"
+    name: "5 Whys & Root Cause Analysis"
+    description: "Deep-dive into fundamental problem causes"
+    agent-call: "cis-creative-problem-solver"
+    duration: "30-45 min"
+    inputs:
+      - problem_statement
+    outputs:
+      - root_cause_analysis
+    instructions: |
+      Conduct 5 Whys analysis to identify fundamental problem causes.
+      Validate logical connections between layers.
+      Distinguish between system and individual factors.
+      Document assumptions and alternative interpretations.
+
+  - id: "divergent-phase-2"
+    name: "Problem Reframing Matrix"
+    description: "Generate alternative problem formulations from multiple perspectives"
+    agent-call: "cis-brainstorming-coach"
+    duration: "45-60 min"
+    inputs:
+      - root_cause_analysis
+    outputs:
+      - reframed_problems: []
+    instructions: |
+      Create matrix with original problem at center.
+      Reframe from stakeholder perspectives (citizen, government, expert).
+      Reframe in different abstraction levels (specific/general, short/long term).
+      Test each reframing against empirical data.
+
+  - id: "divergent-phase-3"
+    name: "Context Mapping"
+    description: "Map problem context across social, political, economic, technological domains"
+    duration: "60-90 min"
+    inputs:
+      - reframed_problems
+    outputs:
+      - context_map: {}
+      - stakeholder_initial: []
+    instructions: |
+      Map context domains: social, political, economic, technological.
+      Identify primary stakeholders per domain.
+      Assess driving and restraining forces.
+      Create stakeholder influence network.
+
+  - id: "divergent-phase-4"
+    name: "Visioning Exercises"
+    description: "Generate creative future scenarios without constraints"
+    agent-call: "cis-brainstorming-coach"
+    duration: "45-60 min"
+    inputs:
+      - context_map
+    outputs:
+      - vision_scenarios: []
+    instructions: |
+      Start with unlimited scenario: "What if budget was unlimited?"
+      Explore technological perfection scenarios.
+      Investigate ideal collaboration models.
+      Generate extreme case scenarios (best/worst case, wild card).
+
+  - id: "divergent-phase-5"
+    name: "Backcasting"
+    description: "Work backwards from desired future to identify implementation steps"
+    duration: "60-90 min"
+    inputs:
+      - vision_scenarios
+    outputs:
+      - backcasting_steps: []
+      - success_factors: []
+    instructions: |
+      Select most desirable and feasible future scenario.
+      Define concrete future state in measurable terms.
+      Work backwards: "What must happen before this?"
+      Identify intermediate milestones and capabilities.
+      Test feasibility against context constraints.
+
+  - id: "divergent-phase-6"
+    name: "Future State Storyboarding"
+    description: "Create emotional narratives of the envisioned future"
+    agent-call: "cis-storyteller"
+    duration: "45-60 min"
+    inputs:
+      - backcasting_steps
+    outputs:
+      - future_stories: []
+    instructions: |
+      Create user journey stories for new ecosystem.
+      Add emotional impact elements (trust, empowerment).
+      Showcase social and technological transformation.
+      Identify core public values in each storyboard.
+
+  - id: "integration-phase-1"
+    name: "PVC Foundation Synthesis"
+    description: "Integrate problem exploration and future vision into PVC foundation"
+    duration: "30-45 min"
+    inputs:
+      - reframed_problems
+      - future_stories
+    outputs:
+      - problem_statement_final
+      - envisioned_future_final
+    instructions: |
+      Select optimal problem formulation from alternatives.
+      Choose most compelling future vision.
+      Create logical problem-solution bridge.
+      Validate assumptions, risks, and success factors.
+
+  - id: "integration-phase-2"
+    name: "Hypothesis Formation"
+    description: "Create testable hypotheses for next workflow phases"
+    agent-call: "cis-creative-problem-solver"
+    duration: "30 min"
+    inputs:
+      - problem_statement_final
+      - envisioned_future_final
+    outputs:
+      - test_hypotheses: []
+      - experiment_design: []
+    instructions: |
+      Formulate "If...then..." hypotheses with measurable outcomes.
+      Make hypotheses quantifiable with initial KPIs.
+      Identify evidence needed to prove/disprove each hypothesis.
+      Design first experiments to test highest-impact hypotheses.
+
+deliverables:
+  - "Problem Analysis Report": "Comprehensive root cause and reframing analysis"
+  - "Context Mapping Document": "Multi-domain problem context with stakeholder analysis"
+  - "Future Vision Scenarios": "Creative future explorations with feasibility analysis"
+  - "PVC Foundation Elements": "Problem + Envisioned Future statements with bridge analysis"
+  - "Test Hypotheses Package": "Measurable hypotheses with experimental design"
+  - "Stakeholder Initial Mapping": "Preliminary stakeholder identification and influence assessment"
+
+success-criteria:
+  - Problem thoroughly explored from multiple angles
+  - Future vision clearly articulated and emotionally compelling
+  - Stakeholder context comprehensively mapped
+  - PVC foundation elements logically connected
+  - Hypotheses testable and measurable
+  - Preparation complete for stakeholder analysis phase
+
+validation-checklist:
+  - [ ] Multiple problem perspectives explored
+  - [ ] Future scenarios go beyond incremental improvements
+  - [ ] Context mapping covers all relevant domains
+  - [ ] Stakeholder perspectives represented
+  - [ ] PVC foundation statements are compelling and actionable
+  - [ ] Hypotheses are specific and falsifiable

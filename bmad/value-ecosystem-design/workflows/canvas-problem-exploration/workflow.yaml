@@ -1,0 +1,126 @@
+name: "canvas-problem-exploration"
+description: "Pragmatic problem exploration using PVC toolkit worksheets (5W + conditions) for Phase 1 Canvas foundation"
+
+metadata:
+  author: "Canvas Orchestrator"
+  version: "1.0"
+  last-updated: "2025-10-10"
+  module: "value-ecosystem-design"
+  framework: "PVC Toolkit - Phase 1"
+  estimated-duration: "45-60 min"
+  cis-integration: "brainstorming-coach"
+
+variables:
+  - user_name: "{user_name}"
+  - problem_statement: ""
+  - issue_definition: {}
+  - selected_problem: {}
+  - output_folder: "{output_folder}"
+
+steps:
+  - id: "issue-definition"
+    name: "PVC Issue Definition Worksheet"
+    description: "Apply 5W analysis to define the problematic issue clearly"
+    duration: "15 min"
+    inputs: []
+    outputs:
+      - issue_definition: {}
+    instructions: |
+      Guide the user through the PVC toolkit Issue Definition worksheet:
+      
+      Ask sequentially:
+      1. "Wat is de issue?" (What is the issue?)
+      2. "Waarom is het problematic?" (Why is it problematic?)  
+      3. "Waar gebeurt het?" (Where is it happening?)
+      4. "Voor wie gebeurt het?" (To whom is it happening?)
+      5. "Wanneer gebeurt het?" (When is it occurring?)
+      6. "Hoe gebeurt het?" (How does it occur?)
+      7. "Hoe vaak gebeurt het?" (How often is it happening?)
+      
+      Use collaborative, inspirational tone to build shared understanding.
+      Focus on pragmatic stakeholder perspectives over technical analysis.
+
+  - id: "conditions-assessment"
+    name: "Selecting Your Problem Conditions"
+    description: "Identify and prioritize the key conditions/aspects of the issue"
+    duration: "20 min"
+    inputs:
+      - issue_definition
+    outputs:
+      - potential_conditions: []
+    instructions: |
+      Guide through PVC toolkit Selecting Your Problem worksheet:
+      
+      1. List multiple conditions/aspects of the issue
+      2. Evaluate each condition:
+         - Scale and urgency
+         - Stakeholder impact
+         - Feasibility of addressing
+      3. Prioritize based on:
+         - Stakeholder salience
+         - Resource alignment
+         - Strategic value
+      
+      Keep focus pragmatic and canvas-oriented.
+      Avoid deep root cause analysis - save for Phase 2.
+
+  - id: "problem-selection"
+    name: "Choose Problem to Address"
+    description: "Select the specific problem condition for Phase 1 canvas focus"
+    duration: "10 min"
+    inputs:
+      - potential_conditions
+    outputs:
+      - selected_problem: {}
+    instructions: |
+      Work with user to select optimal problem:
+      
+      1. Review prioritized conditions
+      2. Evaluate strategic fit with canvas goals
+      3. Choose based on:
+         - Stakeholder commitment
+         - Canvas foundation potential
+         - Phase 1 achievability
+      
+      Craft clear, actionable problem statement.
+
+  - id: "creative-validation"
+    name: "Pragmatic Problem Validation"
+    description: "Validate selected problem through stakeholder perspectives"
+    call-agent: "cis-brainstorming-coach"
+    duration: "10 min"
+    inputs:
+      - selected_problem
+    outputs:
+      - problem_statement: validated
+    instructions: |
+      Use brainstorming coach for creative validation:
+      
+      Quick ideation session on:
+      - Problem reframing options
+      - Stakeholder impact verification
+      - Feasibility checks
+      
+      Keep pragmatic focus - inspire confidence without over-analysis.
+
+deliverables:
+  - "PVC Issue Definition": "Complete 5W analysis of the problematic issue"
+  - "Problem Conditions Assessment": "Prioritized list of issue aspects and causes"
+  - "Selected Problem Statement": "Clear, actionable problem definition for canvas"
+  - "Stakeholder Validation Notes": "Quick verification of problem relevance"
+
+success-criteria:
+  - Problem clearly defined through 5W analysis
+  - Key conditions identified and prioritized
+  - Specific problem selected for canvas focus
+  - Stakeholder perspectives incorporated
+  - Ready for future visioning phase
+
+validation-checklist:
+  - [ ] 5W analysis complete and comprehensive
+  - [ ] Multiple conditions identified and evaluated
+  - [ ] Problem selection based on stakeholder and strategic factors
+  - [ ] Problem statement clear and actionable for Phase 1
+  - [ ] Validation confirms stakeholder relevance
+
+template: "{installed_path}/problem-exploration-template.md"
