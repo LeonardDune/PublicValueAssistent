@@ -1,0 +1,20 @@
+package IndividualOntology
+
+category Individual
+
+quality Quality {
+    label {
+        @en "Quality"
+        @nl "Kenmerk"
+    }
+    description {
+        @en "A Quality is an intrinsic property or characteristic that inheres in an Individual, enabling it to possess certain attributes or features."
+        @nl "Een Kwaliteit is een intrinsieke eigenschap of kenmerk dat inherent is aan een Individu, waardoor het bepaalde attributen of kenmerken kan bezitten."
+    }
+    /*
+        Beschrijving: A quality is a fundamental aspect of an individual that defines its characteristics and properties. Qualities are dependent on the individuals they inhere in and cannot exist independently. They can be perceivable (like color, shape, size) or non-perceivable (like mass, charge). Qualities are essential for distinguishing between different individuals and for understanding their behavior and interactions within a system.
+        Examples: color, shape, size, mass, charge, temperature, texture.
+    */
+}
+
+relation Quality [0..*] -- inheresIn -- [1] Individual

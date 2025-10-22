@@ -1,0 +1,99 @@
+# Analyze Legal Article - Direct OWL Instance Generation
+name: analyze-legal-article
+description: "Directe OWL Linked Data instantie generatie uit juridische artikelen met OntologyBasis.ttl referenties. Creëert querybare juridische instanties met multilingual metadata."
+author: "LegalAnalyst OWL Instance Generator"
+
+# Critical variables
+config_source: "{project-root}/bmad/value-ecosystem-design/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Module path and component files
+installed_path: "{project-root}/bmad/value-ecosystem-design/workflows/analyze-legal-article"
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Analysis with Tonto models, OWL output referencing OntologyBasis.ttl
+owl_knowledge_graph_output: "{project-root}/docs/legal-owl-knowledge-graph.ttl"
+ontology_basis_ttl: "{project-root}/OntologyBasis/OntologyBasis.ttl"
+ontology_tonto_files: "{project-root}/OntologyBasis/"
+
+# Web Bundle Configuration
+web_bundle:
+  name: 'analyze-legal-article-hybrid'
+  description: 'Hybride Tonto+OWL juridische artikel analyse met volledige OntologyBasis integration'
+  author: 'Enhanced LegalAnalyst with Tonto+OWL Expertise'
+
+  # Core files (bmad/-relative paths)
+  instructions: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/instructions.md'
+  validation: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/checklist.md'
+  template: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/template.md'
+
+  # Tonto Guidance Files - CRITICAL for LegalAnalyst expertise (from root .clinerules)
+  tonto_documentation_guide: '.clinerules/tonto_llm_documentation_guide.instructions.md'
+  tonto_guidance: '.clinerules/tonto_llm_guidance.instructions.md'
+  tonto_terminology_guide: '.clinerules/tonto_llm_terminology_analysis_guide.instructions.md'
+  tonto_understanding_guide: '.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md'
+  tonto_cardinality_guide: '.clinerules/tonto-cardinality-guidance.instructions.md'
+  tonto_main_guide: '.clinerules/tonto-guidance.instructions.md'
+  tonto_create_elements_guide: '.clinerules/tonto-llm-create-new-elements.instructions.md'
+
+  # OntologyBasis Files - Complete set for full context
+  ontology_basis: 'OntologyBasis/OntologyBasis.ttl'
+  agent_ontology: 'OntologyBasis/AgentOntology.tonto'
+  demo_ontology: 'OntologyBasis/DEMOOntology.tonto'
+  event_ontology: 'OntologyBasis/EventOntology.tonto'
+  individual_ontology: 'OntologyBasis/IndividualOntology.tonto'
+  law_ontology: 'OntologyBasis/LawOntology.tonto'
+  legal_ontology: 'OntologyBasis/LegalOntology.tonto'
+  mode_ontology: 'OntologyBasis/ModeOntology.tonto'
+  object_ontology: 'OntologyBasis/ObjectOntology.tonto'
+  offering_ontology: 'OntologyBasis/OfferingOntology.tonto'
+  value_ascription_ontology: 'OntologyBasis/ValueAscriptionOntology.tonto'
+  value_bearer_ontology: 'OntologyBasis/ValueBearerOntology.tonto'
+  value_ontology: 'OntologyBasis/ValueOntology.tonto'
+  value_proposition_ontology: 'OntologyBasis/ValuePropositionOntology.tonto'
+
+  # Complete file list for web bundle
+  web_bundle_files:
+    - 'bmad/value-ecosystem-design/workflows/analyze-legal-article/instructions.md'
+    - 'bmad/value-ecosystem-design/workflows/analyze-legal-article/checklist.md'
+    - 'bmad/value-ecosystem-design/workflows/analyze-legal-article/template.md'
+    # Tonto guidance files
+    - '.clinerules/tonto_llm_documentation_guide.instructions.md'
+    - '.clinerules/tonto_llm_guidance.instructions.md'
+    - '.clinerules/tonto_llm_terminology_analysis_guide.instructions.md'
+    - '.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md'
+    - '.clinerules/tonto-cardinality-guidance.instructions.md'
+    - '.clinerules/tonto-guidance.instructions.md'
+    - '.clinerules/tonto-llm-create-new-elements.instructions.md'
+    # OntologyBasis files
+    - 'OntologyBasis/OntologyBasis.ttl'
+    - 'OntologyBasis/AgentOntology.tonto'
+    - 'OntologyBasis/DEMOOntology.tonto'
+    - 'OntologyBasis/EventOntology.tonto'
+    - 'OntologyBasis/IndividualOntology.tonto'
+    - 'OntologyBasis/LawOntology.tonto'
+    - 'OntologyBasis/LegalOntology.tonto'
+    - 'OntologyBasis/ModeOntology.tonto'
+    - 'OntologyBasis/ObjectOntology.tonto'
+    - 'OntologyBasis/OfferingOntology.tonto'
+    - 'OntologyBasis/ValueAscriptionOntology.tonto'
+    - 'OntologyBasis/ValueBearerOntology.tonto'
+    - 'OntologyBasis/ValueOntology.tonto'
+    - 'OntologyBasis/ValuePropositionOntology.tonto'
+
+# Required data files - Complete OntologyBasis
+ontology_basis: "{project-root}/OntologyBasis/"
+
+# Tonto Guidance - LegalAnalyst must study these before analysis
+tonto_guidance_files:
+  - "{project-root}/.clinerules/tonto_llm_documentation_guide.instructions.md"
+  - "{project-root}/.clinerules/tonto_llm_guidance.instructions.md"
+  - "{project-root}/.clinerules/tonto_llm_terminology_analysis_guide.instructions.md"
+  - "{project-root}/.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md"
+  - "{project-root}/.clinerules/tonto-cardinality-guidance.instructions.md"
+  - "{project-root}/.clinerules/tonto-guidance.instructions.md"
+  - "{project-root}/.clinerules/tonto-llm-create-new-elements.instructions.md"

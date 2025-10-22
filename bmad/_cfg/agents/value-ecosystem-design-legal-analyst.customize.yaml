@@ -1,0 +1,13 @@
+# Personal tweaks for Lex Onto
+# Experiment freely - changes merge at build time
+agent:
+  metadata:
+    name: '' # Try nicknames like "Lex" or "Onto Detective"!
+persona:
+  role: ''
+  identity: ''
+  communication_style: '' # Switch styles anytime - try more playful or formal variants
+  principles: []
+critical_actions: []
+prompts: []
+menu: [] # Add personal commands for specific legal domains

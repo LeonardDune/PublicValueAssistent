@@ -1,0 +1,136 @@
+import ValueBearerOntology
+import ValueAscriptionOntology
+import OfferingOntology
+import AgentOntology
+
+package ValuePropositionOntology
+
+subkind ValueProposition specializes ValueAssertion {
+    label {
+        @en "Value Proposition"
+        @nl "Waardepropositie"
+    }
+    description {
+        @en "Value Assertion an Offeror makes (as the Value Beholder) that a given Target Group (the Value Beneficiaries) will ascribe a particular Value to the experiences enabled by an Offering (the Value Object)."
+        @nl "Waardeverklaring die een Aanbieder maakt (als de Waardehouder) dat een bepaalde Doelgroep (de Waardebegunstigden) een specifieke Waarde zal toekennen aan de ervaringen die mogelijk worden gemaakt door een Aanbod (het Waardeobject)."
+    }
+    /**
+    Beschrijving: To make such an assertion, an Offeror must presuppose that the members of the Target Group share the same types of goals, as well as that they value the experiences in the same way. Simply put, the difference between Value Propositions and Offerings is that the former answer what members of the Target Group value and why, whilst the latter describes how Value is delivered by the Offeror.
+    Examples: "Our product saves you time and money by automating routine tasks," "We provide high-quality, eco-friendly products that support sustainable living," or "Our service offers personalized solutions tailored to your specific needs."
+    */
+}
+
+role TargetGroup specializes CollectiveSocialAgent {
+    label {
+        @en "Target Group"
+        @nl "Doelgroep"
+    }
+    description {
+        @en "Specific group of Agents for whom the Offeror has formulated the Value Proposition, and who are expected to experience or appreciate the offered value."
+        @nl "Specifieke groep Agenten waarvoor de Aanbieder de Waardepropositie heeft geformuleerd, en waarvan wordt verwacht dat zij de aangeboden waarde zullen ervaren of waarderen."
+    }   
+    /*
+        Examples: "reizigers die de flexibiliteit en het comfort van een auto boven openbaar vervoer waarderen", "slachtoffers van ernstige geweldsmisdrijven die actief begeleiding krijgen bij het strafproces", "vrouwen in achterstandswijken waar deelnamegraad aan gezondheidspreventieprogramma's laag is", "jongeren met meervoudige problematiek waarvoor een Jeugdtafel wordt ingericht."
+    */
+}
+
+relation ValueProposition [1..*] -- involves -- [1] TargetGroup
+
+relation TargetGroup [0..*] <>-- hasMember -- [2..*] ValueBenificiary
+relation TargetGroup [0..*] <>-- hasSub -- [0..*] TargetGroup
+
+subkind BusinessValueProposition specializes ValueProposition {
+    label {
+        @en "Business Value Proposition"
+        @nl "Zakelijke Waardepropositie"
+    }
+    description {
+        @en "A Business Value Proposition is a Value Proposition that focuses on the value delivered to customers or clients in a business context. It outlines the unique benefits and advantages that a business offers to its target market, highlighting how its products or services meet customer needs and solve their problems."
+        @nl "Een Zakelijke Waardepropositie is een Waardepropositie die zich richt op de waarde die aan klanten of cliënten wordt geleverd in een zakelijke context. Het schetst de unieke voordelen en voordelen die een bedrijf biedt aan zijn doelmarkt, waarbij wordt benadrukt hoe zijn producten of diensten voldoen aan de behoeften van klanten en hun problemen oplossen."
+    }
+    /**
+    Beschrijving: A Business Value Proposition is a specific type of Value Proposition that is tailored to the needs and expectations of customers in a commercial setting. It emphasizes the practical and financial benefits that customers can expect to receive from engaging with a business, such as cost savings, improved efficiency, enhanced quality, or superior customer service.
+    Examples: "Our software solution increases productivity by automating manual tasks, allowing businesses to save time and reduce operational costs," "We offer premium quality products at competitive prices, ensuring our customers receive exceptional value for their investment," or "Our consulting services provide strategic insights that help businesses achieve their growth objectives and improve overall performance."
+    */
+}
+
+subkind PublicValueProposition specializes ValueProposition {
+    label {
+        @en "Public Value Proposition"
+        @nl "Publieke Waardepropositie"
+    }
+    description {
+        @en "A Public Value Proposition is a Value Proposition that emphasizes the societal or communal benefits provided by public sector organizations, non-profits, or community initiatives. It highlights how these entities contribute to the well-being of the public, address social issues, and enhance the quality of life for individuals and communities."
+        @nl "Een Publieke Waardepropositie is een Waardepropositie die de maatschappelijke of gemeenschappelijke voordelen benadrukt die worden geboden door organisaties in de publieke sector, non-profitorganisaties of gemeenschapsinitiatieven. Het benadrukt hoe deze entiteiten bijdragen aan het welzijn van het publiek, sociale kwesties aanpakken en de kwaliteit van leven voor individuen en gemeenschappen verbeteren."
+    }
+    /**
+    Beschrijving: A Public Value Proposition focuses on the broader impact that public sector organizations and non-profits have on society. It underscores the importance of social responsibility, community engagement, and the promotion of public goods, such as education, healthcare, environmental sustainability, and social equity.
+    Examples: "Our community health program improves access to essential medical services for underserved populations, promoting overall well-being and reducing health disparities," "We provide educational resources and support to empower individuals and foster lifelong learning within our community," or "Our environmental conservation initiatives protect natural habitats and promote sustainable practices that benefit both current and future generations."
+    */
+}
+
+subkind OfferingValueProposition specializes ValueProposition {
+    label {
+        @en "Offering Value Proposition"
+        @nl "Aanbod Waardepropositie"
+    }
+    description {
+        @en "An Offering Value Proposition is a Value Proposition that specifically relates to the value delivered through an Offering. It articulates how the features, benefits, and conditions of an Offering create value for the Target Group, emphasizing the unique selling points and advantages that differentiate the Offering from alternatives."
+        @nl "Een Aanbod Waardepropositie is een Waardepropositie die specifiek betrekking heeft op de waarde die wordt geleverd via een Aanbod. Het verwoordt hoe de kenmerken, voordelen en voorwaarden van een Aanbod waarde creëren voor de Doelgroep, waarbij de unieke verkooppunten en voordelen worden benadrukt die het Aanbod onderscheiden van alternatieven."
+    }
+    /**
+    Beschrijving: An Offering Value Proposition focuses on the specific attributes of an Offering that contribute to its perceived value by the Target Group. It highlights how the Offering meets customer needs, solves problems, and delivers benefits that are relevant and meaningful to the intended audience.
+    Examples: "Our subscription service offers unlimited access to premium content, providing exceptional value for entertainment enthusiasts who seek diverse and high-quality programming," "We provide a comprehensive warranty and dedicated customer support, ensuring peace of mind and satisfaction for our customers," or "Our eco-friendly product line combines sustainability with performance, appealing to environmentally conscious consumers who prioritize both quality and ethical considerations."
+    */
+}
+
+roleMixin BusinessValuePortfolio specializes Portfolio, ValueBearer { 
+    label {
+        @en "Business Value Portfolio"
+        @nl "Businesswaardeportefeuille"
+    }
+    description {
+        @en "Portfolio that represents the collection of Business Value Propositions offered by an Offeror to various Target Groups. It encompasses the diverse range of value offerings that an organization provides, reflecting its strategic approach to delivering value across different market segments and customer needs."
+        @nl "Portefeuille dat de verzameling Waardeproposities vertegenwoordigt die een Aanbieder aan verschillende Doelgroepen aanbiedt. Het omvat het diverse scala aan waardeaanbiedingen dat een organisatie biedt, en weerspiegelt haar strategische benadering van het leveren van waarde aan verschillende marktsegmenten en klantbehoeften."
+    }
+    /**
+    Beschrijving: A Value Portfolio allows organizations to manage and optimize their value offerings, ensuring that they align with customer expectations and market demands. It provides a holistic view of the value landscape, enabling businesses to identify opportunities for innovation, differentiation, and growth.
+    Examples: "A technology company may have a Value Portfolio that includes software solutions for businesses, consumer electronics for individual users, and cloud services for enterprises," "A healthcare provider may offer a Value Portfolio that includes preventive care programs, specialized medical treatments, and wellness initiatives for different patient demographics," or "A non-profit organization may have a Value Portfolio that encompasses community outreach programs, educational initiatives, and advocacy efforts aimed at various social causes."
+    */
+}
+
+relation BusinessValueProposition [1..*] -- involves -- [1] BusinessValuePortfolio
+
+roleMixin PublicValuePortfolio specializes Portfolio, ValueBearer {
+    label {
+        @en "Public Value Portfolio"
+        @nl "Publieke Waardeportefeuille"
+    }
+    description {
+        @en "Portfolio that represents the collection of Public Value Propositions offered by an Offeror to various Target Groups. It encompasses the diverse range of value offerings that public sector organizations, non-profits, or community initiatives provide, reflecting their commitment to societal well-being and communal benefits."
+        @nl "Portefeuille die de verzameling Publieke Waardeproposities vertegenwoordigt die een Aanbieder aan verschillende Doelgroepen aanbiedt. Het omvat het diverse scala aan waardeaanbiedingen die organisaties in de publieke sector, non-profitorganisaties of gemeenschapsinitiatieven bieden, en weerspiegelt hun inzet voor maatschappelijk welzijn en gemeenschappelijke voordelen."
+    }
+    /**
+    Beschrijving: A Public Value Portfolio allows public sector organizations and non-profits to manage and optimize their value offerings, ensuring that they address social issues and enhance the quality of life for individuals and communities. It provides a comprehensive view of the societal impact, enabling these entities to identify opportunities for community engagement, social responsibility, and public good.
+    Examples: "A government agency may have a Public Value Portfolio that includes public health programs, educational initiatives, and environmental conservation efforts aimed at improving community well-being," "A non-profit organization may offer a Public Value Portfolio that encompasses social services, advocacy campaigns, and community development projects targeting various social causes," or "A community initiative may have a Public Value Portfolio that includes cultural events, recreational activities, and support services designed to enhance the quality of life for local residents."
+    */
+}
+
+relation PublicValueProposition [1..*] -- involves -- [1] PublicValuePortfolio
+
+roleMixin ValueOffering specializes OfferingDescription, ValueBearer {
+    label {
+        @en "Value Offering"
+        @nl "Waardeaanbod"
+    }
+    description {
+        @en "A Value Offering is an Offering Description that details the specific features, benefits, and conditions of an Offering that contribute to its perceived value by the Target Group. It articulates how the Offering meets customer needs, solves problems, and delivers benefits that are relevant and meaningful to the intended audience."
+        @nl "Een Waardeaanbod is een Aanbodbeschrijving die de specifieke kenmerken, voordelen en voorwaarden van een Aanbod beschrijft die bijdragen aan de waargenomen waarde ervan door de Doelgroep. Het verwoordt hoe het Aanbod voldoet aan de behoeften van klanten, problemen oplost en voordelen biedt die relevant en betekenisvol zijn voor het beoogde publiek."
+    }
+    /**
+    Beschrijving: A Value Offering focuses on the unique selling points and advantages that differentiate the Offering from alternatives. It highlights the practical and financial benefits that customers can expect to receive from engaging with the Offering, such as cost savings, improved efficiency, enhanced quality, or superior customer service.
+    Examples: "A Value Offering for a software solution may include features such as automation of routine tasks, user-friendly interface, and robust security measures that provide exceptional value for businesses seeking to enhance productivity and reduce operational costs," "A Value Offering for a consumer product may emphasize premium quality materials, innovative design, and eco-friendly attributes that appeal to environmentally conscious consumers who prioritize both quality and ethical considerations," or "A Value Offering for a service may highlight personalized solutions, dedicated customer support, and flexible pricing options that ensure satisfaction and value for clients with diverse needs."
+    */
+}
+
+relation OfferingValueProposition [1..*] -- involves -- [1] ValueOffering

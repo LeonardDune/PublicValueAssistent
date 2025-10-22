@@ -1,0 +1,170 @@
+import EventOntology
+import ObjectOntology
+
+package ModeOntology
+
+mode Disposition {
+    label {
+        @en "Disposition"
+        @nl "Dispositie"
+    }
+    description {
+        @en "A Disposition is a Mode that potentially exists in an entity, can be activated under certain triggers or circumstances, and if activated leads to a certain event."
+        @nl "Een Dispositie is een Modus die potentieel bestaat in een entiteit, geactiveerd kan worden onder bepaalde triggers of omstandigheden en indien geactiveerd leidt tot een bepaalde gebeurtenis."
+    }
+    /*
+        Beschrijving: een eigenschap die iets het vermogen of de aanleg geeft om op een bepaalde manier te reageren wanneer de juiste omstandigheden zich voordoen.
+        Examples: the fragility of a glass, the solubility of salt in water, the function of a knife to cut, the capacity of a person to speak a language, the vulnerability of a person to certain diseases, the capability of an organisation to deliver a service, the authority of a judge to sentence someone
+    */
+}
+
+mode IntentionalMoment {
+    label {
+        @en "Intentional Moment"
+        @nl "Intentioneel Moment"
+    }
+    description {
+        @en "An Intentional Moment is a Mode that exists in an agent and is directed towards an object or state of affairs."
+        @nl "Een Intentioneel Moment is een Modus die bestaat in een agent en gericht is op een object of toestand van zaken."
+    }
+    /*
+        Beschrijving: een mode die bestaat in een agent en gericht is op een object of toestand van zaken - het is een mentale toestand of attitude die een agent heeft ten opzichte van iets anders.
+        Examples: beliefs, desires, intentions, hopes, fears, obligations, permissions, commitments, goals
+    */
+}
+
+subkind MentalMoment specializes IntentionalMoment {
+    label {
+        @en "Mental Moment"
+        @nl "Mentaal Moment"
+    }
+    description {
+        @en "A Mental Moment is an Intentional Moment that exists in an Agent and is related to cognitive or emotional states."
+        @nl "Een Mentaal Moment is een Intentioneel Moment dat bestaat in een Agent en gerelateerd is aan cognitieve of emotionele toestanden."
+    }
+    /*
+        Beschrijving: een intentioneel moment dat bestaat in een physical agent en gerelateerd is aan cognitieve of emotionele toestanden - het is een mentale toestand of attitude die een fysieke agent heeft ten opzichte van iets anders.
+        Examples: beliefs, desires, intentions, hopes, fears
+    */
+}
+
+subkind Intention specializes MentalMoment {
+    label {
+        @en "Intention"
+        @nl "Intentie"
+    }
+    description {
+        @en "An Intention is a Mental Moment that represents a internal commitment that inheres within the Agent to perform a specific action or achieve a particular goal."
+        @nl "Een Intentie is een Mentaal Moment dat een intern commitment binnen in de Agent vertegenwoordigt om een specifieke activiteit uit te voeren of een bepaald doel te bereiken."
+    }
+    /*
+        Beschrijving: een mentaal moment dat een verbintenis vertegenwoordigt om een specifieke actie uit te voeren of een bepaald doel te bereiken - het is een mentale toestand of attitude die een fysieke agent heeft ten opzichte van iets anders.
+        Examples: the intention to go to the gym, the intention to study for an exam, the intention to start a business
+    */
+}
+
+@triggers relation Intention [1..*] -- causedBy -- [0..*] Action
+
+subkind Desire specializes MentalMoment {
+    label {
+        @en "Desire"
+        @nl "Verlangen"
+    }
+    description {
+        @en "A Desire is a Mental Moment that represents a wish or aspiration that an Agent has towards a particular object or state of affairs."
+        @nl "Een Verlangen is een Mentaal Moment dat een wens of aspiratie vertegenwoordigt die een Agent heeft ten opzichte van een bepaald object of toestand van zaken."
+    }
+    /*
+        Beschrijving: een mentaal moment dat een wens of aspiratie vertegenwoordigt die een fysieke agent heeft ten opzichte van iets anders - het is een mentale toestand of attitude die een fysieke agent heeft ten opzichte van iets anders.
+        Examples: the desire for success, the desire for happiness, the desire for love
+    */
+}
+
+subkind Belief specializes MentalMoment {
+    label {
+        @en "Belief"
+        @nl "Geloof"
+    }
+    description {
+        @en "A Belief is a Mental Moment that represents a conviction or acceptance that an Agent has towards a particular proposition or state of affairs."
+        @nl "Een Geloof is een Mentaal Moment dat een overtuiging of acceptatie vertegenwoordigt die een Agent heeft ten opzichte van een bepaalde stelling of toestand van zaken."
+    }
+    /*
+        Beschrijving: een mentaal moment dat een overtuiging of acceptatie vertegenwoordigt die een fysieke agent heeft ten opzichte van iets anders - het is een mentale toestand of attitude die een fysieke agent heeft ten opzichte van iets anders.
+        Examples: the belief that the earth is round, the belief that hard work leads to success, the belief in a higher power
+    */
+}
+
+subkind SocialMoment specializes IntentionalMoment {
+    label {
+        @en "Social Moment"
+        @nl "Sociaal Moment"
+    }
+    description {
+        @en "A Social Moment is an Intentional Moment that exists in a Social Agent and is related to social roles, norms, or institutions."
+        @nl "Een Sociaal Moment is een Intentioneel Moment dat bestaat in een Sociale Agent en gerelateerd is aan sociale rollen, normen of instituties."
+    }
+    /*
+        Beschrijving: een intentioneel moment dat bestaat in een social agent en gerelateerd is aan sociale rollen, normen of instituties - het is een mentale toestand of attitude die een sociale agent heeft ten opzichte van iets anders in een sociale context.
+        Examples: obligations, permissions, commitments, social roles
+    */
+}
+
+relator SocialRelator {
+    label {
+        @en "Social Relator"
+        @nl "Sociaal Relator"
+    }
+    description {
+        @en "A Social Relator is an example of a relator composed of two or more pairs of associated commitments/claims (Social Moments). Finally, a commitment (internal or social) is fulfilled by an Agent A if this Agent performs an Action X such that the post-state of that Action is a Situation that satisfies that Commitment."
+        @nl "Een Sociaal Relator is een voorbeeld van een relator die is samengesteld uit twee of meer paren van geassocieerde verplichtingen/claims (Sociale Momenten). Ten slotte wordt een verplichting (intern of sociaal) nagekomen door een Agent A als deze Agent een Activiteit X uitvoert zodanig dat de post-toestand van die Activiteit een Situatie is die aan die Verplichting voldoet."
+    }
+    /**
+        Beschrijving: een relator die sociale momenten verbindt - het is een manier om de relaties tussen sociale agenten en hun sociale rollen, normen of instituties te modelleren.
+        Examples: marriage (commitments between spouses), employment contract (commitments between employer and employee
+    */
+}
+
+@componentOf relation SocialRelator [1] <o>-- [2..*] SocialMoment
+@componentOf relation SocialRelator [1] <o>-- [1..*] SocialClaim
+@componentOf relation SocialRelator [1] <o>-- [1..*] SocialCommitment
+
+subkind SocialClaim specializes SocialMoment {
+    label {
+        @en "Social Claim"
+        @nl "Sociale Claim"
+    }
+    description {
+        @en "A Social Claim is a Social Moment that represents a right or entitlement that an agent has within a social context."
+        @nl "Een Sociale Claim is een Sociaal Moment dat een recht of aanspraak vertegenwoordigt die een agent heeft binnen een sociale context."
+    }
+    /*
+        Beschrijving: een sociaal moment dat een recht of aanspraak vertegenwoordigt die een sociale agent heeft binnen een sociale context - het is een mentale toestand of attitude die een sociale agent heeft ten opzichte van iets anders in een sociale context.
+        Examples: the right to vote, the entitlement to social benefits, the claim to property ownership
+    */
+}
+
+subkind SocialCommitment specializes SocialMoment {
+    label {
+        @en "Social Commitment"
+        @nl "Sociale Verplichting"
+    }
+    description {
+        @en "A Social Commitment is a Social Moment that represents an obligation or duty that an agent has within a social context."
+        @nl "Een Sociale Verplichting is een Sociaal Moment dat een verplichting of plicht vertegenwoordigt die een agent heeft binnen een sociale context."
+    }
+    /*
+        Beschrijving: een sociaal moment dat een verplichting of plicht vertegenwoordigt die een sociale agent heeft binnen een sociale context - het is een mentale toestand of attitude die een sociale agent heeft ten opzichte van iets anders in een sociale context.
+        Examples: the obligation to pay taxes, the duty to serve on a jury, the commitment to uphold social norms
+    */
+}
+
+@triggers relation SocialCommitment [1] -- causes -- [1..*] Action
+
+// Normative relationships: norms give rise to social moments
+@formal relation Permission [1] -- givesRiseTo -- [1..*] SocialClaim
+@formal relation Prohibition [1] -- givesRiseTo -- [1..*] SocialCommitment
+@formal relation Obligation [1] -- givesRiseTo -- [1..*] SocialCommitment
+@formal relation Exception [1] -- modifies -- [1..*] Permission
+@formal relation Exception [1] -- modifies -- [1..*] Prohibition
+@formal relation Exception [1] -- modifies -- [1..*] Obligation

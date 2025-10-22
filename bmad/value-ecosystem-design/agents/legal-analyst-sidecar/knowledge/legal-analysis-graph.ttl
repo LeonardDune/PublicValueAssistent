@@ -1,0 +1,196 @@
+@prefix : <https://example.com#> .
+@prefix gufo: <http://purl.org/nemo/gufo#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================================
+# LEX ONTO LEGAL ANALYSIS KNOWLEDGE GRAPH
+# Generated: 21 oktober 2025
+# Ontology: Based on OntologyBasis/LegalOntology.tonto + OntologyBasis.ttl
+# Status: Updated with Artikel 10:1 Awb and Artikel 385c WvS analyses
+# =============================================================================
+
+# ---------------------------------------------------------------------------------------------
+# CONTEXT PRESERVATION: ALGEMENE WET BESTUURSRECHT - HIERARCHISCHE STRUCTUUR
+# Modellering volgens LawOntology voor juridische context en proximity berekening
+# ---------------------------------------------------------------------------------------------
+
+# Wet niveau - Law (Wet)
+:Awb rdf:type :Law ;
+  gufo:typeOf :Law ;
+  :name "Algemene Wet Bestuursrecht" ;
+  :validFrom "1994-01-01"^^xsd:date ;
+  :jurisdiction :Netherlands_National ;
+  :containsSection :Awb_Hoofdstuk_10 .
+
+# Hoofdstuk niveau - Chapter (Hoofdstuk)
+:Awb_Hoofdstuk_10 rdf:type :Chapter ;
+  gufo:typeOf :Chapter ;
+  :number "10" ;
+  :title "Mandaat" ;
+  :hasPart :Awb_Artikel_10_1 ;
+  :hasPart :Awb_Artikel_10_2 .
+
+# Artikel niveau - Article (Artikel)
+:Awb_Artikel_10_1 rdf:type :Article ;
+  gufo:typeOf :Article ;
+  :number "10:1" ;
+  :title "Begripsbepaling" ;
+  :text "Onder mandaat wordt verstaan: de bevoegdheid om in naam van een bestuursorgaan besluiten te nemen." ;
+  :defines :Mandaat ;
+  :defines :Bestuursorgaan ;
+  :defines :Besluitvorming .
+
+# Artikel niveau - Article (Artikel) - ARTIKEL 10:2
+:Awb_Artikel_10_2 rdf:type :Article ;
+  gufo:typeOf :Article ;
+  :number "10:2" ;
+  :title "Gelijkstelling van besluiten" ;
+  :text "Een door de gemandateerde binnen de grenzen van zijn bevoegdheid genomen besluit geldt als een besluit van de mandaatgever." ;
+  :defines :Gemandateerde ;
+  :defines :Mandaatgever .
+
+# Context Preservation: Juridische geldigheid en jurisdictie
+:Netherlands_National rdf:type :Jurisdiction ;
+  :country "Netherlands" ;
+  :level "national" .
+
+:Awb_Artikel_10_1_Validity rdf:type :ValidityPeriod ;
+  :validFrom "1994-01-01"^^xsd:date .
+
+# 1. MANDAAT: Bevoegdheid om besluiten te nemen namens bestuursorgaan
+# @en: A power that enables taking decisions in the name of a government agency, as defined in Article 10:1 Awb.
+# @nl: Een bevoegdheid die het nemen van besluiten in naam van een bestuursorgaan mogelijk maakt, zoals gedefinieerd in artikel 10:1 Awb.
+#
+# Voorbeelden van instanties:
+#   - Burgemeester neemt besluit inzake parkeerbeleid namens gemeenteraad
+#   - Minister wijst vergunning toe namens de Kroon
+#   - Inspecteur legt boete op namens ministerie
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Burger neemt privé besluit (geen publiekrechtelijke bevoegdheid)
+#   - Ondernemer sluit commerciële overeenkomst (geen mandaat, geen bestuursorgaan)
+#   - Rechter velt vonnis in eigen naam (rechterlijke macht, geen mandaat)
+
+:Mandaat rdf:type :Power ;
+  gufo:typeOf :Power ;
+  gufo:inheresIn :Bestuursorgaan .
+
+# 2. BESTUURSORGAAN: Rechtssubject dat bestuurlijke bevoegdheden bezit
+# @en: A legal subject that holds governmental powers and can delegate mandate to others.
+# @nl: Een rechtssubject dat bestuurlijke bevoegdheden bezit en mandaat aan anderen kan delegeren.
+#
+# Voorbeelden van instanties:
+#   - Gemeenteraad als volksvertegenwoordiging
+#   - Ministerie als centrale overheidsorganisatie
+#   - Provinciale Staten als regionaal bestuur
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Burgerlijke rechtspersoon zoals BV (privaatrechtelijk)
+#   - Natuurlijk persoon (individu, geen orgaan)
+#   - Politieke partij (geen bestuurlijk orgaan)
+
+:Bestuursorgaan rdf:type :LegalSubject ;
+  gufo:typeOf :LegalSubject .
+
+# 3. BESLUITVORMING: Institutionele handeling van officiele besluitvorming
+# @en: An institutional act of taking official decisions within the scope of governmental mandate.
+# @nl: Een institutionele handeling van het nemen van officiële besluiten binnen de reikwijdte van bestuurlijk mandaat.
+#
+# Voorbeelden van instanties:
+#   - Vergunningverlening door burgemeester
+#   - Beleidsbesluit door minister
+#   - Sanctie oplegging door inspecteur
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Privé afspraak maken (geen institutionele handeling)
+#   - Commercieel contract sluiten (geen publiekrechtelijke besluitvorming)
+#   - Politiek debat voeren (geen formeel besluit)
+
+:Besluitvorming rdf:type :InstitutionalAct ;
+  gufo:typeOf :InstitutionalAct .
+
+# 4. GEGANDAATEERDE: Rechtssubject dat mandaat ontvangt en uitoefent
+# @en: A legal subject who receives and exercises mandate authority from a government agency.
+# @nl: Een rechtssubject dat mandaat ontvangt van een bestuursorgaan en dit uitoefent.
+#
+# Voorbeelden van instanties:
+#   - Ambtenaar die vergunningen verleent namens burgemeester
+#   - Inspecteur die controles uitvoert namens ministerie
+#   - Teamleider die besluiten neemt namens directie
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Directe beleidsmaker zonder mandaat (zelf mandaatgever)
+#   - Burger die handelingen verricht (geen publiekrechtelijke context)
+#   - Adviseur die alleen advies geeft (geen besluitvormende bevoegdheid)
+
+:Gemandateerde rdf:type :LegalSubject ;
+  gufo:typeOf :LegalSubject .
+
+# 5. MANDAATGEVER: Rechtssubject dat mandaat verleent aan anderen
+# @en: A legal subject that grants mandate authority to others, whose decisions are legally equivalent to their own.
+# @nl: Een rechtssubject dat mandaat verleent aan anderen, wiens besluiten juridisch gelijkwaardig zijn aan de eigen besluiten.
+#
+# Voorbeelden van instanties:
+#   - Burgemeester die mandaat geeft aan ambtenaar
+#   - Minister die bevoegdheid delegeert aan inspectie
+#   - Gemeenteraad die mandaat geeft aan wethouder
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Persoon die taken delegeert zonder juridische mandaat (informeel)
+#   - Bedrijf dat volmacht geeft (privaatrechtelijk)
+#   - Ouder die toestemming geeft aan kind (geen publiekrechtelijke bevoegdheid)
+
+:Mandaatgever rdf:type :LegalSubject ;
+  gufo:typeOf :LegalSubject .
+
+# =============================================================================
+# ROL SPECIALISATIE PATRONEN - BESTUURSORGAAN ALS MANDAATGEVER EN GEGANDAATEERDE
+# Bestuursorganen kunnen zowel mandaat geven als ontvangen in hiërarchische structuren
+# =============================================================================
+
+# 6. BESTUURSORGAAN_ALS_MANDAATGEVER: Bestuursorgaan dat mandaat verleent
+# @en: A government agency acting as mandate giver in administrative delegation hierarchy.
+# @nl: Een bestuursorgaan dat optreedt als mandaatgever in de bestuurlijke delegatiehiërarchie.
+#
+# Voorbeelden van instanties:
+#   - Ministerie dat mandaat geeft aan agentschappen
+#   - Provincie die mandaat geeft aan gemeenten
+#   - Burgemeester die mandaat geeft aan ambtenaren
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Burgerlijke rechtspersoon die volmacht geeft (privaatrechtelijk)
+#   - Intern management delegatie (geen publiekrechtelijke mandaat)
+#   - Hiërarchie zonder juridische delegatie (functioneel)
+
+:Bestuursorgaan_AlsMandaatgever rdf:type :LegalSubject ;
+  gufo:typeOf :LegalSubject .
+
+# 7. BESTUURSORGAAN_ALS_GEMANDAATEERDE: Bestuursorgaan dat mandaat ontvangt
+# @en: A government agency acting as mandate receiver in administrative delegation chain.
+# @nl: Een bestuursorgaan dat optreedt als gemandateerde in de bestuurlijke delegatieketen.
+#
+# Voorbeelden van instanties:
+#   - Gemeente die mandaat ontvangt van provincie
+#   - Agentschap dat mandaat ontvangt van ministerie
+#   - Lokale overheid die mandaat ontvangt van rijksoverheid
+#
+# Counter-voorbeelden (buiten definitie):
+#   - Subsidiaire als opdrachtnemer (geen mandaat maar contract)
+#   - Lagere overheid die eigen bevoegdheid uitoefent (geen mandaat)
+#   - Organisatie die taakdelegatie ontvangt (intern management)
+
+:Bestuursorgaan_AlsGemandateerde rdf:type :LegalSubject ;
+  gufo:typeOf :LegalSubject .
+
+# Relaties: Rol specialisatie hiërarchie
+:Bestuursorgaan_AlsMandaatgever gufo:categorizes :LegalSubject .
+:Bestuursorgaan_AlsGemandateerde gufo:categorizes :LegalSubject .
+
+# Relationeel patroon: Delegatie hiërarchie
+:Bestuursorgaan_AlsMandaatgever :grantsMandateTo :Bestuursorgaan_AlsGemandateerde .
+
+
+# =============================================================================
+# END OF LEGAL ANALYSIS KNOWLEDGE GRAPH
+# =============================================================================

@@ -1,0 +1,23 @@
+# Collaborate with Juridisch Adviseur - Advisor Integration Workflow
+name: collaborate-with-juridisch-adviseur
+description: "Werk samen met JuridischAdviseur voor advies op public service propositions"
+author: "Lex Onto - Juridisch Ontologie Analist"
+
+# Critical variables
+config_source: "{project-root}/bmad/value-ecosystem-design/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Module path and component files
+installed_path: "{project-root}/bmad/value-ecosystem-design/workflows/collaborate-with-juridisch-adviseur"
+instructions: "{installed_path}/instructions.md"
+template: "{installed_path}/template.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/legal-advisor-collaboration-{date}.md"
+
+# Required data files
+legal_ontology: "{project-root}/OntologyBasis/LegalOntology.tonto"

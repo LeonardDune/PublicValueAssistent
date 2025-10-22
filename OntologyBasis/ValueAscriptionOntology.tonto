@@ -1,0 +1,162 @@
+import IndividualOntology
+import AgentOntology
+import ModeOntology
+import ValueBearerOntology
+import ValueOntology
+
+package ValueAscriptionOntology
+
+/**
+This is the ontology module for Value Ascription, which provides foundational concepts for modeling the ascription of value to entities, including the roles, processes, and qualities involved in valuing.
+Source:
+    - Tiago Prince Sales, Sales, T. P., Nicola Guarino, Guarino, N., Giancarlo Guizzardi, Guizzardi, G., John Mylopoulos, & Mylopoulos, J. (2017). An Ontological Analysis of Value Propositions. 184-193. https://doi.org/10.1109/edoc.2017.32
+*/
+
+relator ValueAscription {
+    label {
+        @en "Value Ascription"
+        @nl "Waardetoekenning"
+    }
+    description {
+        @en "Value Ascription is a relator that captures the relationship between agents, value bearers, and the valuation process. It represents the act of ascribing value to an entity, which can be influenced by various factors including the perspectives of value beholders and beneficiaries."
+        @nl "Waardetoekenning is een relator die de relatie vastlegt tussen agenten, waardedragers en het waarderingsproces. Het vertegenwoordigt de handeling van het toeschrijven van waarde aan een entiteit, wat beïnvloed kan worden door verschillende factoren, waaronder de perspectieven van waarde-houders en begunstigden."
+    }
+    /**
+        Beschrijving: a judgment relationship between an agent (the value beholder) and a value bearer that the beholder judges as having value for someone (the value beneficiary). A value ascription is an aggregation of “smaller” judgments, namely the value ascription components.
+        Examples: The valuation of a piece of art by an art critic (value beholder) for a museum (value beneficiary) is an example of Value Ascription.
+    */
+}
+
+phase VAExAnte specializes ValueAscription {
+    label {
+        @en "Value Ascription Ex-Ante"
+        @nl "Waardetoekenning Ex-Ante"
+    }
+    description {
+        @en "Value Ascription Ex-Ante refers to the process of ascribing value to an entity before the actual experience or realization of that value. This phase focuses on anticipated benefits and sacrifices associated with the value bearer, based on expectations and projections."
+        @nl "Waardetoekenning Ex-Ante verwijst naar het proces van het toeschrijven van waarde aan een entiteit voordat de daadwerkelijke ervaring of realisatie van die waarde plaatsvindt. Deze fase richt zich op verwachte voordelen en offers die verband houden met de waardedrager, gebaseerd op verwachtingen en projecties."
+    }
+    /**
+        Beschrijving: Ex-ante value ascriptions are based on anticipated benefits and sacrifices associated with the value bearer, based on expectations and projections.
+        Examples: An investor's valuation of a startup company before making an investment decision is an example of Value Ascription Ex-Ante.
+    */
+}
+
+phase VAExPost specializes ValueAscription {
+    label {
+        @en "Value Ascription Ex-Post"
+        @nl "Waardetoekenning Ex-Post"
+    }
+    description {
+        @en "Value Ascription Ex-Post refers to the process of ascribing value to an entity after the experience or realization of that value. This phase focuses on the actual benefits and sacrifices associated with the value bearer, based on real outcomes and experiences."
+        @nl "Waardetoekenning Ex-Post verwijst naar het proces van het toeschrijven van waarde aan een entiteit na de ervaring of realisatie van die waarde. Deze fase richt zich op de daadwerkelijke voordelen en offers die verband houden met de waardedrager, gebaseerd op echte uitkomsten en ervaringen."
+    }
+    /**
+        Beschrijving: Ex-post value ascriptions are based on the actual benefits and sacrifices associated with the value bearer, based on real outcomes and experiences.
+        Examples: A customer's evaluation of a product after using it is an example of Value Ascription Ex-Post.
+    */  
+}
+
+subkind ValuePerception specializes ValueAscription {
+    label {
+        @en "Value Perception"
+        @nl "Waardeperceptie"
+    }
+    description {
+        @en "Value ascription in which the agent ascribes value to a value bearer for themselves."
+        @nl "Waardetoekenning waarbij de agent voor zichzelf waarde toekent aan een waardedrager."
+    }
+    /**
+        Beschrijving: Het gaat om de directe ervaring van de agent van de waarde die een waardedrager voor hem heeft. De waardehouder en de waardebegunstigde zijn dezelfde agent.
+        Examples: Een klant vindt een fiets comfortabel.
+    */
+}
+
+subkind ValueAssertion specializes ValueAscription {
+    label {
+        @en "Value Assertion"
+        @nl "Waardeverklaring"
+    }
+    description {
+        @en "Value ascription in which an agent ascribes value to a value bearer on behalf of another."
+        @nl "Waardetoekenning waarbij een agent waarde toekent aan een waardedrager namens een ander."
+    }
+    /**
+        Beschrijving: Het gaat om de toegeschreven verwachting van de ene agent (de waardehouder) over de waarde die een andere agent (de waardebegunstigde). De waardehouder en de waardebegunstigde zijn verschillende agenten.
+        Examples: Een fabrikant die stelt dat klanten de fiets comfortabel zullen vinden.
+    */
+}
+
+relation ValueAscription [1] -- isFocusOf -- [1] Valuation
+relation ValueAscription [1] <o>-- [1..*] VAComponent
+relation ValueAscription [1..*] -- involves -- [1] ValueBeholder
+relation ValueAscription [1..*] -- involves -- [1] ValueBenificiary
+relation ValueAscription [1..*] -- involves -- [1] ValueBearer
+
+relation Value [1] -- inheresIn -- [1] ValueAscription
+
+relator VAComponent {
+    label {
+        @en "Value Ascription Component"
+        @nl "Waardetoeschrijvingscomponent"
+    }
+    description {
+        @en "A Value Ascription Component is a relator that represents a specific aspect or element of the overall value ascription process. It captures the individual contributions to the valuation, such as benefits and sacrifices associated with the value bearer."
+        @nl "Een Waardetoeschrijvingscomponent is een relator die een specifiek aspect of element van het algehele waarde-toeschrijvingsproces vertegenwoordigt. Het legt de individuele bijdragen aan de waardering vast, zoals voordelen en offers die verband houden met de waardedrager."
+    }
+    /**
+    Beschrijving: Value Ascription Components are the building blocks of a Value Ascription, representing distinct judgments about the value of a Value Bearer. Each component can be classified as either a Benefit or a Sacrifice, reflecting positive or negative contributions to the overall value.
+    Each component focuses on an experience of the beneficiary under the perspective of one of its mental aspects, which considers relevant qualities of the experience or of its participants to identify a set of benefits and sacrifices.
+    Examples: In the valuation of a service, components might include the benefits provided to the beneficiary and any sacrifices made by the provider.
+    */
+}
+
+relation VAComponent [0..*] <>-- [1..*] Quality
+relation VAComponent [0..*] <>-- [1] MentalMoment
+relation VAComponent [1..*] -- involves -- [1] ValueBenificiary
+
+quality ValueComponent {
+    label {
+        @en "Value Component"
+        @nl "Waardecomponent"
+    }
+    description {
+        @en "A Value Component is a quality that inheres in a Value Ascription Component, representing either a Benefit or a Sacrifice associated with the value bearer. This quality captures the specific contributions to the overall value ascribed during the valuation process."
+        @nl "Een Waardecomponent is een eigenschap die inherent is aan een Waardetoeschrijvingscomponent en vertegenwoordigt ofwel een Bate of een Last dat verband houdt met de Waardedrager. Deze kwaliteit legt de specifieke bijdragen vast aan de algehele waarde die tijdens het waarderingsproces wordt toegekend."
+    }
+    /**
+    Beschrijving: A Value Component is a quality that inheres in a Value Ascription Component, representing either a Benefit or a Sacrifice associated with the value bearer. This quality captures the specific contributions to the overall value ascribed during the valuation process.
+    Examples: In the context of a service valuation, a Value Component might represent the benefit of improved efficiency or the sacrifice of increased cost.
+    */
+}
+subkind Benefit specializes ValueComponent {
+    label {
+        @en "Benefit"
+        @nl "Bate"
+    }
+    description {
+        @en "A Benefit is a Value Component that represents a positive contribution to the overall value ascribed to a Value Bearer. It captures the advantageous aspects or outcomes associated with the value bearer, enhancing its perceived worth."
+        @nl "Een Bate is een Waardecomponent die een positieve bijdrage levert aan de algehele waarde die aan een Waardedrager wordt toegekend. Het legt de voordelige aspecten of uitkomsten vast die verband houden met de waardedrager, waardoor de waargenomen waarde ervan wordt verhoogd."
+    }
+    /**
+        Beschrijving: A Benefit is a Value Component that represents a positive contribution to the overall value ascribed to a Value Bearer. It captures the advantageous aspects or outcomes associated with the value bearer, enhancing its perceived worth.
+        Examples: The benefit of a health insurance policy might include access to medical care and financial protection against health-related expenses.
+    */
+}
+
+subkind Sacrifice specializes ValueComponent {
+    label {
+        @en "Sacrifice"
+        @nl "Last"
+    }
+    description {
+        @en "A Sacrifice is a Value Component that represents a negative contribution to the overall value ascribed to a Value Bearer. It captures the disadvantageous aspects or costs associated with the value bearer, diminishing its perceived worth."
+        @nl "Een Last is een Waardecomponent die een negatieve bijdrage levert aan de algehele waarde die aan een Waardedrager wordt toegekend. Het legt de nadelige aspecten of kosten vast die verband houden met de waardedrager, waardoor de waargenomen waarde ervan wordt verminderd."
+    }
+    /**
+        Beschrijving: A Sacrifice is a Value Component that represents a negative contribution to the overall value ascribed to a Value Bearer. It captures the disadvantageous aspects or costs associated with the value bearer, diminishing its perceived worth.
+        Examples: The sacrifice of a health insurance policy might include premium payments and potential out-of-pocket expenses.
+    */
+}
+
+relation ValueComponent [1..*] -- inheresIn -- [1] VAComponent

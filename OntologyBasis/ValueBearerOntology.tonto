@@ -1,0 +1,116 @@
+import AgentOntology
+import EventOntology
+import ObjectOntology
+
+package ValueBearerOntology
+
+/**
+This is the ontology module for Value Bearers, which provides foundational concepts for modeling entities that can possess or carry value, as well as the processes and experiences associated with value.
+Source:
+    - Tiago Prince Sales, Sales, T. P., Nicola Guarino, Guarino, N., Giancarlo Guizzardi, Guizzardi, G., John Mylopoulos, & Mylopoulos, J. (2017). An Ontological Analysis of Value Propositions. 184-193. https://doi.org/10.1109/edoc.2017.32
+*/
+
+roleMixin ValueBearer {
+    label {
+        @en "Value Bearer"
+        @nl "Waardedrager"
+    }
+    description {
+        @en "A Value Bearer is an entity that can possess or carry value, which can be realized through various experiences or valuations. This concept is essential in contexts where the worth or significance of an entity is evaluated, such as in economics, ethics, or personal preferences."
+        @nl "Een Waardedrager is een entiteit die waarde kan bezitten of dragen, wat gerealiseerd kan worden door verschillende ervaringen of waarderingen. Dit concept is essentieel in contexten waar de waarde of betekenis van een entiteit wordt geëvalueerd, zoals in economie, ethiek of persoonlijke voorkeuren."
+    }
+    /**
+    Beschrijving: No claim regarding the nature of the value (economic, emotional, cultural, etc.) is made, allowing for a broad application of the concept across different domains.
+    Examples: A piece of art, a cherished possession, or even an abstract concept like freedom can be considered a Value Bearer. 
+    */
+}
+
+event Valuation specializes Action {
+    label {
+        @en "Valuation"
+        @nl "Waardering"
+    }
+    description {
+        @en "Valuation is the process or event through which an entity's value is assessed or determined. This can involve subjective judgments, market evaluations, or ethical considerations, depending on the context in which the valuation occurs."
+        @nl "Waardering is het proces of de gebeurtenis waarbij de waarde van een entiteit wordt beoordeeld of bepaald. Dit kan subjectieve oordelen, marktevaluaties of ethische overwegingen omvatten, afhankelijk van de context waarin de waardering plaatsvindt."
+    }
+    /**
+    Beschrijving: Valuation is a dynamic event that reflects the changing perceptions of value over time
+    Examples: The appraisal of a house, the evaluation of a business, or the personal assessment of a sentimental item.
+    */
+}
+
+roleMixin ValueExperience specializes ValueBearer {
+    label {
+        @en "Value Experience"
+        @nl "Waarde-ervaring"
+    }
+    description {
+        @en "The direct experiences of a Value Object"
+        @nl "De directe ervaringen van een Waarde-object"
+    }
+    /**
+    Beschrijving: Regarding the notion of use value, value is always relative to one or more (envisioned, actual or past) experiences, and therefore results from the valuation of such experiences, which are the ultimate bearers of value.
+    Examples: Enjoying a beautiful sunset, savoring a delicious meal, or experiencing the joy of giving to others are all examples of Value Experiences.
+    */
+}
+
+roleMixin ValueObject specializes ValueBearer, Object {
+    label {
+        @en "Value Object"
+        @nl "Waarde-object"
+    }
+    description {
+        @en "A Value Object is a Substantial that holds value and can be the focus of valuation and value experiences. This concept encompasses a wide range of items, from physical goods to abstract ideas, that are deemed valuable in various contexts."
+        @nl "Een Waarde-object is een Substantieel dat waarde heeft en het onderwerp kan zijn van waardering en waarde-ervaringen. Dit concept omvat een breed scala aan items, van fysieke goederen tot abstracte ideeën, die in verschillende contexten als waardevol worden beschouwd."
+    }
+    /**
+    Beschrijving: Value Objects can be tangible or intangible, and their value is often context-dependent
+    Examples: A family heirloom, a brand name, or a philosophical concept like justice can all be considered Value Objects.
+    */  
+}
+
+@participation relation ValueObject [0..1] -- participatesIn -- [1..*] ValueExperience
+
+roleMixin ValueBenificiary specializes Agent {
+    label {
+        @en "Value Beneficiary"
+        @nl "Waardebegunstigde"
+    }
+    description {
+        @en "A Value Beneficiary is an Agent that experiences value from or derives value from a Value Object. This role highlights the relationship between agents and the value they receive, whether tangible or intangible."
+        @nl "Een Waardebegunstigde is een Agent die waarde ervaart of ontleent aan een Waarde-object. Deze rol benadrukt de relatie tussen agenten en de waarde die ze ontvangen, of deze nu tastbaar of ontastbaar is."
+    }
+}
+
+@participation relation ValueBenificiary [0..1] -- participatesIn -- [1..*] ValueExperience
+
+roleMixin ValueBeholder specializes Agent {
+    label {
+        @en "Value Beholder"
+        @nl "Waardehouder"
+    }
+    description {
+        @en "A Value Beholder is an Agent that participates in the Valuation process, assessing or determining the value of a Value Object. This role emphasizes the active involvement of agents in evaluating worth, which can be influenced by personal, cultural, or societal factors."
+        @nl "Een Waardehouder is een Agent die deelneemt aan het waarderingsproces en de waarde van een Waarde-object beoordeelt of bepaalt. Deze rol benadrukt de actieve betrokkenheid van agenten bij het evalueren van waarde, wat beïnvloed kan worden door persoonlijke, culturele of maatschappelijke factoren."
+    }
+}
+
+@participation relation ValueBeholder [1] -- participatesIn -- [1..*] Valuation
+
+situation Context {
+    label {
+        @en "Context"
+        @nl "Context"
+    }
+    description {
+        @en "A Context is a Situation that provides the circumstances or setting in which Value Objects, Value Experiences, and Valuations occur. It encompasses the relevant factors that influence how value is perceived and assessed."
+        @nl "Een Context is een Situatie die de omstandigheden of setting biedt waarin Waarde-objecten, Waarde-ervaringen en Waarderingen plaatsvinden. Het omvat de relevante factoren die van invloed zijn op hoe waarde wordt waargenomen en beoordeeld."
+    }
+    /**
+    Beschrijving: Contexts can include social, cultural, economic, or environmental factors that shape the understanding and significance of value.
+    Examples: The cultural context of a community, the economic conditions of a market, or the environmental setting of a natural resource can all serve as Contexts for value-related activities.
+    */
+}
+
+@participation relation Context [1] -- participatesIn -- [0..*] Valuation

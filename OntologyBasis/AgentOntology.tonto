@@ -1,0 +1,345 @@
+import ObjectOntology
+import EventOntology
+import ModeOntology
+
+package AgentOntology
+
+/**
+This is the ontology module for Agents (part of UFO-C), which provides foundational concepts for modeling agents and their mental aspects.
+
+Sources:
+- https://ontology.com.br/ufo/ufo-c/spec/ 
+- Guizzardi, G., Wagner, G. (2004). Towards ontological foundations for agent modeling concepts using UFO. https://www.researchgate.net/publication/221394588_Towards_Ontological_Foundations_for_Agent_Modelling_Concepts_Using_the_Unified_Fundational_Ontology_UFO
+*/
+
+/**
+ * Agent: Een individu dat intentionele acties kan uitvoeren en verantwoordelijk kan worden gehouden voor zijn handelingen.
+ *
+ * UFO Foundation: Agent is a category representing individuals capable of intentional action.
+ * In UFO-C, agents are substantials that can perform intentional actions, have mental attitudes (beliefs, desires, intentions),
+ * and can be held accountable for their behavior. Agents provide the basis for social accountability and commitment.
+ *
+ * Purpose: Distinguishes individuals that can intentionally act from mere physical objects.
+ * This category forms the foundation for social, institutional, and collective agency concepts in UFO.
+ *
+ * Examples:
+ * - Individual persons
+ * - Organizations as institutional agents
+ * - Groups as collective social agents
+ *
+ * Relations: Participates in actions, has intentional moments, creates commitments.
+ */
+category Agent {
+    label {
+        @en "Agent"
+        @nl "Agent"
+    }
+    description {
+        @en "An individual capable of intentional actions who can be held accountable for their behavior."
+        @nl "Een individu dat intentionele acties kan uitvoeren en verantwoordelijk kan worden gehouden voor zijn gedrag."
+    }
+}
+
+@creation relation Agent [1] -- creates -- [0..*] Action
+@participation relation Agent [1] -- performs -- [0..*] ActionContribution
+
+/**
+ * SocialAgent: Een agent die deelneemt aan sociale structuren en collectieve intentionele toestanden.
+ *
+ * UFO Foundation: SocialAgent is a category representing agents that participate in social structures,
+ * collective intentionality, and institutional arrangements. Social agents can be held accountable
+ * within institutional contexts and participate in social commitments and norms.
+ *
+ * Purpose: Distinguishes agents that operate within social/institutional frameworks from purely
+ * individual physical agents. This category enables modeling of organizational and social accountability.
+ *
+ * Examples:
+ * - Individual persons participating in organizations
+ * - Organizations as institutional agents
+ * - Teams or groups as collective social agents
+ *
+ * Relations: Participates in normative descriptions, contained in collective social agents,
+ * has social roles, participates in institutional arrangements.
+ */
+category SocialAgent specializes Agent {
+    label {
+        @en "Social Agent"
+        @nl "Sociale Agent"
+    }
+    description {
+        @en "An agent that participates in social structures and collective intentional contexts."
+        @nl "Een agent die deelneemt aan sociale structuren en collectieve intentionele contexten."
+    }
+}
+
+/**
+ * InstitutionalAgent: Een formele organisatie of instelling die als een enkele agent kan handelen.
+ *
+ * UFO Foundation: InstitutionalAgent is a kind representing formal organizations or institutions
+ * that have their own identity principle and agency. They are substantial individuals that exist
+ * independently of their members and can participate in social relations, create commitments,
+ * and be held accountable as single entities.
+ *
+ * Purpose: Enables modeling of formal organizations, companies, governments, etc. as unitary
+ * agents that can enter into contracts, own property, and participate in social interactions
+ * independently of their changing membership.
+ *
+ * Examples:
+ * - Companies and corporations
+ * - Government agencies and departments
+ * - Universities and educational institutions
+ * - Charitable organizations and NGOs
+ *
+ * Relations: Participates in institutional arrangements, owns resources, creates legal commitments,
+ * may contain social agents as members.
+ */
+kind InstitutionalAgent specializes SocialAgent {
+    label {
+        @en "Institutional Agent"
+        @nl "Institutionele Agent"
+    }
+    description {
+        @en "A formal organization or institution that acts as a single agent with its own identity and agency."
+        @nl "Een formele organisatie of instelling die als een enkele agent handelt met zijn eigen identiteit en agency."
+    }
+}
+
+/**
+ * CollectiveSocialAgent: Een collectief van sociale agenten die als een enkele agent kan handelen.
+ *
+ * UFO Foundation: CollectiveSocialAgent is a collective representing groups where multiple social agents
+ * form an emergent agent with its own identity principle and agency. These are distinguished from
+ * institutional agents by their emergent rather than formally established nature.
+ *
+ * Purpose: Enables modeling of group agency where multiple agents collectively form a new agent
+ * that can make decisions, take actions, and be held accountable as a unified entity.
+ *
+ * Examples:
+ * - Families or households as collective decision-making units
+ * - Project teams or working groups with collective responsibility
+ * - Communities or social groups with collective agency
+ * - Advisory boards or committees with collective authority
+ *
+ * Relations: Contains social agents as members (@componentOf), may specialize into societies or ecosystems,
+ * participates in social arrangements as a single collective agent.
+ */
+kind CollectiveSocialAgent specializes SocialAgent {
+    label {
+        @en "Collective Social Agent"
+        @nl "Collectieve Sociale Agent"
+    }
+    description {
+        @en "A collective of social agents that acts as a single agent with emergent group agency."
+        @nl "Een collectief van sociale agenten die als een enkele agent handelt met emergente groepsagency."
+    }
+}
+
+/**
+ * Society: Een menselijke samenleving als collectieve sociale agent.
+ *
+ * UFO Foundation: Society represents a specific type of collective social agent where human communities
+ * form organized social structures with shared norms, institutions, and collective intentionality.
+ *
+ * Purpose: Models human societies as emergent agents that can participate in inter-societal relations,
+ * maintain social institutions, and be held collectively accountable for societal actions.
+ *
+ * Examples:
+ * - Nations or countries as collective agents
+ * - Cultural or ethnic groups with collective agency
+ * - Professional societies or associations
+ *
+ * Relations: Inherits membership relations from CollectiveSocialAgent, participates in
+ * inter-societal arrangements and institutional frameworks.
+ */
+subkind Society specializes CollectiveSocialAgent {
+    label {
+        @en "Society"
+        @nl "Samenleving"
+    }
+    description {
+        @en "A human society as a collective social agent with shared norms and institutions."
+        @nl "Een menselijke samenleving als collectieve sociale agent met gedeelde normen en instituties."
+    }
+}
+
+/**
+ * Ecosystem: Een sociaal ecosysteem als collectieve agent.
+ *
+ * UFO Foundation: Ecosystem represents social collectives where various agents (organizations, institutions)
+ * form interconnected networks with emergent agency and interdependent behavior. These are distinguished
+ * from simpler collective social agents by their complex interdependencies and systemic behavior.
+ *
+ * Purpose: Enables modeling of social ecosystems as agents that can participate in business and service
+ * interactions, maintain systemic balance, and be affected by regulatory frameworks and market dynamics.
+ *
+ * Examples:
+ * - Business ecosystems (logistics cooperation between transport organizations)
+ * - Service ecosystems (criminal justice chain as public service ecosystem)
+ * - Platform ecosystems (Apple ecosystem, Android ecosystem)
+ *
+ * Relations: Contains social agents as members, participates in business and service relations,
+ * subject to regulatory frameworks and market regulations.
+ */
+subkind Ecosystem specializes CollectiveSocialAgent {
+    label {
+        @en "Ecosystem"
+        @nl "Ecosysteem"
+    }
+    description {
+        @en "A social ecosystem as a collective agent with interdependent networks and systemic behavior."
+        @nl "Een sociaal ecosysteem als collectieve agent met interdependent netwerken en systemisch gedrag."
+    }
+}
+
+@participational relation NormativeDescription [0..*] -- recognizedBy -- [1..*] SocialAgent
+
+/**
+ * PhysicalAgent: Een fysiek individu dat intentioneel kan handelen als een agent.
+ *
+ * UFO Foundation: PhysicalAgent is a kind representing individual physical entities (persons, animals)
+ * that have the capacity for intentional action. They are substantial individuals with bodies that
+ * can perform physical actions, have mental states, and can be held individually accountable for their behavior.
+ *
+ * Purpose: Represents the most fundamental level of agency - individual physical beings that can
+ * intentionally act in the world. Distinguished from social agents because they act as individuals
+ * rather than through social or institutional structures.
+ *
+ * Examples:
+ * - Individual persons as autonomous agents
+ * - Animals with intentional behavior (though typically more limited than human agents)
+ * - Any individual physical entity with intentional capabilities
+ *
+ * Relations: Has physical body, performs physical actions, has mental attitudes,
+ * may participate in social structures as social agents.
+ */
+kind PhysicalAgent specializes Agent {
+    label {
+        @en "Physical Agent"
+        @nl "Fysische Agent"
+    }
+    description {
+        @en "An individual physical entity capable of intentional action as an autonomous agent."
+        @nl "Een individueel fysiek individu dat intentioneel kan handelen als een autonome agent."
+    }
+}
+
+/**
+ * NaturalPerson: Een fysieke agent die juridische capaciteit heeft als natuurlijk persoon.
+ * Rigid specialization of PhysicalAgent with legal capacity and rights.
+ * Corresponds to LKIF-Core's Person class - individuals with full legal capacity.
+ * @see https://github.com/RinkeHoekstra/lkif-core/blob/master/norm.owl#Person
+ */
+subkind NaturalPerson specializes PhysicalAgent {
+    label {
+        @en "Natural Person"
+        @nl "Natuurlijk Persoon"
+    }
+    description {
+        @en "A physical agent with full legal capacity as a natural person, entitled to rights and subject to duties"
+        @nl "Een fysieke agent met volledige juridische capaciteit als natuurlijk persoon, gerechtigd tot rechten en onderworpen aan plichten"
+    }
+}
+
+/**
+ * PublicNaturalPerson: Een natuurlijk persoon die in publieke context opereert.
+ * Rigid specialization of NaturalPerson for individuals in public/governmental roles.
+ * Represents natural persons who hold public office or work in public administration.
+ */
+role PublicNaturalPerson specializes NaturalPerson, GovernmentBody {
+    label {
+        @en "Public Natural Person"
+        @nl "Publiekrechtelijke Natuurlijke Persoon"
+    }
+    description {
+        @en "A natural person operating in a public law context, such as public officials or civil servants"
+        @nl "Een natuurlijke persoon die opereert in een publiekrechtelijke context, zoals ambtenaren of bestuurders"
+    }
+}
+
+/**
+ * LegalPerson: Een sociale agent die juridische persoonlijkheid heeft.
+ * Rigid specialization of SocialAgent with legal personality and capacity.
+ * Corresponds to LKIF-Core's Legal_Person class - entities with legal personality.
+ * Note: Overlaps with InstitutionalAgent but not identical - some institutional agents lack legal personality.
+ * @see https://github.com/RinkeHoekstra/lkif-core/blob/master/norm.owl#Legal_Person
+ */
+kind LegalPerson specializes SocialAgent {
+    label {
+        @en "Legal Person"
+        @nl "Rechtspersoon"
+    }
+    description {
+        @en "A social agent with legal personality and capacity, capable of holding rights and obligations"
+        @nl "Een sociale agent met juridische persoonlijkheid en capaciteit, in staat om rechten en verplichtingen te hebben"
+    }
+}
+
+/**
+ * PrivateLegalPerson: Een rechtspersoon in privaatrechtelijke sfeer.
+ * Rigid specialization of LegalPerson for private law entities.
+ * Includes companies, associations, foundations operating in private law domain.
+ */
+role PrivateLegalPerson specializes LegalPerson {
+    label {
+        @en "Private Legal Person"
+        @nl "Privaatrechtelijke Rechtspersoon"
+    }
+    description {
+        @en "A legal person operating in the private law sphere, such as companies and associations"
+        @nl "Een rechtspersoon die opereert in de privaatrechtelijke sfeer, zoals bedrijven en verenigingen"
+    }
+}
+
+/**
+ * PublicLegalPerson: Een rechtspersoon in publiekrechtelijke sfeer.
+ * Rigid specialization of LegalPerson for public/government entities.
+ * Corresponds to LKIF-Core's Public_Body class - governmental and public organizations.
+ * Note: Many public legal persons are also institutional agents.
+ * @see https://github.com/RinkeHoekstra/lkif-core/blob/master/legal-action.owl#Public_Body
+ */
+role PublicLegalPerson specializes LegalPerson, GovernmentBody {
+    label {
+        @en "Public Legal Person"
+        @nl "Publiekrechtelijke Rechtspersoon"
+    }
+    description {
+        @en "A legal person in the public law sphere, such as government agencies and public bodies"
+        @nl "Een rechtspersoon in de publiekrechtelijke sfeer, zoals overheidsorganen en publieke instellingen"
+    }
+}
+
+@characterization relation IntentionalMoment [1..*] -- inheresIn -- [1] Agent
+
+@participation relation Agent [0..*] -- creates -- [1..*] Action
+
+roleMixin SocialRole specializes Agent {
+    label {
+        @en "Social Role"
+        @nl "Sociale Rol"
+    }
+    description {
+        @en "A Social Role is a Role that an individual or group can assume within a social context, which is defined by a set of norms, expectations, and behaviors associated with that role."
+        @nl "Een Sociale Rol is een Rol die een individu of groep kan aannemen binnen een sociale context, die wordt gedefinieerd door een reeks normen, verwachtingen en gedragingen die met die rol zijn geassocieerd."
+    }
+    /**
+    Beschrijving: This is a roleMixin because it is anti-rigid and relational - individuals can enter/leave the role without losing identity, based on social norms (not just attributes). The 'of objects' constrains to substantial agents (persons, organizations). It is used for normative descriptions to define roles like duties or permissions.
+    Note: Agent is a category in AgentOntology, so specializing as roleMixin allows flexibility for social contexts.
+    */
+}
+
+/**
+ * GovernmentBody: Een bestuursorgaan dat bestuurlijke besluiten neemt binnen publiekrechtelijke rechtspersonen.
+ * RoleMixin representing governmental bodies that exercise executive/administrative authority.
+ * Agents in this role make binding decisions on behalf of public legal persons.
+ * Examples: College of Mayor and Aldermen (B&W), Municipal Council, Government Ministers.
+ */
+roleMixin GovernmentBody specializes SocialRole {
+    label {
+        @en "Government Body"
+        @nl "Bestuursorgaan"
+    }
+    description {
+        @en "A governmental body that exercises executive or administrative authority within public legal persons"
+        @nl "Een bestuursorgaan dat uitvoerende of bestuurlijke bevoegdheid uitoefent binnen publiekrechtelijke rechtspersonen"
+    }
+}

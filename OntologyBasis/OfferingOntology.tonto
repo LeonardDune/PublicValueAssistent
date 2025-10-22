@@ -1,0 +1,176 @@
+import IndividualOntology
+import ValueAscriptionOntology
+import ValueBearerOntology
+import AgentOntology
+import ModeOntology
+import EventOntology
+import ObjectOntology
+
+package OfferingOntology
+
+roleMixin Offeror specializes Agent, ValueBeholder {
+    label {
+        @en "Offeror"
+        @nl "Aanbieder"
+    }
+    description {
+        @en "An Offeror is an Agent that makes an Offering."
+        @nl "Een Aanbieder is een Agent die een Aanbod doet."
+    }
+    /*
+        Examples: "John", "Netflix"
+    */
+}
+
+event Offer specializes CommunicativeAct {
+    label {
+        @en "Offer"
+        @nl "Aanbieding"
+    }
+    description {
+        @en "A communicative act, and what “counts as” a offer depends ultimately on the (social) context in which services are offered."
+        @nl "Een communicatieve handeling; wat als een Aanbod wordt beschouwd, hangt uiteindelijk af van de (sociale) context waarin diensten worden aangeboden."
+    }
+}
+
+@creation relation Offer [1] -- creates -- [1] Offering
+
+subkind Offering specializes SocialRelator {
+    label {
+        @en "Offering"
+        @nl "Aanbod"
+    }
+    description {
+        @en "An Offering is a promise with a conditional content, made by an Agent, the offeror, towards a group of agents, the Eligible Population."
+        @nl "Een Aanbod is een belofte met een voorwaardelijke inhoud, gedaan door een Agent, de aanbieder, naar een groep van agenten, de Bevoegde Populatie."
+    }
+}
+
+relation Offering [1..*] -- providedBy -- [1] Offeror
+relation Offering [1..*] -- offeredTo -- [1] EligiblePopulation
+
+role EligiblePopulation specializes CollectiveSocialAgent {
+    label {
+        @en "Eligible Population"
+        @nl "Bevoegde Populatie"
+    }
+    description {
+        @en "The Eligible Population is the group of agents to whom an Offering is directed. It is the collection of actors who fall within the factual or formal boundaries of those who can receive, utilize, or experience the value of a particular offering, given the contextual conditions (such as legislation, capacity, accessibility, or suitability)."
+        @nl "De Bevoegde Populatie is de groep van agenten naar wie een Aanbod gericht is. Het is de verzameling actoren die binnen de feitelijke of formele grenzen vallen van wie de waarde van een bepaald aanbod kan ontvangen, benutten of ervaren, gegeven de contextuele voorwaarden (zoals wetgeving, capaciteit, toegankelijkheid of geschiktheid)."
+    }
+    /*
+        Examples: "ieder persoon die wettelijk bevoegd is om een auto te besturen", "alle personen die in Nederland slachtoffer zijn van een misdrijf, ongeacht of ze aangifte hebben gedaan.", "alle vrouwen van 50-75 jaar in Nederland voor deelname aan gezondheidsprogramma.", "alle jongeren van 12-23 jaar die in aanraking komen met politie of justitie."
+    */
+}
+
+roleMixin EligibleAgent specializes SocialAgent {
+    label {
+        @en "Eligible Agent"
+        @nl "Bevoegde Agent"
+    }
+    description {
+        @en "A Social Agent (usually an individual or organization) that, within the context of a specific mandate or policy unit, belongs to the population entitled to participate in or receive value from a particular offering."
+        @nl "Social Agent (meestal een individu of organisatie) die binnen de context van een bepaald mandaat of beleidseenheid behoort tot de populatie die gerechtigd is om deel te nemen aan of waarde te ontvangen uit een bepaald aanbod."
+    }   
+}
+
+@memberOf relation EligiblePopulation [1..*] <>-- composedOf -- [1..*] EligibleAgent 
+
+subkind OfferingCommitment specializes SocialCommitment
+subkind OfferingClaim specializes SocialClaim
+
+@componentOf relation Offering [1] <o>-- [1..*] OfferingCommitment
+@componentOf relation Offering [1] <o>-- [1..*] OfferingClaim
+
+@characterization relation OfferingCommitment [1..*] -- inheresIn -- [1] Offeror
+@characterization relation OfferingClaim [1..*] -- inheresIn -- [1] EligiblePopulation
+
+@characterization relation OfferingCommitment [1..*] -- dependentOn -- [1] EligiblePopulation
+
+category Description specializes Individual {
+    label {
+        @en "Description"
+        @nl "Beschrijving"
+    }
+    description {
+        @en "A Description is an information artifact that describes some entity."
+        @nl "Een Beschrijving is een informatie-artifact dat een entiteit beschrijft."
+    }
+    /*
+        Examples: "a car for sale", "a streaming service", "a 5000 Euro price", "a monthly payment of 15 Euros"
+    */
+    }
+
+category OfferingDescription specializes Description {
+    label {
+        @en "Offering Description"
+        @nl "Aanbodbeschrijving"
+    }
+    description {
+        @en "An Offering Description is an information artifact that describes the content of an Offering, composed by to parts, the content description en the condition description."
+        @nl "Een Aanbodbeschrijving is een informatie-artifact dat de inhoud van een Aanbod beschrijft, bestaande uit twee delen, de inhoudsbeschrijving en de voorwaardebeschrijving."
+    }
+}
+
+relation OfferingDescription [1] -- describes -- [1] Offering
+relation OfferingDescription [0..*] <>-- [1..*] Content
+relation OfferingDescription [0..*] <>-- [1..*] Condition
+
+category ExperienceDescription specializes Description {
+    label {
+        @en "Experience Description"
+        @nl "Ervaringsbeschrijving"
+    }
+    description {
+        @en "An Experience Description is an information artifact that describes one or more Events."
+        @nl "Een Ervaringsbeschrijving is een informatie-artifact dat een of meer Gebeurtenissen beschrijft."
+    }
+    /*
+        Examples: "the transfer of ownership of a car", "the right to use a streaming service"
+    */
+    }
+relation ExperienceDescription [0..1] -- describes -- [1..*] Action
+
+category Content specializes ExperienceDescription {
+    label {
+        @en "Content Description"
+        @nl "Beschrijving van de inhoud"
+    }
+    description {
+        @en "A Content Description describes actions to be performed by the Offeror."
+        @nl "Een Beschrijving van de inhoud beschrijft acties die door de Aanbieder moeten worden uitgevoerd."
+    }
+    /*
+        Examples: "transferring the ownership of a car", "allowing the right to use a streaming service"
+    */
+    }
+
+category Condition specializes ExperienceDescription {
+    label {
+        @en "Condition Description"
+        @nl "Voorwaardebeschrijving"
+    }
+    description {
+        @en "Expected actions (usually some sort of payment) the offerees must perform if they want to take advantage of the offerings content."
+        @nl "Een Voorwaardebeschrijving beschrijft acties die door de potentiële afnemer moet worden uitgevoerd."
+    }
+    /**
+        Examples: "paying 5000 Euros", "paying a monthly fee of 15 Euros"
+    */
+}
+
+category Portfolio {
+    label {
+        @en "Portfolio"
+        @nl "Portefeuille"
+    }
+    description {
+        @en "A Portfolio is a collection of Offering Descriptions made by an Offeror."
+        @nl "Een Portefeuille is een verzameling van Aanbodbeschrijvingen gemaakt door een Aanbieder."
+    }
+}
+
+relation Portfolio [0..1] <>-- [2..*] OfferingDescription
+
+// Koppeling tussen bestaande Offering en nieuwe Contract
+relation Offering [1] -- documentedBy -- [1] Contract

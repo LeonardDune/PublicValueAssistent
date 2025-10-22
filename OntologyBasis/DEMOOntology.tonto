@@ -1,0 +1,854 @@
+import AgentOntology
+import EventOntology
+import ModeOntology
+import IndividualOntology
+import ObjectOntology
+import LegalOntology
+
+package DEMOOntology
+
+/**
+DEMO Enterprise Ontology - Transaction Pattern
+Based on the DEMO methodology by Jan Dietz and revisited with UFO foundations.
+This ontology captures the core Transaction Pattern for modeling business interactions.
+*/
+
+//
+// STRUCTURAL PERSPECTIVE: Transactions as Endurants
+//
+
+/**
+ * Actor: Een sociaal individu die deelneemt aan zakelijke transacties.
+ *
+ * DEMO-SL: Actor represents a subject that performs acts in transactions. Actors are
+ * organizational actors, not necessarily individual persons (can be roles, departments, etc.).
+ *
+ * UFO Foundation: Specializes SocialAgent, inheriting social agency but adding transaction
+ * participation capability. Actors are contingent on their transaction contexts.
+ *
+ * Purpose: Defines the capability to participate in DEMO transactions, distinguishing between
+ * initiators and executors within specific transaction kinds.
+ *
+ * Examples:
+ * - Customer (initiates purchase transactions)
+ * - Salesperson (executes purchase transactions)
+ * - Warehouse Manager (executes delivery transactions)
+ *
+ * Relations: Participates in transactions, can be initiator or executor of transaction kinds.
+ */
+kind Actor specializes SocialAgent {
+    label {
+        @en "Actor"
+        @nl "Actor"
+    }
+    description {
+        @en "A social individual who participates in business transactions."
+        @nl "Een sociaal individu die deelneemt aan zakelijke transacties."
+    }
+}
+
+/**
+ * Initiator: Een actor die een transactie initieert door een doel te verzoeken.
+ *
+ * DEMO-SL: Initiator starts a transaction by performing a request act. The initiator
+ * has a goal they want to achieve and requests another actor (executor) to commit
+ * to achieving that goal.
+ *
+ * UFO Foundation: A contingent specialization of Actor, defined by the specific
+ * role played in transaction initiation. The rigidity depends on transaction kind.
+ *
+ * Purpose: Distinguishes the requesting party in DEMO transaction patterns.
+ * Every transaction has exactly one initiator.
+ *
+ * Examples:
+ * - Customer requesting a product purchase
+ * - Employee requesting approval for leave
+ * - Client requesting a consulting service
+ *
+ * Relations: Initiates transactions of specific kinds, performs request acts.
+ */
+role Initiator specializes Actor {
+    label {
+        @en "Initiator"
+        @nl "Initiator"
+    }
+    description {
+        @en "An actor who initiates a transaction by requesting achievement of a goal."
+        @nl "Een actor die een transactie initieert door het vragen om verwezenlijking van een doel."
+    }
+}
+
+/**
+ * Executor: Een actor die een transactie uitvoert door zich te committeren aan een doel.
+ *
+ * DEMO-SL: Executor responds to a request by performing a promise act, committing to
+ * achieve the goal requested by the initiator. The executor is responsible for delivery
+ * of the production facts that satisfy the transaction.
+ *
+ * UFO Foundation: A contingent specialization of Actor, distinguished by the executive
+ * role in transaction fulfillment. The rigidity depends on organizational structure.
+ *
+ * Purpose: Distinguishes the performing party in DEMO transaction patterns.
+ * Every transaction has exactly one executor.
+ *
+ * Examples:
+ * - Salesperson executing a product sale (promising delivery)
+ * - Manager executing leave approval (promising decision)
+ * - Consultant executing service delivery (promising completion)
+ *
+ * Relations: Executes transactions of specific kinds, performs promise and production acts.
+ */
+role Executor specializes Actor {
+    label {
+        @en "Executor"
+        @nl "Executor"
+    }
+    description {
+        @en "An actor who executes a transaction by committing to achieve the requested goal."
+        @nl "Een actor die een transactie uitvoert door zich te committeren aan het bereiken van het gevraagde doel."
+    }
+}
+
+/**
+ * ActorRole: Een contingente sociale rol aangenomen door agenten in transactionele contexten.
+ *
+ * DEMO-SL: ActorRole represents higher-level organizational roles that classify specific
+ * initiators and executors in different transaction kinds. Multiple actors can fulfill
+ * the same role, and roles can span multiple transaction kinds.
+ *
+ * UFO Foundation: A mixin (anti-rigid) since the same agent can assume different roles
+ * in different contexts. Roles are social constructs dependent on collective intentionality.
+ *
+ * Purpose: Enables modeling of organizational hierarchies and role-based access
+ * without being tied to specific individuals.
+ *
+ * Examples:
+ * - "Customer Service Representative" (role fulfilled by multiple employees)
+ * - "Department Manager" (initiator for approval transactions, executor for assignments)
+ *
+ * Relations: Classifies initiators and executors of transaction kinds.
+ */
+roleMixin ActorRole specializes SocialAgent {
+    label {
+        @en "Actor Role"
+        @nl "Actorrol"
+    }
+    description {
+        @en "A contingent social role assumed by agents in organizational transaction contexts."
+        @nl "Een contingente sociale rol die agenten aannemen in organisatorische transactie contexten."
+    }
+}
+
+/**
+ * Transaction: Een sociale relator die een zakelijke transactie tussen initiator en executor vertegenwoordigt.
+ *
+ * DEMO-SL: Transaction is the core concept of DEMO, representing a coordinated exchange
+ * of value between two actors. Every transaction has exactly one initiator and one executor,
+ * and follows a standard pattern: request → promise → state → accept → deliver.
+ *
+ * UFO Foundation: A subkind of SocialRelator since it's a relational entity that exists
+ * only through social agreement. Transactions are endurants (persistent entities) that
+ * can have various states and contain coordination/production facts.
+ *
+ * Purpose: The fundamental unit of business interaction analysis in DEMO methodology.
+ * Captures both the structural agreements and behavioral execution of business processes.
+ *
+ * Examples:
+ * - Car rental transaction (customer requests car, rental company promises delivery)
+ * - Purchase transaction (buyer requests product, seller promises delivery)
+ * - Service transaction (client requests service, provider promises completion)
+ *
+ * Relations: Has exactly one initiator and one executor, manifested by transaction events,
+ * contains coordination and production facts as a "bank".
+ */
+subkind Transaction specializes SocialRelator {
+    label {
+        @en "Transaction"
+        @nl "Transactie"
+    }
+    description {
+        @en "A social relator representing a business transaction between initiator and executor."
+        @nl "Een sociale relator die een zakelijke transactie tussen initiator en executor vertegenwoordigt."
+    }
+}
+
+/**
+ * TransactorRole: Universele bouwsteen van organisaties (TAR01, TAR02, etc.).
+ *
+ * DEMO-SL: TAR = Transaction + ActorRole (executor). Hoogste abstractieniveau voor
+ * Construction Model. Organisaties bestaan uit TAR's met coördinatiestructuren ertussen.
+ *
+ * UFO Foundation: Kind als endurant entiteit die transaction en executor role combineert.
+ * Dit is de primaire bouwsteen voor organisatiemodellering.
+ */
+kind TransactorRole {
+    label {
+        @en "Transactor Role"
+        @nl "Transactorrol"
+    }
+    description {
+        @en "Universal building block combining transaction and executor role."
+        @nl "Universele bouwsteen die transactie en uitvoerende actorrol combineert."
+    }
+}
+
+/**
+ * TransactionState Enum: De mogelijke toestanden waarin een transactie kan verkeren.
+ *
+ * DEMO-SL: TransactionState defines the coordination states in the Complete Transaction Pattern (CTP).
+ * Each state represents a specific point in the conversation between initiator and executor,
+ * determining what communication acts are valid and what the current agreements are.
+ *
+ * UFO Foundation: An enumerated value class representing discrete coordination states.
+ * The states are exhaustive and mutually exclusive - a transaction can only be in one state.
+ *
+ * Purpose: Enables precise modeling of transaction lifecycles and state-dependent behavior.
+ * Critical for determining valid communication acts and actor responsibilities.
+ *
+ * State Sequence (CTP):
+ * - Requested: Initiator requested, executor not yet committed
+ * - Promised: Executor committed to deliver, but not yet started
+ * - Declared: Executor declares ready for delivery (optional in simplified patterns)
+ * - Accepted: Initiator accepts the delivery/result
+ * - Rejected/Declined/Revoked: Various ways transactions can fail or be cancelled
+ * - Expired: Transaction timed out
+ * - Completed: Transaction successfully finished
+ *
+ * Relations: Each Transaction has exactly one current state.
+ */
+enum TransactionState {
+    Requested, Promised, Declared, Accepted, Declined, Rejected, Revoked, Allowed, Refused, Expired, Completed
+}
+
+/**
+ * Transaction State Relation: Koppelt elke transactie aan haar huidige coördinatie-toestand.
+ *
+ * DEMO-SL Pattern: Fundamental transaction property - every transaction instance has
+ * exactly one state that determines its current status in the coordination protocol.
+ *
+ * Cardinality: [1] - Every transaction must have exactly one state at any time.
+ * This ensures all transactions are always in a well-defined coordination state.
+ *
+ * Example: A car rental transaction might have state "Promised" (executor committed
+ * to deliver car) then transition to "Completed" (car delivered and accepted).
+ */
+relation Transaction -- hasState -- [1] TransactionState
+
+
+/**
+ * CCommitment: Een coördinatie-commitment die voortkomt uit coördinatie-handelingen.
+ *
+ * DEMO-SL: CCommitment represents the result of successful coordination acts (like promise).
+ * It creates a binding agreement between actors regarding future action or delivery.
+ * Commitments are the "glue" that holds transaction coordination together.
+ *
+ * UFO Foundation: Specializes SocialCommitment, inheriting the social nature of commitments.
+ * CCommitments are contingent on the coordination acts that create them and are essential
+ * for establishing transaction accountability.
+ *
+ * Purpose: Captures the binding agreements that result from successful communication
+ * acts, establishing responsibilities and expectations between transaction participants.
+ *
+ * Examples:
+ * - Executor commits to deliver a car (from promise act in rental transaction)
+ * - Manager commits to approve leave request (from promise act in HR transaction)
+ * - Consultant commits to complete project (from promise act in service transaction)
+ *
+ * Relations: Attached to transactions, result from coordination acts.
+ */
+subkind CCommitment specializes SocialCommitment {
+    label {
+        @en "C-Commitment"
+        @nl "C-Commitment"
+    }
+    description {
+        @en "A coordination commitment resulting from coordination acts."
+        @nl "Een coordinatie-commitment dat voortkomt uit coordinatie-handelingen."
+    }
+}
+
+/**
+ * CClaim: Een coördinatie-claim die voortkomt uit coördinatie-handelingen.
+ *
+ * DEMO-SL: CClaim represents entitlements created by coordination acts (like request).
+ * It establishes the right to receive something or have an action performed, creating
+ * expectations that can be fulfilled by corresponding commitments.
+ *
+ * UFO Foundation: Specializes SocialClaim, inheriting social claim properties.
+ * CClaims are contingent on coordination acts and represent actor entitlements within
+ * the transaction coordination space.
+ *
+ * Purpose: Captures the expectations and entitlements that arise from initiation
+ * acts, establishing what actors are entitled to receive from transactions.
+ *
+ * Examples:
+ * - Customer claims right to receive rented car (from request act)
+ * - Employee claims right to have leave approved (from request act)
+ * - Client claims right to receive completed service (from request act)
+ *
+ * Relations: Attached to transactions, result from coordination acts, can be fulfilled by commitments.
+ */
+subkind CClaim specializes SocialClaim {
+    label {
+        @en "C-Claim"
+        @nl "C-Claim"
+    }
+    description {
+        @en "A coordination claim resulting from coordination acts."
+        @nl "Een coordinatie-claim dat voortkomt uit coordinatie-handelingen."
+    }
+}
+
+/**
+ * CoordinationFact: Een mode die de coördinatie-toestand van een transactie vertegenwoordigt.
+ *
+ * DEMO-SL: Coordination facts represent the state of transaction coordination between actors.
+ * This is an essential concept in DEMO as it captures the agreements and commitments that
+ * govern the relationship between initiator and executor.
+ *
+ * In UFO terms: A CoordinationFact is a mode that inheres in a transaction (as a relator)
+ * or related objects, representing the current state of interpersonal coordination.
+ *
+ * Examples:
+ * - "rental requested" (inhering in a Rental transaction)
+ * - "payment promised" (inhering in a Payment transaction)
+ * - "delivery accepted" (inhering in a Delivery transaction)
+ */
+mode CoordinationFact {
+    label {
+        @en "Coordination Fact"
+        @nl "Coördinatiefeit"
+    }
+    description {
+        @en "A fact representing the coordination state of a transaction."
+        @nl "Een feit dat de coördinatie-toestand van een transactie vertegenwoordigt."
+    }
+}
+
+/**
+ * ProductionFact: Een mode die een nieuwe toestand in de productie-wereld vertegenwoordigt.
+ *
+ * DEMO-SL: Production facts represent new states of affairs that are brought about by
+ * production acts. These are the actual results or deliverables of organizational work.
+ *
+ * In UFO terms: A ProductionFact is a mode that inheres in objects (substantials) in the
+ * production world, representing changes to the state of affairs caused by human action.
+ *
+ * Examples:
+ * - "car rented" (inhering in a Car object)
+ * - "payment processed" (inhering in an Invoice object)
+ * - "contract signed" (inhering in a Contract object)
+ * - "product manufactured" (inhering in a Product object)
+ */
+mode ProductionFact {
+    label {
+        @en "Production Fact"
+        @nl "Productiefeit"
+    }
+    description {
+        @en "A fact representing a new state of affairs in the production world."
+        @nl "Een feit dat een nieuwe toestand in de productie-wereld vertegenwoordigt."
+    }
+}
+
+/**
+ * WorkProduct: Any Individual that can be affected by production acts.
+ *
+ * DEMO-SL: Work products are the entities in the production world that can be created,
+ * modified, or affected by production acts. This includes both human-made objects and
+ * natural entities like collectives and quantities.
+ *
+ * UFO Foundation: Category that specializes Individual to capture all substantial
+ * universals (objects, collectives, quantities) that can be work products in DEMO.
+ * Work products are the scope of production acts - they represent what gets changed
+ * in the production world.
+ *
+ * Purpose: Provides semantic precision for what production facts can inhere in,
+ * replacing the general "Individual" with the more specific "WorkProduct" concept
+ * from the enterprise ontology patterns.
+ *
+ * Examples:
+ * - Objects: cars, contracts, buildings (both human-made and natural)
+ * - Collectives: forests (collective of trees), herds (collective of animals)
+ * - Quantities: amounts of water, air quality, mineral deposits
+ *
+ * Relations: Production facts inhere in work products.
+ */
+category WorkProduct specializes Individual {
+    label {
+        @en "Work Product"
+        @nl "Werkproduct"
+    }
+    description {
+        @en "Any Individual that can be affected by production acts, including objects, collectives, and quantities."
+        @nl "Elk Individu dat beïnvloed kan worden door productie-handelingen, inclusief objecten, collectives en quantities."
+    }
+}
+
+//
+// BEHAVIORAL PERSPECTIVE: Transactions as Events
+//
+
+/**
+ * TransactionEvent: Een perdurant die het temporele verloop van een transactie vertegenwoordigt.
+ *
+ * DEMO-SL: TransactionEvent represents the entire causal chain of acts that constitute
+ * a transaction in the behavioral domain. It includes all coordination and production
+ * acts performed by initiator and executor to complete the transaction.
+ *
+ * UFO Foundation: A complex event (Interaction) that unfolds over time. It connects
+ * the structural transaction (endurant) with its behavioral execution (perdurant).
+ * TransactionEvents are temporal wholes composed of constituent acts.
+ *
+ * Purpose: Bridges the structural and behavioral perspectives in DEMO. Captures
+ * the complete temporal development of a business transaction, including all
+ * communication and production activities.
+ *
+ * Composition: Contains 2+ coordination acts (request-promise-accept pattern) and
+ * 0+ production acts (the actual work/deliverables).
+ *
+ * Examples:
+ * - Complete car rental process (customer request → rental promise → car delivery → acceptance)
+ * - Service engagement (client request → consultant promise → work delivery → client acceptance)
+ *
+ * Relations: Manifests a Transaction, composed of CoordinationActs and ProductionActs.
+ */
+event TransactionEvent specializes Interaction {
+    label {
+        @en "Transaction Event"
+        @nl "Transactiegebeurtenis"
+    }
+    description {
+        @en "A perdurant representing the temporal unfolding of a transaction."
+        @nl "Een perdurant die het temporele verloop van een transactie vertegenwoordigt."
+    }
+}
+
+/**
+ * CoordinationAct: Een communicatie-handeling die coördinatiecommitments en -claims creëert.
+ *
+ * DEMO-SL: CoordinationAct represents communicative acts that establish agreements
+ * between actors. These acts create or modify the coordination state of transactions
+ * by creating CCommitments, CClaims, or changing transaction states.
+ *
+ * UFO Foundation: Specializes CommunicativeAct, inheriting communicative properties
+ * but adding coordination-specific purpose. These are intentional acts performed
+ * by actors to coordinate their activities within transactions.
+ *
+ * Purpose: Establishes and modifies the coordination framework within which
+ * production activities occur. Provides the communication layer that enables
+ * actors to align their expectations and commitments.
+ *
+ * Examples:
+ * - Request act (initiator asks for commitment)
+ * - Promise act (executor commits to deliver)
+ * - Accept act (initiator accepts delivery)
+ * - Reject act (transaction termination)
+ * - State act (executor declares readiness)
+ *
+ * Relations: Creates CoordinationFacts, performed by initiators and executors.
+ */
+/**
+ * CoordinationActType Enum: De negen soorten coördinatie-handelingen volgens DEMO-SL CTP.
+ *
+ * DEMO-SL definieert negen coordination act types die de complete transaction lifecycle bestrijken:
+ * - Request/Promise: Initiatie van transaction
+ * - Declare: Voorbereiding voor levering
+ * - Accept/Decline/Reject: Eindbeslissing over levering
+ * - Revoke: Intrekking van promise/request
+ * - Allow/Refuse: Randgevallen en uitzonderingen
+ *
+ * Elke act type heeft specifieke effecten op transaction state en creëert claims/commitments.
+ */
+enum CoordinationActType {
+    Request,   // Initiator vraagt om commitment (creëert CClaim)
+    Promise,   // Executor geeft commitment (creëert CCommitment)
+    Declare,   // Executor kondigt levering aan (creëert CClaim)
+    Accept,    // Initiator accepteert levering (verandert state)
+    Decline,   // Initiator wijst levering af (verandert state)
+    Reject,    // Initiator verwerpt gehele transaction (verandert state)
+    Revoke,    // Act terugtrekken (verandert state)
+    Allow,     // Uitzondering toestaan (creëert CClaim)
+    Refuse     // Uitzondering weigeren (verandert state)
+}
+
+/**
+ * CoordinationAct: Een communicatie-handeling in DEMO transaction patroon.
+ *
+ * DEMO-SL: Coordination acts are the communicative events that drive transaction state changes
+ * and create coordination commitments and claims. Every coordination act has a specific type
+ * that determines its effects on the transaction coordination protocol.
+ *
+ * UFO Foundation: Specializes CommunicativeAct with transaction-specific coordination semantics.
+ * Each act is intentional communication that changes the coordination state between actors.
+ *
+ * Purpose: Drive the transaction lifecycle by enabling controlled communication between
+ * initiator and executor, ensuring proper sequencing and accountability.
+ *
+ * State Changes: Every coordination act changes exactly one transaction state.
+ * Claim/Commitment Creation: Each act creates either a CClaim (initiator acts) or CCommitment (executor acts).
+ *
+ * Effects by Act Type:
+ * - Request → Requested state, creates CClaim
+ * - Promise → Promised state, creates CCommitment
+ * - Accept → Accepted state, confirms delivery
+ * etc.
+ *
+ * Relations: Has exactly one type, changes exactly one transaction state,
+ * creates either one CClaim or one CCommitment.
+ */
+event CoordinationAct specializes CommunicativeAct {
+    label {
+        @en "Coordination Act"
+        @nl "Coördinatie-handeling"
+    }
+    description {
+        @en "A communicative act that creates coordination commitments and claims."
+        @nl "Een communicatie-handeling die coördinatiecommitments en -claims creëert."
+    }
+}
+
+/**
+ * ProductionAct: Een atomaire handeling die een productiefeit creëert.
+ *
+ * DEMO-SL: ProductionAct represents atomic actions that bring about changes in
+ * the production world. These acts create ProductionFacts and represent the
+ * actual work/deliverables that satisfy transaction commitments.
+ *
+ * UFO Foundation: Specializes AtomicAction, being indivisible units of productive
+ * activity. These are intentional acts performed by executors to fulfill their
+ * commitments and create the value promised in transactions.
+ *
+ * Purpose: Represents the concrete productive work that organizations perform
+ * to deliver value to customers. Production acts are the "stuff" that organizations
+ * are paid for and that creates real-world change.
+ *
+ * Examples:
+ * - Physically handing over rental car keys
+ * - Transferring payment electronically
+ * - Installing software on client system
+ * - Manufacturing and delivering product
+ * - Providing consultation service
+ *
+ * Relations: Creates ProductionFacts, performed by executors to fulfill commitments,
+ * part of transaction event compositions.
+ */
+event ProductionAct specializes AtomicAction {
+    label {
+        @en "Production Act"
+        @nl "Productie-handeling"
+    }
+    description {
+        @en "An Atomic act that creates a production fact."
+        @nl "Een atomaire handeling die een productiefeit creëert."
+    }
+}
+
+//
+// RELATIONS
+//
+
+/**
+ * Actor Participation Relation: ActorRoles nemen deel aan transacties.
+ *
+ * DEMO-SL Pattern: @participation links ActorRoles to transactions they participate in.
+ * This fundamental relation establishes which actor roles are involved in which transactions.
+ *
+ * UFO Foundation: @participation is a specific relation type indicating involvement
+ * in perdurants (events/processes). Here it connects endurant actor roles to perdurant transactions.
+ *
+ * Cardinality: ActorRole can participate in multiple transactions, transaction involves multiple actor roles.
+ * Each transaction requires ActorRoles for initiator and executor positions.
+ *
+ * Purpose: Enables tracking actor role involvement and responsibilities across transactions.
+ * Critical for organizational analysis and accountability.
+ *
+ * Examples:
+ * - "Customer" actor role participates in rental transaction (as initiator)
+ * - "Rental Agent" actor role participates in rental transaction (as executor)
+ * - Multiple actor roles participate in complex collaborative transactions
+ */
+@participation relation ActorRole -- participatesIn -- Transaction
+
+/**
+ * Transaction Structure Relations: De kernstructuur van transacties.
+ *
+ * DEMO-SL: Transactions have exactly one initiator and one executor - this binary
+ * structure is fundamental to DEMO. The @mediation relation type indicates that
+ * the transaction exists precisely because of the mediated relationship between
+ * these two actor roles.
+ *
+ * Cardinalities: [1] for both - every transaction MUST have exactly one initiator
+ * and exactly one executor. This constraint is what makes DEMO transactions "atomic"
+ * units of business interaction.
+ *
+ * Purpose: Establishes the fundamental dyadic structure of business transactions.
+ * Without this exact 1:1 relationship, transactions lose their analytical clarity.
+ *
+ * Examples:
+ * - Rental transaction involves Customer (initiator) and RentalAgent (executor)
+ * - Purchase transaction involves Buyer (initiator) and Seller (executor)
+ * - Approval transaction involves Employee (initiator) and Manager (executor)
+ */
+@mediation relation Transaction -- involves -- [1] Initiator
+@mediation relation Transaction -- involves -- [1] Executor
+
+/**
+ * Transaction Characterization Relations: Transacties hebben commitments en claims.
+ *
+ * DEMO-SL Pattern: Transactions are characterized by the commitments and claims
+ * that govern their coordination. These are the "content" of the transaction agreement.
+ *
+ * UFO Foundation: @characterization relations describe properties or characteristics
+ * that define or qualify the entity they characterize.
+ *
+ * Cardinalities: [0..*] for both - transactions may have no commitments/claims initially
+ * (during setup), or multiple ones (complex multi-party agreements).
+ *
+ * Purpose: Captures the binding agreements and expectations that constitute
+ * the transaction's coordination framework.
+ *
+ * Examples:
+ * - Rental transaction has commitment "car will be delivered by promised date"
+ * - Purchase transaction has claim "buyer entitled to receive product"
+ * - Service transaction has multiple commitments for different deliverables
+ */
+@characterization relation Transaction -- has -- [0..*] CCommitment
+@characterization relation Transaction -- has -- [0..*] CClaim
+
+/**
+ * Actor Role Classification Relations: Rollen classificeren specifieke initiators/executors.
+ *
+ * DEMO-SL: ActorRoles provide a higher level of abstraction, grouping similar
+ * initiators/executors across different transaction kinds. One role can classify
+ * many specific actor instances.
+ *
+ * UFO Foundation: @instantiation represents the relationship between a type/class
+ * and its instances. Here it connects organizational roles to specific actor instances.
+ *
+ * Cardinalities: [1..*] - each role classifies one or more specific actors who
+ * can fulfill that role in transactions.
+ *
+ * Purpose: Enables organizational modeling without tying analysis to specific individuals.
+ * Supports role-based organizational design and capability analysis.
+ *
+ * Examples:
+ * - "Customer Service Manager" role classifies specific managers who can initiate approval transactions
+ * - "Software Developer" role classifies developers who can execute development transactions
+ * - "Quality Inspector" role classifies inspectors who can execute quality control transactions
+ */
+@instantiation relation ActorRole -- classifies -- [1..*] Initiator
+@instantiation relation ActorRole -- classifies -- [1..*] Executor
+
+/**
+ * Transaction Event Composition Relations: Transaction events zijn samengesteld uit acts.
+ *
+ * DEMO-SL: TransactionEvents are composed of the acts that constitute their temporal
+ * unfolding. @composition indicates merological (part-whole) relationships where
+ * the parts (acts) constitute the whole (transaction event).
+ *
+ * Cardinalities:
+ * - [2..*] CoordinationActs: Every transaction needs at least request+promise (minimal pattern), can have more
+ * - [0..*] ProductionActs: Some transactions may be pure coordination, others include production work
+ *
+ * Purpose: Links the behavioral perspective (events) with the structural perspective (transactions).
+ * Shows the complete causal chain of acts that fulfill a transaction.
+ *
+ * Examples:
+ * - Rental transaction event composed of: request rental + promise rental + deliver car + accept delivery
+ * - Approval transaction event composed of: request approval + promise decision + make decision + accept outcome
+ * - Pure coordination: request info + provide info (no production acts)
+ */
+@componentOf relation TransactionEvent -- composedOf -- [2..*] CoordinationAct
+@componentOf relation TransactionEvent -- composedOf -- [0..*] ProductionAct
+
+/**
+ * Manifestation Relation: Transacties worden gemanifesteerd door transaction events.
+ *
+ * DEMO-SL: @manifestation bridges endurant (structural) and perdurant (behavioral) perspectives.
+ * Every transaction is manifested by exactly one temporal unfolding (transaction event).
+ *
+ * UFO Foundation: Manifestation links persistent entities (endurants) to their
+ * temporal manifestations (perdurants). This is a fundamental ontological bridge.
+ *
+ * Cardinality: [1] - every transaction has exactly one manifestation in the behavioral domain.
+ * This ensures complete linkage between structure and behavior.
+ *
+ * Purpose: Provides the ontological foundation for DEMO's dual perspective on enterprises.
+ * Enables analysis of both the "what" (structure) and "how" (behavior) of transactions.
+ *
+ * Examples:
+ * - Rental transaction (endurant) is manifested by the specific rental process that occurred (perdurant)
+ * - Purchase transaction is manifested by the particular buying process instance
+ * - Employment transaction is manifested by the specific hiring process
+ *
+ * Critical Note: This relation is what makes DEMO unique - it requires both perspectives for complete analysis.
+ */
+@manifestation relation Transaction -- manifestedBy -- [1] TransactionEvent
+
+/**
+ * Coordination Act Type Relation: Koppelt elke coordination act aan haar DEMO-SL type.
+ *
+ * DEMO-SL Pattern: Every coordination act in the CTP has exactly one of the nine defined types
+ * (request, promise, declare, accept, decline, reject, revoke, allow, refuse).
+ *
+ * UFO Foundation: Simple typing relation that classifies the act according to DEMO-SL semantics.
+ *
+ * Cardinality: [1] - Every coordination act must have exactly one type that determines its semantics.
+ *
+ * Purpose: Enables proper interpretation of coordination act effects on transactions.
+ *
+ * Examples:
+ * - Request act: Type = Request (initiates transaction, creates CClaim)
+ * - Promise act: Type = Promise (commits executor, creates CCommitment)
+ * - Accept act: Type = Accept (confirms delivery, changes state to Accepted)
+ */
+@characterization relation CoordinationAct -- hasType -- [1] CoordinationActType
+
+/**
+ * Coordination Act State Change Relation: Elke coordination act verandert transaction state.
+ *
+ * DEMO-SL Pattern: Coordination acts drive the transaction state machine. Every act in the CTP
+ * changes the transaction state according to the coordination protocol (e.g., request → requested).
+ *
+ * UFO Foundation: @bringsAbout indicates the causal relationship where the act brings about
+ * a state change in the transaction. This is a fundamental causal relationship in DEMO transaction dynamics.
+ *
+ * Cardinality: [1] - Every coordination act changes exactly one transaction state.
+ *
+ * Purpose: Models the state transitions that define transaction lifecycle progression.
+ *
+ * Examples:
+ * - Request act changes state to "Requested"
+ * - Promise act changes state to "Promised"
+ * - Accept act changes state to "Accepted"
+ * - Reject act changes state to "Rejected"
+ */
+@bringsAbout relation CoordinationAct -- changes -- [1] TransactionState
+
+/**
+ * Coordination Act Claim/Commitment Creation Relations: Acts creëren claims OF commitments.
+ *
+ * DEMO-SL Pattern: Coordination acts create either CClaims (when performed by initiator)
+ * or CCommitments (when performed by executor). This establishes the binding agreements
+ * that govern the transaction coordination.
+ *
+ * UFO Foundation: @creation indicates that the act brings new social constructs (claims/commitments) into existence.
+ *
+ * Cardinalities: [0..1] for both - each act creates either a claim OR a commitment, but not both.
+ * Some state-changing acts (like accept/reject) may create neither.
+ *
+ * Purpose: Establishes the contractual framework of transactions through social commitments.
+ *
+ * Examples:
+ * - Request act (initiator) creates CClaim: "right to receive promised delivery"
+ * - Promise act (executor) creates CCommitment: "obligation to deliver as promised"
+ * - Accept act may create neither, just changes state
+ */
+@creation relation CoordinationAct -- creates -- [0..1] CClaim
+@creation relation CoordinationAct -- creates -- [0..1] CCommitment
+
+/**
+ * TransactorRole Samenstelling: TAR = Transaction + ActorRole (executor).
+ *
+ * DEMO-SL: Elke TAR combineert precies één transactie met de actorrol
+ * die de executor verantwoordelijkheid heeft voor die transactie.
+ */
+@componentOf relation TransactorRole -- composedOf -- [1] Transaction
+@componentOf relation TransactorRole -- composedOf -- [1] ActorRole
+@mediation relation Transaction -- hasExecutor -- [1] ActorRole
+
+/**
+ * TransactorRole Production Uitvoering: De ActorRole component van een TransactorRole
+ * is verantwoordelijk voor het uitvoeren van ProductionActs van die TransactorRole.
+ *
+ * DEMO-SL: ProductionActs worden uitsluitend uitgevoerd door de executor ActorRole
+ * van de TransactorRole waartoe ze behoren (via TransactionEvent compositie).
+ * Dit garandeert dat alleen executor ActorRoles ProductionFacts kunnen produceren.
+ */
+@participation relation TransactorRole -- performsProduction -- [0..*] ProductionAct
+
+/**
+ * TAR-level Coördinatiestructuren volgens DEMO-SL CSD.
+ */
+
+/**
+ * Interaction Structure tussen TAR's: Initiator links.
+ */
+@mediation relation TransactorRole -- initiates -- [0..*] TransactorRole
+
+/**
+ * Interstriction Structure tussen TAR's: Access links.
+ */
+@formal relation TransactorRole -- hasAccessTo -- [0..*] TransactorRole
+
+/**
+ * Interimpediment Structure tussen TAR's: Wait links.
+ */
+@triggers relation TransactorRole -- impedes -- [0..*] TransactorRole
+
+/**
+ * Access Relation: Formele toegang van ActorRole tot transaction bank (Interstriction Structure).
+ *
+ * DEMO-SL: Access links geven ActorRoles toegang tot facts in transaction banks
+ * voor besluitvorming. Dit gaat verder dan initiator/executor toegang.
+ *
+ * UFO Foundation: @formal relation tussen ActorRole en Transaction voor informatie toegang.
+ */
+@formal relation ActorRole -- hasAccessTo -- Transaction
+
+/**
+ * Wait Relation: Transaction triggert wachttijd voor ActorRole (Interimpediment Structure).
+ *
+ * DEMO-SL: Wait links geven aan dat ActorRoles moeten wachten tot transaction
+ * bepaalde voortgang heeft bereikt voordat ze verder kunnen.
+ *
+ * UFO Foundation: @triggers relation waarbij Transaction een ActorRole triggert
+ * om te wachten.
+ */
+@triggers relation Transaction -- impedes -- ActorRole
+
+// FACT RELATIONS
+/**
+ * Relations tussen acts en de facts die zij creëren.
+ *
+ * DEMO-SL: Coordination acts create coordination facts, production acts create production facts.
+ * Deze facts vertegenwoordigen de resultaten van de handelingen.
+ */
+@bringsAbout relation CoordinationAct -- creates -- [1] CoordinationFact
+@bringsAbout relation ProductionAct -- creates -- [1] ProductionFact
+
+/**
+ * Facts inhereren in substantals uit de productie-wereld, met specifieke typing.
+ *
+ * DEMO-SL: Facts always inhere in some individual. Coordination facts represent
+ * social coordination states and thus inhere in SocialObjects (social constructs).
+ * Production facts specifically inhere in WorkProducts (the scope of production acts).
+ *
+ * UFO principle: Modes (facts) must inhere in some substantial (individual).
+ * Ontological distinction: Coordination facts are social constructs, hence SocialObject.
+ * Production facts inhere in WorkProducts, providing semantic precision for what
+ * can be affected by production acts.
+ */
+@characterization relation CoordinationFact -- inheresIn -- [1] SocialObject
+@characterization relation ProductionFact -- inheresIn -- [1] WorkProduct
+
+/**
+ * Transaction banks bevatten facts voor state management.
+ *
+ * DEMO-SL: Transactions serve as banks that store the coordination and production
+ * facts relevant to that transaction. This enables actors to access historical
+ * transaction states and production results.
+ *
+ * Example: A rental transaction bank contains facts like "rental requested",
+ * "rental promised", "car delivered", "payment processed".
+ */
+relation Transaction -- contains -- [0..*] CoordinationFact
+relation Transaction -- contains -- [0..*] ProductionFact
+
+//Een transactie wordt juridisch beperkt door een rechtsbetrekking; b.v. bepaalt wie de transactie mag initiëren, mag uitvoeren, of aan welke wettelijke regels (voorwaarden) de transactie moet voldoen
+@historicalDependence relation LegalRelator [0..*] -- constrains -- [0..*] Transaction
+//Een rechtsbetrekking manifesteert zich in een transactiegebeurtenis; m.a.w. het legitimeert het optreden van de gebeurtenis
+@manifestation relation LegalRelator [1] -- manifests -- [0..*] TransactionEvent
+//De transactiegebeurtenis is historisch afhankelijk van één of meer gebeurtenissen die de rechtsbetrekkingen die relevant zijn voor de transactie tot stand hebben gebracht
+@historicalDependence relation TransactionEvent [0..*] -- dependedOn -- [1..*] InstitutionalAct

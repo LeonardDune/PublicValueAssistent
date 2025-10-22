@@ -1,0 +1,47 @@
+# Compare Legal Articles - Tonto-Gebaseerde Artikel Vergelijking Workflow
+name: compare-legal-articles-tonto
+description: "Vergelijk artikelen op overlappingen, conflicten en onderlinge relaties met complete OntologyBasis context en Tonto expertise"
+author: "Lex Onto - Juridisch Ontologie Analist"
+
+# Critical variables
+config_source: "{project-root}/bmad/value-ecosystem-design/config.yaml"
+output_folder: "{config_source}:output_folder"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Module path and component files
+installed_path: "{project-root}/bmad/value-ecosystem-design/workflows/compare-legal-articles"
+instructions: "{installed_path}/instructions.md"
+template: "{installed_path}/template.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/legal-articles-comparison-tonto-{date}.md"
+
+# Required data files - COMPLETE OntologyBasis for comprehensive comparison
+legal_ontology: "{project-root}/OntologyBasis/LegalOntology.tonto"
+object_ontology: "{project-root}/OntologyBasis/ObjectOntology.tonto"
+law_ontology: "{project-root}/OntologyBasis/LawOntology.tonto"
+agent_ontology: "{project-root}/OntologyBasis/AgentOntology.tonto"
+event_ontology: "{project-root}/OntologyBasis/EventOntology.tonto"
+mode_ontology: "{project-root}/OntologyBasis/ModeOntology.tonto"
+value_ontology: "{project-root}/OntologyBasis/ValueOntology.tonto"
+individual_ontology: "{project-root}/OntologyBasis/IndividualOntology.tonto"
+offering_ontology: "{project-root}/OntologyBasis/OfferingOntology.tonto"
+value_bearer_ontology: "{project-root}/OntologyBasis/ValueBearerOntology.tonto"
+value_ascription_ontology: "{project-root}/OntologyBasis/ValueAscriptionOntology.tonto"
+value_proposition_ontology: "{project-root}/OntologyBasis/ValuePropositionOntology.tonto"
+demo_ontology: "{project-root}/OntologyBasis/DEMOOntology.tonto"
+
+# Tonto guidance files for expertise
+tonto_documentation_guide: "tonto_llm_documentation_guide.instructions.md"
+tonto_guidance: "tonto_llm_guidance.instructions.md"
+tonto_terminology_guide: "tonto_llm_terminology_analysis_guide.instructions.md"
+tonto_understanding_guide: "tonto_llm_understanding_and_summarization_guide.instructions.md"
+tonto_cardinality_guide: "tonto-cardinality-guidance.instructions.md"
+tonto_syntax_guide: "tonto-guidance.instructions.md"
+tonto_creation_guide: "tonto-llm-create-new-elements.instructions.md"
+
+# Knowledge Graph integration
+knowledge_graph: "{project-root}/docs/legal-knowledge-graph.tonto"

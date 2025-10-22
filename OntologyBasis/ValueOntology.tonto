@@ -1,0 +1,67 @@
+package ValueOntology
+
+quality Value {
+    label {
+        @en "Value"
+        @nl "Waarde"
+    }
+    description {
+        @en ""
+        @nl "Een emergente kwaliteit (mode) die bestaat door een Waardetoekenning — dat wil zeggen een mentale toestand van een agent (waardehouder) waarin een waarde wordt toegekend aan een waardedrager in een gegeven context, gebaseerd op de mate waarin de eigenschappen van de waardedrager de doelen, behoeften of voorkeuren van de waardehouder tegemoetkomen, waarbij baten als lasten tegen elkaar worden afgewogen."
+    }
+    /**
+    Beschrijving: Value is een relationeel en relationeel afhankelijke entiteit (mode). 
+    Het ontstaat via een Waardetoekenning: een agent (waardehouder) kent waarde toe aan een “waardedrager”
+    De werking van Value hangt af van:
+    - De mentale toestanden van de waardehouder (doelen, voorkeuren, verlangens, behoeften)
+    - De eigenschappen van de waardedrager die gewaardeerd wordt (kwaliteiten, gebruikskenmerken, etc.)
+    - De context waarin de waardetoekenning plaatsvindt
+    - De afweging tussen baten (“benefits”) en offers / lasten (“sacrifices”)
+    Examples: The value of a family heirloom may be sentimental rather than monetary, while the value of a service may be assessed based on its utility and impact on well-being.
+    */
+}
+
+subkind PublicValue specializes Value {
+    label {
+        @en "Public Value"
+        @nl "Publieke Waarde"
+    }
+    description {
+        @en "Public Value is a type of Value that emerges from value ascription focused on societal or communal benefits, collective well-being, and public goods. It emphasizes contributions to the broader community, social equity, and long-term societal impact rather than individual or commercial gains."
+        @nl "Publieke Waarde is een type Waarde dat ontstaat uit waardetoekenning gericht op maatschappelijke of gemeenschappelijke voordelen, collectief welzijn en publieke goederen. Het benadrukt bijdragen aan de bredere gemeenschap, sociale gelijkheid en langetermijn maatschappelijke impact in plaats van individuele of commerciële winsten."
+    }
+    /**
+    Beschrijving: Public Value is relationally dependent on collective agents (e.g., communities, societies) and contexts involving public policy, social responsibility, or communal needs. It often involves trade-offs between individual sacrifices and collective benefits.
+    Examples: The value of a public park in fostering community health and social cohesion, or the societal benefits of universal healthcare in reducing disparities.
+    */
+}
+
+subkind BusinessValue specializes Value {
+    label {
+        @en "Business Value"
+        @nl "Zakelijke Waarde"
+    }
+    description {
+        @en "Business Value is a type of Value that emerges from value ascription in commercial contexts, focusing on economic benefits, efficiency, and competitive advantages for organizations and customers."
+        @nl "Zakelijke Waarde is een type Waarde dat ontstaat uit waardetoekenning in commerciële contexten, gericht op economische voordelen, efficiëntie en concurrentievoordelen voor organisaties en klanten."
+    }
+    /**
+    Beschrijving: Business Value is often measured in terms of ROI, market share, or customer satisfaction in business transactions.
+    Examples: The value of a software tool in increasing productivity and reducing costs for a company.
+    */
+}
+
+subkind PersonalValue specializes Value {
+    label {
+        @en "Personal Value"
+        @nl "Persoonlijke Waarde"
+    }
+    description {
+        @en "Personal Value is a type of Value that emerges from individual value ascription, based on personal goals, emotions, and subjective preferences."
+        @nl "Persoonlijke Waarde is een type Waarde dat ontstaat uit individuele waardetoekenning, gebaseerd op persoonlijke doelen, emoties en subjectieve voorkeuren."
+    }
+    /**
+    Beschrijving: Personal Value is highly subjective and context-dependent, often involving emotional or intrinsic worth.
+    Examples: The sentimental value of a family heirloom.
+    */
+}

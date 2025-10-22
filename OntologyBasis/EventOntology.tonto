@@ -1,0 +1,133 @@
+import ObjectOntology
+import IndividualOntology
+
+package EventOntology
+
+event AtomicEvent {
+    label {
+        @en "Atomic Event"
+        @nl "Atomische Gebeurtenis"
+    }
+    description {
+        @en "An Atomic Event is an Event that cannot be decomposed into smaller Events."
+        @nl "Een Atomische Gebeurtenis is een Gebeurtenis die niet kan worden opgesplitst in kleinere Gebeurtenissen."
+    }
+    /*
+        Beschrijving: een atomic event is een event dat niet verder kan worden opgesplitst in kleinere events - het is de kleinste eenheid van gebeurtenis die nog steeds als een gebeurtenis kan worden beschouwd.
+        Examples: the happening of a car accident, the happening of a marriage, the happening of a concert, the happening of a car being sold, the happening of a person using a streaming service
+    */
+}
+
+event ComplexEvent {
+    label {
+        @en "Complex Event"
+        @nl "Complexe Gebeurtenis"
+    }
+    description {
+        @en "A Complex Event is an Event that can be decomposed into smaller Events."
+        @nl "Een Complexe Gebeurtenis is een Gebeurtenis die kan worden opgesplitst in kleinere Gebeurtenissen."
+    }
+    /*
+        Beschrijving: een complex event is een event dat kan worden opgesplitst in kleinere events - het is een samenstelling van meerdere atomic events die samen een grotere gebeurtenis vormen.
+        Examples: the happening of a wedding ceremony (which may include multiple atomic events such as the exchange of vows, the signing of the marriage certificate, and the celebration afterwards), the happening of a music festival (which may include multiple atomic events such as individual concerts, food stalls, and other activities)
+    */
+}
+
+relator Participation {
+    label {
+        @en "Participation"
+        @nl "Participatie"
+    }
+    description {
+        @en "Participation is a Relation that connects a Object to an Event in which it participates."
+        @nl "Participatie is een Relatie die een Object verbindt met een Gebeurtenis waaraan het deelneemt."
+    }
+    /*
+        Beschrijving: een participation relation geeft aan dat een substantial deelneemt aan een event - het is de manier waarop we de betrokkenheid van substantials bij gebeurtenissen modelleren.
+        Examples: a person participating in a wedding ceremony, a car being involved in a car accident, a band performing at a concert
+    */
+}
+
+@participation relation Participation [0..*] -- participationOf -- [1..*] Object
+
+event Action {
+    label {
+        @en "Action"
+        @nl "Activiteit"
+    }
+    description {
+        @en "An Action is a Event that is intentionally performed by an Agent to achieve a specific goal or purpose."
+        @nl "Een Activiteit is een Perdurant die opzettelijk wordt uitgevoerd door een Agent om een specifiek doel of doel te bereiken."
+    }
+    /*
+        Beschrijving: een action is een event dat wordt uitgevoerd door een agent met een specifiek doel of doel voor ogen - het is een bewuste en doelgerichte activiteit die wordt uitgevoerd door een agent.
+        Examples: the action of a person driving a car, the action of a person cooking a meal, the action of a person writing a book, the action of a person playing a sport, the action of a person using a computer
+    */
+}
+
+@participation relation Action [0..*] -- participationOf -- [1..*] Object
+
+event ActionContribution specializes Action
+
+event AtomicAction specializes Action {
+    label {
+        @en "Atomic Action"
+        @nl "Atomische Activiteit"
+    }
+    description {
+        @en "An Atomic Action is an Action that cannot be decomposed into smaller Actions."
+        @nl "Een Atomische Activiteit is een Activiteit die niet kan worden opgesplitst in kleinere Activiteiten."
+    }
+    /*
+        Beschrijving: een atomic action is een action die niet verder kan worden opgesplitst in kleinere actions - het is de kleinste eenheid van activiteit die nog steeds als een activiteit kan worden beschouwd.
+        Examples: the action of a person turning on a light switch, the action of a person taking a photo, the action of a person sending an email, the action of a person making a phone call
+    */
+}
+
+event ComplexAction specializes Action {
+    label {
+        @en "Complex Action"
+        @nl "Complexe Activiteit"
+    }
+    description {
+        @en "A Complex Action is an Action that can be decomposed into smaller Actions."
+        @nl "Een Complexe Activiteit is een Activiteit die kan worden opgesplitst in kleinere Activiteiten."
+    }
+    /*
+        Beschrijving: een complex action is een action die kan worden opgesplitst in kleinere actions - het is een samenstelling van meerdere atomic actions die samen een grotere activiteit vormen.
+        Examples: the action of a person planning a trip (which may include multiple atomic actions such as booking a flight, reserving a hotel, and packing a suitcase), the action of a person organizing an event (which may include multiple atomic actions such as sending invitations, arranging catering, and setting up decorations)
+    */
+}
+
+event CommunicativeAct specializes AtomicAction {
+    label {
+        @en "Communicative Act"
+        @nl "Communicatieve Handeling"
+    }
+    description {
+        @en "A Communicative Act is an Atomic Action that involves the exchange of information or messages between two Agents."
+        @nl "Een Communicatieve Handeling is een Atomische Activiteit die de uitwisseling van informatie of berichten tussen Agenten omvat."
+    }
+    /*
+        Beschrijving: een communicative act is een atomic action die de uitwisseling van informatie of berichten tussen agents omvat - het is een bewuste en doelgerichte activiteit die wordt uitgevoerd door een agent om te communiceren met andere agents.
+        Examples: the communicative act of a person sending a text message, the communicative act of a person making a phone call, the communicative act of a person writing an email, the communicative act of a person giving a presentation
+    */
+}
+
+event Interaction specializes ComplexAction {
+    label {
+        @en "Interaction"
+        @nl "Interactie"
+    }
+    description {
+        @en "An Interaction is a Complex Action that involves multiple Agents engaging in a coordinated activity or exchange."
+        @nl "Een Interactie is een Complexe Activiteit waarbij meerdere Agenten betrokken zijn bij een gecoördineerde activiteit of uitwisseling."
+    }
+    /*
+        Beschrijving: een interaction is een complex action waarbij meerdere agents betrokken zijn bij een gecoördineerde activiteit of uitwisseling - het is een bewuste en doelgerichte activiteit die wordt uitgevoerd door meerdere agents om samen te werken of te communiceren.
+        Examples: the interaction of a group of people having a meeting, the interaction of a team playing a sport, the interaction of a family having a meal together, the interaction of a class of students participating in a group project
+    */
+}
+
+@componentOf relation ComplexAction [1] <>-- [2..*] Participation
+@componentOf relation Interaction [1] <>-- [2..*] ActionContribution

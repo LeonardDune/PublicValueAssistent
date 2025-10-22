@@ -1,0 +1,234 @@
+<task id="bmad/value-ecosystem-design/tasks/agent-orchestrator.xml" name="Value Ecosystem Design Agent Orchestrator">
+  <objective>Orchestrate agent switching and collaboration for VED workflows, enabling seamless PVC toolkit execution</objective>
+
+  <llm critical="true">
+    <mandate>Load agent definitions from {project-root}/bmad/value-ecosystem-design/agents/</mandate>
+    <mandate>Execute agent activation sequence from embedded XML configuration</mandate>
+    <mandate>Handle cis-brainstorming-coach and other CIS agent integrations</mandate>
+    <mandate>Preserve context between agent switches and workflow continuation</mandate>
+    <mandate>Maintain session continuity across orchestration boundaries</mandate>
+    <mandate>Return results to calling workflow with proper context integration</mandate>
+  </llm>
+
+  <ORCHESTRATION-RULES critical="true">
+    <rule n="1">Load agent XML config from module agents directory only</rule>
+    <rule n="2">Execute activation steps in exact numerical order</rule>
+    <rule n="3">Display agent menu with all available *commands</rule>
+    <rule n="4">Handle numeric selection (1, 2, 3...) and command matching (*command)</rule>
+    <rule n="5">CIS agents: Use existing .clinerules for @brainstorming-coach etc.</rule>
+    <rule n="6">Return to calling workflow with results and preserved context</rule>
+  </ORCHESTRATION-RULES>
+
+  <module-context>
+    <agents>
+      <path>{project-root}/bmad/value-ecosystem-design/agents/</path>
+      <available>
+        <agent name="canvas-orchestrator" activation="@canvas-orchestrator"/>
+        <agent name="ecosystem-orchestrator" activation="@ecosystem-orchestrator"/>
+        <agent name="master-orchestrator" activation="@master-orchestrator"/>
+        <agent name="cis-brainstorming-coach" activation="@brainstorming-coach"/>
+        <agent name="cis-design-thinking-coach" activation="@design-thinking-coach"/>
+        <agent name="cis-storyteller" activation="@storyteller"/>
+      </available>
+    </agents>
+    <capabilities>
+      <feature>Module-scoped agent management</feature>
+      <feature>CIS agent integration for creative collaboration</feature>
+      <feature>Context preservation across agent boundaries</feature>
+      <feature>PVC-specific workflow integration</feature>
+    </capabilities>
+  </module-context>
+
+  <flow>
+    <step n="1" title="Receive Orchestration Request">
+      <substep n="1a" title="Parse Call-Agent Parameters">
+        <action>Extract agent name from call-agent directive</action>
+        <action>Load current workflow context and variables</action>
+        <action>Identify required expertise domain (PVC, CIS, etc.)</action>
+        <action>Determine session scope and return requirements</action>
+      </substep>
+
+      <substep n="1b" title="Validate Agent Availability">
+        <action>Check if agent exists in module agents directory</action>
+        <action>Verify agent has valid XML activation configuration</action>
+        <action>Test agent menu items availability</action>
+        <check>if agent not available → Halt and report specific error</check>
+      </substep>
+    </step>
+
+    <step n="2" title="Execute Agent Activation">
+      <substep n="2a" title="Load Agent Configuration">
+        <action>Read complete agent markdown file with embedded XML</action>
+        <action>Parse XML configuration for activation sequence</action>
+        <action>Extract agent metadata (name, title, icon, menu)</action>
+        <action>Load relevant workflow context for agent briefing</action>
+      </substep>
+
+      <substep n="2b" title="Execute Activation Sequence">
+        <iterate>For each activation step in XML config:</iterate>
+        <action>Execute step instructions in numerical order</action>
+        <action>Load required config files and persona information</action>
+        <action>Initialize agent-specific variables and context</action>
+        <action>Brief agent on current PVC workflow state</action>
+      </substep>
+
+      <substep n="2c" title="Present Agent Interface">
+        <output>
+          {{agent-icon}} **{{agent-title}}** - Geactiveerd
+
+          **Huidige Context:**
+          - PVC Workflow: {{workflow-name}}
+          - Huidige Stap: {{current-step}}
+          - Doel: {{orchestration-purpose}}
+
+          **Beschikbare Commands:**
+          {{numbered-list-of-menu-items}}
+
+          **Typ nummer of *command om door te gaan...**
+        </output>
+      </substep>
+    </step>
+
+    <step n="3" title="Handle Agent Interaction">
+      <substep n="3a" title="Process User Input">
+        <wait-for-input>Wait for user command selection</wait-for-input>
+
+        <handle-input>
+          <case type="numeric">Convert to menu item and execute</case>
+          <case type="command">Match *command and execute</case>
+          <case type="exit">Return to workflow with results</case>
+          <case type="help">Display menu again</case>
+        </handle-input>
+      </substep>
+
+      <substep n="3b" title="Execute Agent Commands">
+        <action>Process selected menu item based on XML handlers</action>
+        <action>Execute workflow-specific actions (PVC toolkit integration)</action>
+        <action>Handle CIS agent collaboration for creative input</action>
+        <action>Capture all outputs and insights</action>
+      </substep>
+
+      <substep n="3c" title="Manage Session Continuity">
+        <action>Preserve context during agent operation</action>
+        <action>Track collaboration results and insights</action>
+        <action>Maintain connection to calling workflow</action>
+        <check>Continue orchestration or return to workflow</check>
+      </substep>
+    </step>
+
+    <step n="4" title="Complete Agent Orchestration">
+      <substep n="4a" title="Collect Results">
+        <action>Gather all agent outputs and insights</action>
+        <action>Validate results against orchestration requirements</action>
+        <action>Format results for workflow integration</action>
+        <action>Document agent contributions to PVC process</action>
+      </substep>
+
+      <substep n="4b" title="Context Preservation">
+        <action>Update workflow context with agent results</action>
+        <action>Preserve agent insights for future workflow steps</action>
+        <action>Log orchestration for traceability</action>
+        <action>Prepare seamless workflow continuation</action>
+      </substep>
+
+      <substep n="4c" title="Return to Workflow">
+        <output>
+          🎭 **Agent Orchestration Complete**
+
+          **Agent Results:**
+          - {{agent-name}} heeft {{number}} inzichten bijgedragen
+          - {{key-insights}} geïntegreerd in PVC workflow
+          - Context bewaard voor volgende stappen
+
+          **Workflow Hervat:**
+          Terug naar {{workflow-name}} stap {{next-step-number}}
+        </output>
+
+        <action>Return control to calling workflow executor</action>
+        <action>Pass enriched context and results</action>
+        <mandate>Ensure workflow continuity is seamless</mandate>
+      </substep>
+    </step>
+  </flow>
+
+  <agent-types>
+    <VED-agents>
+      <agent name="canvas-orchestrator">
+        <role>PVC Phase 1 Foundation Architect</role>
+        <activation>@canvas-orchestrator</activation>
+        <workflows>canvas-problem-exploration, canvas-future-visioning, etc.</workflows>
+      </agent>
+      <agent name="ecosystem-orchestrator">
+        <role>PVC Phase 2 Scientific Implementation</role>
+        <activation>@ecosystem-orchestrator</activation>
+        <workflows>ecosystem-design-pipeline, fase-state-management</workflows>
+      </agent>
+      <agent name="master-orchestrator">
+        <role>Fase Transition & Context Preservation</role>
+        <activation>@master-orchestrator</activation>
+        <workflows>comprehensive-pvc-vsd, correct-course</workflows>
+      </agent>
+    </VED-agents>
+
+    <CIS-integration>
+      <agent name="brainstorming-coach">
+        <role>Creative PVC Enhancement</role>
+        <activation>@brainstorming-coach</activation>
+        <integration>Enhanced workshop facilitation for PVC worksheets</integration>
+      </agent>
+      <agent name="design-thinking-coach">
+        <role>Empathy-Driven PVC Development</role>
+        <activation>@design-thinking-coach</activation>
+        <integration>User-centered validation and stakeholder insights</integration>
+      </agent>
+      <agent name="storyteller">
+        <role>Narrative PVC Communication</role>
+        <activation>@storyteller</activation>
+        <integration>Compelling value propositions and stakeholder engagement</integration>
+      </agent>
+    </CIS-integration>
+  </agent-types>
+
+  <orchestration-patterns>
+    <pattern name="workflow-agent-call">
+      <trigger>call-agent directive in workflow</trigger>
+      <flow>Orchestrator → Agent Activation → Interaction → Results → Workflow</flow>
+      <preservation>Full context maintained across boundaries</preservation>
+    </pattern>
+
+    <pattern name="creative-enhancement">
+      <trigger>elicit-required in PVC workflow step</trigger>
+      <flow>Workflow → CIS Agent → Creative Collaboration → Enhanced Content</flow>
+      <integration>Direct PVC worksheet enrichment</integration>
+    </pattern>
+
+    <pattern name="fase-transition">
+      <trigger>Phase 1→2 transition command</trigger>
+      <flow>Canvas → Master → Ecosystem orchestration</flow>
+      <preservation>End-to-end PVC context preservation</preservation>
+    </pattern>
+  </orchestration-patterns>
+
+  <error-handling>
+    <error type="agent-not-found">
+      <message>Agent {{agent-name}} niet gevonden in module directory</message>
+      <action>Halt orchestration and report to user</action>
+    </error>
+    <error type="xml-malformed">
+      <message>Agent XML configuratie ongeldig</message>
+      <action>Skip agent and continue workflow</action>
+    </error>
+    <error type="context-loss">
+      <message>Workflow context verloren tijdens orchestration</message>
+      <action>Restore from last checkpoint</action>
+    </error>
+  </error-handling>
+
+  <llm final="true">
+    <mandate>This is the complete VED agent orchestration engine</mandate>
+    <mandate>You MUST handle agent switching within the module scope only</mandate>
+    <mandate>CIS agent integration provides enhanced PVC creativity and validation</mandate>
+    <mandate>Context preservation ensures seamless workflow continuation</mandate>
+    <mandate>Professional PVC deliverables require flawless agent collaboration</mandate>
+  </llm>
+</task>
