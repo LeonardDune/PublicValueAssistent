@@ -1,99 +1,257 @@
-# Analyze Legal Article - Direct OWL Instance Generation
-name: analyze-legal-article
-description: "Directe OWL Linked Data instantie generatie uit juridische artikelen met OntologyBasis.ttl referenties. Creëert querybare juridische instanties met multilingual metadata."
-author: "LegalAnalyst OWL Instance Generator"
+#
+# Legal Article Analysis Workflow - Complete Rewrite
+# Version: 2.0 - Direct OWL Output Focus with Full Tonto Ontology Knowledge
+# Date: 2025-10-23
+#
 
-# Critical variables
+# =============================================================================
+# CONFIGURATION BLOCK - PRESERVED AND ENHANCED
+# =============================================================================
+
 config_source: "{project-root}/bmad/value-ecosystem-design/config.yaml"
 output_folder: "{config_source}:output_folder"
 user_name: "{config_source}:user_name"
 communication_language: "{config_source}:communication_language"
-date: system-generated
 
-# Module path and component files
+# =============================================================================
+# MODULE PATHS - COMPLETE ONTOLOGYBASIS WITH TONTO KNOWLEDGE
+# =============================================================================
+
 installed_path: "{project-root}/bmad/value-ecosystem-design/workflows/analyze-legal-article"
 instructions: "{installed_path}/instructions.md"
 validation: "{installed_path}/checklist.md"
 
-# Analysis with Tonto models, OWL output referencing OntologyBasis.ttl
-owl_knowledge_graph_output: "{project-root}/docs/legal-owl-knowledge-graph.ttl"
-ontology_basis_ttl: "{project-root}/OntologyBasis/OntologyBasis.ttl"
+# OntologyBasis - Complete set for full semantic knowledge
+ontology_basis: "{project-root}/OntologyBasis/"
 ontology_tonto_files: "{project-root}/OntologyBasis/"
+ontology_basis_ttl: "{project-root}/OntologyBasis/OntologyBasis.ttl"
 
-# Web Bundle Configuration
+# Individual Ontology Files - Tonto Source Knowledge
+agent_ontology: '{project-root}/OntologyBasis/AgentOntology.tonto'
+demo_ontology: '{project-root}/OntologyBasis/DEMOOntology.tonto'
+event_ontology: '{project-root}/OntologyBasis/EventOntology.tonto'
+individual_ontology: '{project-root}/OntologyBasis/IndividualOntology.tonto'
+law_ontology: '{project-root}/OntologyBasis/LawOntology.tonto'
+legal_ontology: '{project-root}/OntologyBasis/LegalOntology.tonto'
+mode_ontology: '{project-root}/OntologyBasis/ModeOntology.tonto'
+object_ontology: '{project-root}/OntologyBasis/ObjectOntology.tonto'
+offering_ontology: '{project-root}/OntologyBasis/OfferingOntology.tonto'
+value_ascription_ontology: '{project-root}/OntologyBasis/ValueAscriptionOntology.tonto'
+value_bearer_ontology: '{project-root}/OntologyBasis/ValueBearerOntology.tonto'
+value_ontology: '{project-root}/OntologyBasis/ValueOntology.tonto'
+value_proposition_ontology: '{project-root}/OntologyBasis/ValuePropositionOntology.tonto'
+
+# Output Path
+current_kg_path: '{project-root}/docs/legal-knowledge-graph.ttl'
+owl_knowledge_graph_output: '{project-root}/docs/legal-knowledge-graph.ttl'
+
+# =============================================================================
+# TONTO GUIDANCE EXPERTISE - COMPLETE INTERPRETATION INSTRUCTIONS
+# =============================================================================
+
+tonto_guidance_files:
+  - '{project-root}/.clinerules/tonto_llm_documentation_guide.instructions.md'
+  - '{project-root}/.clinerules/tonto_llm_guidance.instructions.md'
+  - '{project-root}/.clinerules/tonto_llm_terminology_analysis_guide.instructions.md'
+  - '{project-root}/.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md'
+  - '{project-root}/.clinerules/tonto-cardinality-guidance.instructions.md'
+  - '{project-root}/.clinerules/tonto-guidance.instructions.md'
+  - '{project-root}/.clinerules/tonto-llm-create-new-elements.instructions.md'
+
+# =============================================================================
+# TONTO WEB BUNDLE CONFIGURATION - PRESERVED FOR DEPLOYMENT
+# =============================================================================
+
 web_bundle:
-  name: 'analyze-legal-article-hybrid'
-  description: 'Hybride Tonto+OWL juridische artikel analyse met volledige OntologyBasis integration'
-  author: 'Enhanced LegalAnalyst with Tonto+OWL Expertise'
-
-  # Core files (bmad/-relative paths)
+  name: 'analyze-legal-article-v2-direct-owl'
+  description: 'Advanced Legal Article Analysis with Full Tonto Ontology Knowledge and Direct OWL Knowledge Graph Integration'
+  author: 'LegalAnalyst OWL Instance Generator v2.0 with Complete OntologyBasis Expertise'
   instructions: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/instructions.md'
   validation: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/checklist.md'
-  template: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/template.md'
 
-  # Tonto Guidance Files - CRITICAL for LegalAnalyst expertise (from root .clinerules)
-  tonto_documentation_guide: '.clinerules/tonto_llm_documentation_guide.instructions.md'
-  tonto_guidance: '.clinerules/tonto_llm_guidance.instructions.md'
-  tonto_terminology_guide: '.clinerules/tonto_llm_terminology_analysis_guide.instructions.md'
-  tonto_understanding_guide: '.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md'
-  tonto_cardinality_guide: '.clinerules/tonto-cardinality-guidance.instructions.md'
-  tonto_main_guide: '.clinerules/tonto-guidance.instructions.md'
-  tonto_create_elements_guide: '.clinerules/tonto-llm-create-new-elements.instructions.md'
+  # Core BMAD Files
+  BMAD-instructions: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/instructions.md'
+  BMAD-validation: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/checklist.md'
+  BMAD-workflow: 'bmad/value-ecosystem-design/workflows/analyze-legal-article/workflow.yaml'
 
-  # OntologyBasis Files - Complete set for full context
-  ontology_basis: 'OntologyBasis/OntologyBasis.ttl'
-  agent_ontology: 'OntologyBasis/AgentOntology.tonto'
-  demo_ontology: 'OntologyBasis/DEMOOntology.tonto'
-  event_ontology: 'OntologyBasis/EventOntology.tonto'
-  individual_ontology: 'OntologyBasis/IndividualOntology.tonto'
-  law_ontology: 'OntologyBasis/LawOntology.tonto'
-  legal_ontology: 'OntologyBasis/LegalOntology.tonto'
-  mode_ontology: 'OntologyBasis/ModeOntology.tonto'
-  object_ontology: 'OntologyBasis/ObjectOntology.tonto'
-  offering_ontology: 'OntologyBasis/OfferingOntology.tonto'
-  value_ascription_ontology: 'OntologyBasis/ValueAscriptionOntology.tonto'
-  value_bearer_ontology: 'OntologyBasis/ValueBearerOntology.tonto'
-  value_ontology: 'OntologyBasis/ValueOntology.tonto'
-  value_proposition_ontology: 'OntologyBasis/ValuePropositionOntology.tonto'
+  # COMPLETE OntologyBasis Files for Full Semantic Context
+  ontology-basis-ttl: 'OntologyBasis/OntologyBasis.ttl'
+  agent-ontology: 'OntologyBasis/AgentOntology.tonto'
+  demo-ontology: 'OntologyBasis/DEMOOntology.tonto'
+  event-ontology: 'OntologyBasis/EventOntology.tonto'
+  individual-ontology: 'OntologyBasis/IndividualOntology.tonto'
+  law-ontology: 'OntologyBasis/LawOntology.tonto'
+  legal-ontology: 'OntologyBasis/LegalOntology.tonto'
+  mode-ontology: 'OntologyBasis/ModeOntology.tonto'
+  object-ontology: 'OntologyBasis/ObjectOntology.tonto'
+  offering-ontology: 'OntologyBasis/OfferingOntology.tonto'
+  value-ascription-ontology: 'OntologyBasis/ValueAscriptionOntology.tonto'
+  value-bearer-ontology: 'OntologyBasis/ValueBearerOntology.tonto'
+  value-ontology: 'OntologyBasis/ValueOntology.tonto'
+  value-proposition-ontology: 'OntologyBasis/ValuePropositionOntology.tonto'
 
-  # Complete file list for web bundle
-  web_bundle_files:
-    - 'bmad/value-ecosystem-design/workflows/analyze-legal-article/instructions.md'
-    - 'bmad/value-ecosystem-design/workflows/analyze-legal-article/checklist.md'
-    - 'bmad/value-ecosystem-design/workflows/analyze-legal-article/template.md'
-    # Tonto guidance files
-    - '.clinerules/tonto_llm_documentation_guide.instructions.md'
-    - '.clinerules/tonto_llm_guidance.instructions.md'
-    - '.clinerules/tonto_llm_terminology_analysis_guide.instructions.md'
-    - '.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md'
-    - '.clinerules/tonto-cardinality-guidance.instructions.md'
-    - '.clinerules/tonto-guidance.instructions.md'
-    - '.clinerules/tonto-llm-create-new-elements.instructions.md'
-    # OntologyBasis files
-    - 'OntologyBasis/OntologyBasis.ttl'
-    - 'OntologyBasis/AgentOntology.tonto'
-    - 'OntologyBasis/DEMOOntology.tonto'
-    - 'OntologyBasis/EventOntology.tonto'
-    - 'OntologyBasis/IndividualOntology.tonto'
-    - 'OntologyBasis/LawOntology.tonto'
-    - 'OntologyBasis/LegalOntology.tonto'
-    - 'OntologyBasis/ModeOntology.tonto'
-    - 'OntologyBasis/ObjectOntology.tonto'
-    - 'OntologyBasis/OfferingOntology.tonto'
-    - 'OntologyBasis/ValueAscriptionOntology.tonto'
-    - 'OntologyBasis/ValueBearerOntology.tonto'
-    - 'OntologyBasis/ValueOntology.tonto'
-    - 'OntologyBasis/ValuePropositionOntology.tonto'
+  # Essential Tonto Guidance Files for Ontology Interpretation
+  tonto-documentation-guide: '.clinerules/tonto_llm_documentation_guide.instructions.md'
+  tonto-guidance: '.clinerules/tonto_llm_guidance.instructions.md'
+  tonto-terminology-guide: '.clinerules/tonto_llm_terminology_analysis_guide.instructions.md'
+  tonto-understanding-guide: '.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md'
+  tonto-cardinality-guide: '.clinerules/tonto-cardinality-guidance.instructions.md'
+  tonto-main-guide: '.clinerules/tonto-guidance.instructions.md'
+  tonto-create-elements-guide: '.clinerules/tonto-llm-create-new-elements.instructions.md'
 
-# Required data files - Complete OntologyBasis
-ontology_basis: "{project-root}/OntologyBasis/"
+  # Current Knowledge Graph
+  existing-knowledge-graph: 'docs/legal-knowledge-graph.ttl'
 
-# Tonto Guidance - LegalAnalyst must study these before analysis
-tonto_guidance_files:
-  - "{project-root}/.clinerules/tonto_llm_documentation_guide.instructions.md"
-  - "{project-root}/.clinerules/tonto_llm_guidance.instructions.md"
-  - "{project-root}/.clinerules/tonto_llm_terminology_analysis_guide.instructions.md"
-  - "{project-root}/.clinerules/tonto_llm_understanding_and_summarization_guide.instructions.md"
-  - "{project-root}/.clinerules/tonto-cardinality-guidance.instructions.md"
-  - "{project-root}/.clinerules/tonto-guidance.instructions.md"
-  - "{project-root}/.clinerules/tonto-llm-create-new-elements.instructions.md"
+# =============================================================================
+# EXECUTION MODES - SYSTEMATIC APPROACH
+# =============================================================================
+
+execution_modes:
+  full_analysis: true        # Complete workflow ronde cycle
+  ontology_skip: false       # Skip ontology loading voor testing
+  user_validation: true      # Always show user critical classifications
+  debug_mode: false          # Extra logging voor development
+
+# =============================================================================
+# PROXIMITY SCORING CONFIGURATION - ENHANCED ALGORITHMS
+# =============================================================================
+
+proximity_scoring:
+  legal_structure:
+    same_law: 50             # Hoogste legal proximity
+    same_chapter: 30         # Strong binnen wet
+    same_title: 20           # Titel consistentie
+    adjacent_articles: 15    # Buurt artikel relatie
+    same_domain: 20          # Rechtsgebied consistentie
+  semantic_weights:
+    direct_match: 100        # Exact dezelfde term
+    synonym_match: 80        # Synonymen en varianten
+    related_match: 60        # Gerelateerde betekenis
+    domain_match: 40         # Zelfde juridische domein
+  combined_score_thresholds:
+    high_confidence_merge: 150     # Automatic merge recommendation
+    user_decision_merge: 80        # User decision needed
+    investigate_further: 30        # Further investigation
+    new_concept_likely: 10         # New concept probable
+
+# =============================================================================
+# WORKFLOW STEPS - 10 STEP ROUNDS IN 5 PHASES WITH TONTO KNOWLEDGE INTEGRATION
+# =============================================================================
+
+steps:
+  - id: "1"
+    round: "Ontology Loading & Tonto Expertise"
+    description: "Load all 13 Tonto OntologyBasis files + OWL serialisatie voor volledige juridische kennis"
+    critical: true
+    user_approval_required: false
+    required_files:
+      - all 13 OntologyBasis .tonto files
+      - OntologyBasis.ttl für OWL urimapping
+      - all 7 Tonto guidance files voor interpretatie
+
+  - id: "2"
+    round: "Ontology Loading & Tonto Expertise"
+    description: "Load bestaande Knowledge Graph en initialiseer proximity scoring subsystem"
+    critical: true
+    user_approval_required: false
+    loads: "docs/legal-knowledge-graph.ttl"
+
+  - id: "3"
+    round: "Eerste Juridische Mapping (Primaire Ontologieën)"
+    description: "Map artikel elementen naar exact 3 kernontologieën: LegalOntology, LawOntology, ObjectOntology"
+    critical: true
+    user_approval_required: true
+    ontology_mapping: ["LegalOntology", "LawOntology", "ObjectOntology"]
+    requires_user_approval: "@mediation, @componentOf, @formal relaties alleen"
+
+  - id: "4"
+    round: "Primaire Juridische Mapping Validatie"
+    description: "Cross-reference check tegen bestaande KG met proximity scoring - semantic + legal structure"
+    critical: true
+    user_approval_required: true
+    proximity_analysis: "ontological + legal structure proximity"
+    scoring_thresholds: "150 high-confidence, 80 user-decision"
+
+  - id: "5"
+    round: "Primaire Relatie Analyse"
+    description: "Analyse juridische relaties volgens UFO-L met @mediation/@componentOf/@formal patterns"
+    critical: true
+    user_approval_required: true
+    relation_patterns: ["@mediation", "@componentOf", "@formal"]
+
+  - id: "6"
+    round: "Secundaire Ontologie Cross-Analysis"
+    description: "Map gevonden concepten naar resterende 10 ontologieën voor diepere context en validatie"
+    critical: true
+    user_approval_required: true
+    ontology_mapping: ["remaining 10 ontologies"]
+    cross_analysis: "integrate concepts across all 13 ontologies"
+
+  - id: "7"
+    round: "Secundaire Ontologie Validatie"
+    description: "Cross-ontology integratie validatie - conflict detectie en coherentie checks"
+    critical: true
+    user_approval_required: true
+    validation: "ontology conflicts and integration consistency"
+
+  - id: "8"
+    round: "Advanced Cross-Reference & Proximity Analyse"
+    description: "Geavanceerde cross-reference met legal structure proximity + semantic matching gegen bestaande KG"
+    critical: true
+    user_approval_required: true
+    cross_reference: "combined semantic + legal structure proximity scoring"
+
+  - id: "9"
+    round: "OWL Knowledge Graph Documentatie"
+    description: "Creeer OWL instanties met URI prefixes + uitgebreide  documentatie"
+    critical: true
+    user_approval_required: true
+    owl_generation: "rich semantic comments, definitions, examples, counterexamples"
+
+  - id: "10"
+    round: "Knowledge Graph Update & Finalisatie"
+    description: "Update docs/legal-knowledge-graph.ttl met nieuwe triples + backup + consistentie validatie"
+    critical: true
+    user_approval_required: true
+    kg_update: "backup + merge + validation + user confirmation"
+
+# =============================================================================
+# ERROR HANDLING AND RECOVERY - PRESERVED
+# =============================================================================
+
+error_handling:
+  on_step_failure: "stop_and_report"     # Stop at failure voor user intervention
+  recovery_points: ["step_4", "step_7", "step_10"]  # Safe rollback points
+  backup_on_critical: true               # Backup voor stappen met user approval
+  rollback_strategy: "incremental"       # Step-by-step rollback mogelijk
+
+# =============================================================================
+# PERFORMANCE OPTIMIZATIONS - NEW IN V2.0
+# =============================================================================
+
+performance:
+  cache_existing_ontology: true          # Cache geladen ontologieën tussen runs
+  incremental_kg_update: true            # Alleen relevante KG updates
+  lazy_loading: true                     # Laad ontologieën op demand
+  memory_limit: "500MB"                  # Memory limit voor grote artikelen
+  timeout_step: "15min"                  # Timeout per stap
+
+# =============================================================================
+# SUCCESS METRICS - NEW IN V2.0
+# =============================================================================
+
+success_metrics:
+  ontology_coverage: "all_13_ontologies"   # Minimaal alle 13 ontologie analyses
+  semantic_confidence: "high_proximity_scores"  # Force high proximity voor merges
+  validation_pass: "all_rondes_complete"   # Alle 5 workflow rondes succesvol
+  kg_integrity: "owl_consistent"           # KG blijft OWL consistent
+
+# =============================================================================
+# SUCCESS METRICS - NEW IN V2.0
+# =============================================================================
+
+success_metrics:
+  ontology_coverage: "all_13_ontologies"   # Minimaal alle 13 ontologie analyses
+  semantic_confidence: "high_proximity_scores"  # Force high proximity voor merges
+  validation_pass: "all_rondes_complete"   # Alle 5 workflow rondes succesvol
+  kg_integrity: "owl_consistent"           # KG blijft OWL consistent
