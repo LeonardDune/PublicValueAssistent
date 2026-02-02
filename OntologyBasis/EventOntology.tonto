@@ -33,14 +33,14 @@ event ComplexEvent {
     */
 }
 
-relator Participation {
+event Participation {
     label {
         @en "Participation"
         @nl "Participatie"
     }
     description {
-        @en "Participation is a Relation that connects a Object to an Event in which it participates."
-        @nl "Participatie is een Relatie die een Object verbindt met een Gebeurtenis waaraan het deelneemt."
+        @en "Participation is an Event in which an Object participates."
+        @nl "Participatie is een Gebeurtenis waarin een Object deelneemt."
     }
     /*
         Beschrijving: een participation relation geeft aan dat een substantial deelneemt aan een event - het is de manier waarop we de betrokkenheid van substantials bij gebeurtenissen modelleren.
@@ -65,7 +65,10 @@ event Action {
     */
 }
 
+
+
 @participation relation Action [0..*] -- participationOf -- [1..*] Object
+@creation relation Action [0..1] -- creates -- [0..*] Situation
 
 event ActionContribution specializes Action
 

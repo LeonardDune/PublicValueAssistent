@@ -18,7 +18,7 @@ mode Disposition {
     */
 }
 
-mode IntentionalMoment {
+category IntentionalMoment of intrinsic-modes{
     label {
         @en "Intentional Moment"
         @nl "Intentioneel Moment"
@@ -33,7 +33,7 @@ mode IntentionalMoment {
     */
 }
 
-subkind MentalMoment specializes IntentionalMoment {
+category MentalMoment of intrinsic-modes specializes IntentionalMoment {
     label {
         @en "Mental Moment"
         @nl "Mentaal Moment"
@@ -48,7 +48,22 @@ subkind MentalMoment specializes IntentionalMoment {
     */
 }
 
-subkind Intention specializes MentalMoment {
+category Commitment of intrinsic-modes {
+    label {
+        @en "Commitment"
+        @nl "Verplichting"
+    }
+    description {
+        @en "A Commitment is a Mode that represents a binding obligation or duty that an entity has towards a specific action, goal, or state of affairs."
+        @nl "Een Verplichting is een Modus die een bindende verplichting of plicht vertegenwoordigt die een entiteit heeft ten opzichte van een specifieke activiteit, doel of toestand van zaken."
+    }
+    /*
+        Beschrijving: een mode die een bindende verplichting of plicht vertegenwoordigt die een entiteit heeft ten opzichte van een specifieke actie, doel of toestand van zaken.
+        Examples: the commitment of a person to complete a project, the commitment of a company to deliver a product, the commitment of a government to uphold certain policies
+    */
+}
+
+mode Intention specializes MentalMoment {
     label {
         @en "Intention"
         @nl "Intentie"
@@ -65,7 +80,7 @@ subkind Intention specializes MentalMoment {
 
 @triggers relation Intention [1..*] -- causedBy -- [0..*] Action
 
-subkind Desire specializes MentalMoment {
+mode Desire specializes MentalMoment {
     label {
         @en "Desire"
         @nl "Verlangen"
@@ -80,7 +95,7 @@ subkind Desire specializes MentalMoment {
     */
 }
 
-subkind Belief specializes MentalMoment {
+mode Belief specializes MentalMoment {
     label {
         @en "Belief"
         @nl "Geloof"
@@ -95,7 +110,7 @@ subkind Belief specializes MentalMoment {
     */
 }
 
-subkind SocialMoment specializes IntentionalMoment {
+mode SocialMoment specializes IntentionalMoment {
     label {
         @en "Social Moment"
         @nl "Sociaal Moment"
@@ -116,8 +131,8 @@ relator SocialRelator {
         @nl "Sociaal Relator"
     }
     description {
-        @en "A Social Relator is an example of a relator composed of two or more pairs of associated commitments/claims (Social Moments). Finally, a commitment (internal or social) is fulfilled by an Agent A if this Agent performs an Action X such that the post-state of that Action is a Situation that satisfies that Commitment."
-        @nl "Een Sociaal Relator is een voorbeeld van een relator die is samengesteld uit twee of meer paren van geassocieerde verplichtingen/claims (Sociale Momenten). Ten slotte wordt een verplichting (intern of sociaal) nagekomen door een Agent A als deze Agent een Activiteit X uitvoert zodanig dat de post-toestand van die Activiteit een Situatie is die aan die Verplichting voldoet."
+        @en "A Social Relator is a relator composed of two or more pairs of associated commitments/claims (Social Moments). Finally, a commitment (internal or social) is fulfilled by an Agent A if this Agent performs an Action X such that the post-state of that Action is a Situation that satisfies that Commitment."
+        @nl "Een Sociaal Relator is een relator die is samengesteld uit twee of meer paren van geassocieerde verplichtingen/claims (Sociale Momenten). Ten slotte wordt een verplichting (intern of sociaal) nagekomen door een Agent A als deze Agent een Activiteit X uitvoert zodanig dat de post-toestand van die Activiteit een Situatie is die aan die Verplichting voldoet."
     }
     /**
         Beschrijving: een relator die sociale momenten verbindt - het is een manier om de relaties tussen sociale agenten en hun sociale rollen, normen of instituties te modelleren.
@@ -144,7 +159,7 @@ subkind SocialClaim specializes SocialMoment {
     */
 }
 
-subkind SocialCommitment specializes SocialMoment {
+subkind SocialCommitment specializes SocialMoment, Commitment {
     label {
         @en "Social Commitment"
         @nl "Sociale Verplichting"

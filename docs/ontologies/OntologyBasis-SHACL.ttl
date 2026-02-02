@@ -1,0 +1,989 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix begrip: <http://data.recht.nl/begrip/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# === ONTOLOGYBASIS SHACL CARDINALITY CONSTRAINTS ===
+# SHACL shapes defining cardinality constraints from Tonto ontologies
+# Started with AgentOntology - to be extended with other ontologies
+
+# AGENT ONTOLOGY CARDINALITIES
+# Based on AgentOntology.tonto relations and cardinalities
+
+# Agent Shape - Core agent cardinalities
+begrip:AgentShape a sh:NodeShape ;
+  sh:targetClass begrip:Agent ;
+  sh:property [
+    sh:path begrip:creates ;
+    sh:class begrip:Action ;
+    sh:minCount 1 ;
+  ] , [
+    sh:path begrip:performs ;
+    sh:class begrip:ActionContribution ;
+  ] .
+
+# SocialAgent Shape - Additional constraints for social agents
+begrip:SocialAgentShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialAgent ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:recognizedBy ;
+    ] ;
+    sh:class begrip:NormativeDescription ;
+  ] .
+
+# IntentionalMoment Shape - Characterization relation to Agent
+begrip:IntentionalMomentShape a sh:NodeShape ;
+  sh:targetClass begrip:IntentionalMoment ;
+  sh:property [
+    sh:path begrip:inheresIn ;
+    sh:class begrip:Agent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# SocialRole constraints - roleMixin specializing Agent with 'of objects' constraint
+begrip:SocialRoleShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialRole ;
+  sh:class begrip:Agent .  # SocialRole specializes Agent, 'of objects' implicit in UFO basis
+
+# GovernmentBody constraints - roleMixin specializing SocialRole
+begrip:GovernmentBodyShape a sh:NodeShape ;
+  sh:targetClass begrip:GovernmentBody ;
+  sh:class begrip:SocialRole .  # GovernmentBody specializes SocialRole
+
+# === DEMO ONTOLOGY CARDINALITIES ===
+# Based on DEMOOntology.tonto transaction pattern cardinalities
+
+# TRANSACTION STRUCTURE
+begrip:TransactionShape a sh:NodeShape ;
+  sh:targetClass begrip:Transaction ;
+  sh:property [
+    sh:path begrip:hasState ;
+    sh:class begrip:TransactionState ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:involves ;
+    ] ;
+    sh:class begrip:Initiator ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:involves ;
+    ] ;
+    sh:class begrip:Executor ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:has ;
+    sh:class begrip:CCommitment ;
+  ] , [
+    sh:path begrip:has ;
+    sh:class begrip:CClaim ;
+  ] , [
+    sh:path begrip:manifestedBy ;
+    sh:class begrip:TransactionEvent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:contains ;
+    sh:class begrip:CoordinationFact ;
+  ] , [
+    sh:path begrip:contains ;
+    sh:class begrip:ProductionFact ;
+  ] , [
+    sh:path begrip:hasExecutor ;
+    sh:class begrip:ActorRole ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# ACTOR ROLE PARTICIPATION
+begrip:ActorRoleShape a sh:NodeShape ;
+  sh:targetClass begrip:ActorRole ;
+  sh:property [
+    sh:path begrip:participatesIn ;
+    sh:class begrip:Transaction ;
+  ] , [
+    sh:path begrip:classifies ;
+    sh:class begrip:Initiator ;
+  ] , [
+    sh:path begrip:classifies ;
+    sh:class begrip:Executor ;
+  ] .
+
+# ACTOR CONSTRAINTS
+begrip:InitiatorShape a sh:NodeShape ;
+  sh:targetClass begrip:Initiator ;
+  sh:class begrip:Actor .
+
+begrip:ExecutorShape a sh:NodeShape ;
+  sh:targetClass begrip:Executor ;
+  sh:class begrip:Actor .
+
+# FACT RELATIONS
+begrip:CoordinationFactShape a sh:NodeShape ;
+  sh:targetClass begrip:CoordinationFact ;
+  sh:property [
+    sh:path begrip:inheresIn ;
+    sh:class begrip:SocialObject ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+begrip:ProductionFactShape a sh:NodeShape ;
+  sh:targetClass begrip:ProductionFact ;
+  sh:property [
+    sh:path begrip:inheresIn ;
+    sh:class begrip:WorkProduct ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# WORK PRODUCT CONSTRAINT
+begrip:WorkProductShape a sh:NodeShape ;
+  sh:targetClass begrip:WorkProduct ;
+  sh:class begrip:Individual .
+
+# TRANSACTION EVENT COMPOSITION
+begrip:TransactionEventShape a sh:NodeShape ;
+  sh:targetClass begrip:TransactionEvent ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:composedOf ] ;
+    sh:class begrip:CoordinationAct ;
+    sh:minCount 2 ;
+  ] , [
+    sh:path [ sh:inversePath begrip:composedOf ] ;
+    sh:class begrip:ProductionAct ;
+  ] .
+
+# COORDINATION ACT STRUCTURE
+begrip:CoordinationActShape a sh:NodeShape ;
+  sh:targetClass begrip:CoordinationAct ;
+  sh:property [
+    sh:path begrip:hasType ;
+    sh:class begrip:CoordinationActType ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:changes ;
+    sh:class begrip:TransactionState ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:creates ;
+    sh:class begrip:CClaim ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:creates ;
+    sh:class begrip:CCommitment ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path [ sh:inversePath begrip:creats ] ;
+    sh:class begrip:CoordinationFact ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# PRODUCTION ACT STRUCTURE
+begrip:ProductionActShape a sh:NodeShape ;
+  sh:targetClass begrip:ProductionAct ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:creats ] ;
+    sh:class begrip:ProductionFact ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# TAR (TRANSACTOR ROLE) STRUCTURE
+begrip:TransactorRoleShape a sh:NodeShape ;
+  sh:targetClass begrip:TransactorRole ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:composedOf ] ;
+    sh:class begrip:Transaction ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path [ sh:inversePath begrip:composedOf ] ;
+    sh:class begrip:ActorRole ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:performsProduction ;
+    sh:class begrip:ProductionAct ;
+  ] , [
+    sh:path begrip:initiates ;
+    sh:class begrip:TransactorRole ;
+  ] , [
+    sh:path begrip:hasAccessTo ;
+    sh:class begrip:TransactorRole ;
+  ] , [
+    sh:path begrip:impedes ;
+    sh:class begrip:TransactorRole ;
+  ] .
+
+# LEGAL CONSTRAINTS ON DEMO ENTITIES
+begrip:LegalRelatorShape a sh:NodeShape ;
+  sh:targetClass begrip:LegalRelator ;
+  sh:property [
+    sh:path begrip:constrains ;
+    sh:class begrip:Transaction ;
+  ] , [
+    sh:path begrip:manifests ;
+    sh:class begrip:TransactionEvent ;
+  ] , [
+    sh:path begrip:manifests ;
+    sh:class begrip:InstitutionalAct ;
+  ] .
+
+begrip:InstitutionalActShape a sh:NodeShape ;
+  sh:targetClass begrip:InstitutionalAct ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:manifests ;
+    ] ;
+    sh:class begrip:LegalRelator ;
+  ] .
+
+# === EVENT ONTOLOGY CARDINALITIES ===
+# Based on EventOntology.tonto participation and composition relations
+
+# PARTICIPATION RELATIONS - Objects to Events
+begrip:ParticipationShape a sh:NodeShape ;
+  sh:targetClass begrip:Participation ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:participationOf ;
+    ] ;
+    sh:class begrip:Object ;
+    sh:minCount 1 ;
+  ] .
+
+# ACTION PARTICIPATION PATTERNS
+begrip:ActionShape a sh:NodeShape ;
+  sh:targetClass begrip:Action ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:participationOf ;
+    ] ;
+    sh:class begrip:Object ;
+  ] .
+
+# COMPLEX ACTION COMPOSITION
+begrip:ComplexActionShape a sh:NodeShape ;
+  sh:targetClass begrip:ComplexAction ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:composedOf ] ;
+    sh:class begrip:Participation ;
+    sh:minCount 2 ;
+  ] .
+
+# INTERACTION COMPOSITION
+begrip:InteractionShape a sh:NodeShape ;
+  sh:targetClass begrip:Interaction ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:composedOf ] ;
+    sh:class begrip:ActionContribution ;
+    sh:minCount 2 ;
+  ] .
+
+# EVENT STATUS CONSTRAINTS
+begrip:AtomicEventShape a sh:NodeShape ;
+  sh:targetClass begrip:AtomicEvent ;
+  sh:class begrip:Event .  # Atomic events specialize Event (assumed)
+
+begrip:ComplexEventShape a sh:NodeShape ;
+  sh:targetClass begrip:ComplexEvent ;
+  sh:class begrip:Event .  # Complex events specialize Event (assumed)
+
+begrip:AtomicActionShape a sh:NodeShape ;
+  sh:targetClass begrip:AtomicAction ;
+  sh:class begrip:Action, begrip:AtomicEvent .  # Atomic actions specialize both Action and AtomicEvent
+
+begrip:CommunicativeActShape a sh:NodeShape ;
+  sh:targetClass begrip:CommunicativeAct ;
+  sh:class begrip:AtomicAction .  # Communicative acts specialize AtomicAction
+
+# === INDIVIDUAL ONTOLOGY CARDINALITIES ===
+# Based on IndividualOntology.tonto quality inherence relation
+
+# QUALITY INHERENCE INTO INDIVIDUALS
+begrip:QualityShape a sh:NodeShape ;
+  sh:targetClass begrip:Quality ;
+  sh:property [
+    sh:path begrip:inheresIn ;
+    sh:class begrip:Individual ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# INDIVIDUAL SHAPE - Quality inheritance (inferred from Quality side)
+begrip:IndividualShape a sh:NodeShape ;
+  sh:targetClass begrip:Individual ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:inheresIn ;
+    ] ;
+    sh:class begrip:Quality ;
+  ] .  # Individual can have zero or more qualities
+
+# === LAW ONTOLOGY CARDINALITIES ===
+# Based on LawOntology.tonto family structure and legal relationships
+
+# LEGAL SECTION HIERARCHY - Component-of parthood
+begrip:LegalSectionShape a sh:NodeShape ;
+  sh:targetClass begrip:LegalSection ;
+  sh:property [
+    sh:path begrip:hasPart ;
+    sh:class begrip:LegalSection ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:hasPart ;
+    ] ;
+    sh:class begrip:LegalSection ;
+  ] , [
+    sh:path begrip:refersTo ;
+    sh:class begrip:LegalSection ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:refersTo ;
+    ] ;
+    sh:class begrip:LegalSection ;
+  ] .
+
+# LAW CONTAINS SECTIONS - Exclusive ownership
+begrip:LawShape a sh:NodeShape ;
+  sh:targetClass begrip:Law ;
+  sh:property [
+    sh:path begrip:containsSection ;
+    sh:class begrip:LegalSection ;
+    sh:minCount 1 ;
+  ] .
+
+# AMENDMENT AFFECTS LEGAL SECTIONS
+begrip:AmendmentShape a sh:NodeShape ;
+  sh:targetClass begrip:Amendment ;
+  sh:property [
+    sh:path begrip:affects ;
+    sh:class begrip:LegalSection ;
+    sh:minCount 1 ;
+  ] .
+
+# LEGAL QUALITY CHARACTERIZATIONS - Optional inherence
+begrip:ValidityPeriodShape a sh:NodeShape ;
+  sh:targetClass begrip:ValidityPeriod ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:characterizes ;
+    ] ;
+    sh:class begrip:LegalSection ;
+    sh:maxCount 1 ;
+  ] .
+
+begrip:JurisdictionShape a sh:NodeShape ;
+  sh:targetClass begrip:Jurisdiction ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:characterizes ;
+    ] ;
+    sh:class begrip:LegalSection ;
+    sh:maxCount 1 ;
+  ] .
+
+# LAW SPECIALIZATIONS
+begrip:CodeShape a sh:NodeShape ;
+  sh:targetClass begrip:Code ;
+  sh:class begrip:Law .
+
+begrip:StatuteShape a sh:NodeShape ;
+  sh:targetClass begrip:Statute ;
+  sh:class begrip:Law .
+
+# LEGAL SECTION SPECIALIZATIONS - Chapter through Subparagraph
+begrip:ChapterShape a sh:NodeShape ;
+  sh:targetClass begrip:Chapter ;
+  sh:class begrip:LegalSection .
+
+begrip:TitleShape a sh:NodeShape ;
+  sh:targetClass begrip:Title ;
+  sh:class begrip:LegalSection .
+
+begrip:DivisionShape a sh:NodeShape ;
+  sh:targetClass begrip:Division ;
+  sh:class begrip:LegalSection .
+
+
+
+begrip:ArticleShape a sh:NodeShape ;
+  sh:targetClass begrip:Article ;
+  sh:class begrip:LegalSection .
+
+begrip:ParagraphShape a sh:NodeShape ;
+  sh:targetClass begrip:Paragraph ;
+  sh:class begrip:LegalSection .
+
+begrip:SubparagraphShape a sh:NodeShape ;
+  sh:targetClass begrip:Subparagraph ;
+  sh:class begrip:LegalSection .
+
+# === LEGAL ONTOLOGY RELATIONS ===
+# Cardinality constraints from LegalOntology.tonto
+
+# LEGAL RELATIONS
+begrip:LegalRelatorShape a sh:NodeShape ;
+  sh:targetClass begrip:LegalRelator ;
+  sh:property [
+    sh:path begrip:involves ;
+    sh:class begrip:Claimant ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:involves ;
+    sh:class begrip:Committor ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:concerns ;
+    sh:class begrip:LegalObject ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:conditions ;
+    ] ;
+    sh:class begrip:LegalCondition ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:governs ;
+    ] ;
+    sh:class begrip:DerivationRule ;
+    sh:maxCount 1 ;
+  ] , [
+    sh:path begrip:composedOf ;
+    sh:class begrip:LegalClaim ;
+    sh:minCount 2 ;
+  ] , [
+    sh:path begrip:composedOf ;
+    sh:class begrip:LegalCommitment ;
+    sh:minCount 2 ;
+  ] .
+
+begrip:ClaimantShape a sh:NodeShape ;
+  sh:targetClass begrip:Claimant ;
+  sh:property [
+    sh:path begrip:holds ;
+    sh:class begrip:LegalClaim ;
+  ] .
+
+begrip:CommittorShape a sh:NodeShape ;
+  sh:targetClass begrip:Committor ;
+  sh:property [
+    sh:path begrip:has ;
+    sh:class begrip:LegalCommitment ;
+  ] .
+
+begrip:DelegationFillingShape a sh:NodeShape ;
+  sh:targetClass begrip:DelegationFilling ;
+  sh:property [
+    sh:path begrip:fulfills ;
+    sh:class begrip:LegalPosition ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+begrip:DerivationRuleShape a sh:NodeShape ;
+  sh:targetClass begrip:DerivationRule ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:usedIn ;
+    ] ;
+    sh:class begrip:LegalVariable ;
+    sh:maxCount 1 ;
+  ] .
+
+# RELATOR PATTERNS
+begrip:RightDutyRelatorShape a sh:NodeShape ;
+  sh:targetClass begrip:RightDutyRelator ;
+  sh:class begrip:LegalRelator .
+
+begrip:PowerSubjectionRelatorShape a sh:NodeShape ;
+  sh:targetClass begrip:PowerSubjectionRelator ;
+  sh:class begrip:LegalRelator .
+
+begrip:DisabilityImmunityRelatorShape a sh:NodeShape ;
+  sh:targetClass begrip:DisabilityImmunityRelator ;
+  sh:class begrip:LegalRelator .
+
+# FOOTNOTES:
+# - IndividualOntology: Quality [0..*] -- inheresIn --> Individual [1] (inheresIn cardinality)
+# - Quality inheres in exactly 1 Individual, Individual can have 0+ qualities
+# - cardinalities: Quality [0..*] inheresIn Individual [1]
+# - AgentOntology: Agent [1] -- creates --> Action [0..*], Agent [1] -- performs --> ActionContribution [0..*], etc.
+# - DEMOOntology: Transaction [1] -- hasState --> TransactionState [1], Transaction -- involves --> [1] Initiator, [1] Executor, etc.
+# - EventOntology: Participation [0..*] -- participationOf --> Object [1..*], ComplexAction [<]-- participationOf --> [2..*] Participation, etc.
+# - Inconsistencies: Relations with same name paths may need inverse handling in SHACL paths
+# - @participation relation Participation [0..*] -- participationOf -- [1..*] Object
+# - @participation relation Action [0..*] -- participationOf -- [1..*] Object
+# - @componentOf relation ComplexAction [1] <>-- [2..*] Participation
+# - @componentOf relation Interaction [1] <>-- [2..*] ActionContribution
+# === MODE ONTOLOGY CARDINALITIES ===
+# Based on ModeOntology.tonto mental moments and social commitments
+
+# DISPOSITION AND INTENTIONS - All dispositions and intentions inhere in agents
+begrip:DispositionShape a sh:NodeShape ;
+  sh:targetClass begrip:Disposition ;
+  sh:class begrip:Individual . # Dispositions are modes inhering in individuals
+
+begrip:IntentionalMomentShape a sh:NodeShape ;
+  sh:targetClass begrip:IntentionalMoment ;
+  sh:class begrip:Agent . # Intentional moments inhere in agents
+
+begrip:MentalMomentShape a sh:NodeShape ;
+  sh:targetClass begrip:MentalMoment ;
+  sh:class begrip:IntentionalMoment . # Mental moments specialize intentional moments
+
+# INTENTIONAL BEHAVIOR - Intentions as triggers to actions
+begrip:IntentionShape a sh:NodeShape ;
+  sh:targetClass begrip:Intention ;
+  sh:property [
+    sh:path begrip:causedBy ; # Intention can be caused by actions
+    sh:class begrip:Action ;
+  ] , [
+    sh:path [
+      sh:inversePath begrip:causedBy ; # Intention causes actions (triggers)
+    ] ;
+    sh:class begrip:Action ;
+    sh:maxCount 1 ; # Intention triggers single representative action
+  ] .
+
+# MENTAL STATES - Desires and beliefs as mental moments
+begrip:DesireShape a sh:NodeShape ;
+  sh:targetClass begrip:Desire ;
+  sh:class begrip:MentalMoment .
+
+begrip:BeliefShape a sh:NodeShape ;
+  sh:targetClass begrip:Belief ;
+  sh:class begrip:MentalMoment .
+
+# SOCIAL RELATOR STRUCTURE - Composed of social moments with specific cardinalities
+begrip:SocialRelatorShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialRelator ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:composedOf ] ; # Social relator composed of at least 2 social moments
+    sh:class begrip:SocialMoment ;
+    sh:minCount 2 ;
+  ] , [
+    sh:path [ sh:inversePath begrip:composedOf ] ; # May composed of social claims
+    sh:class begrip:SocialClaim ;
+    sh:minCount 1 ;
+  ] , [
+    sh:path [ sh:inversePath begrip:composedOf ] ; # May composed of social commitments
+    sh:class begrip:SocialCommitment ;
+    sh:minCount 1 ;
+  ] .
+
+# SOCIAL MOMENTS - Commitments and claims
+begrip:SocialMomentShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialMoment ;
+  sh:class begrip:IntentionalMoment . # Social moments are intentional
+
+begrip:SocialClaimShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialClaim ;
+  sh:class begrip:SocialMoment . # Claims are social moments
+
+begrip:SocialCommitmentShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialCommitment ;
+  sh:property [
+    sh:path begrip:causes ; # Commitments can cause (trigger) actions
+    sh:class begrip:Action ;
+    sh:maxCount 1 ; # Commitment causes single representative action
+  ] ;
+  sh:class begrip:SocialMoment . # Commitments are social moments
+
+# NORMATIVE RELATIONS - Norms giving rise to social moments
+# Permission : 1 -- givesRiseTo --> 1..* SocialClaim
+begrip:PermissionShape a sh:NodeShape ;
+  sh:targetClass begrip:Permission ;
+  sh:property [
+    sh:path begrip:givesRiseTo ;
+    sh:class begrip:SocialClaim ;
+    sh:minCount 1 ;
+  ] . # Permission generates one or more claims
+
+# Prohibition : 1 -- givesRiseTo --> 1..* SocialCommitment
+begrip:ProhibitionShape a sh:NodeShape ;
+  sh:targetClass begrip:Prohibition ;
+  sh:property [
+    sh:path begrip:givesRiseTo ;
+    sh:class begrip:SocialCommitment ;
+    sh:minCount 1 ;
+  ] . # Prohibition generates one or more commitments
+
+# Obligation : 1 -- givesRiseTo --> 1..* SocialCommitment
+begrip:ObligationShape a sh:NodeShape ;
+  sh:targetClass begrip:Obligation ;
+  sh:property [
+    sh:path begrip:givesRiseTo ;
+    sh:class begrip:SocialCommitment ;
+    sh:minCount 1 ;
+  ] . # Obligation generates one or more commitments
+
+# Exceptions modify norms
+begrip:ExceptionShape a sh:NodeShape ;
+  sh:targetClass begrip:Exception ;
+  sh:property [
+    sh:path begrip:modifies ;
+    sh:class begrip:Permission ;
+  ] , [
+    sh:path begrip:modifies ;
+    sh:class begrip:Prohibition ;
+  ] , [
+    sh:path begrip:modifies ;
+    sh:class begrip:Obligation ;
+  ] . # Exceptions can modify any norm type
+
+# - roleMixin constraints implemented as sh:class restrictions
+# - AgentOntology: Agent [1] -- creates --> Action [0..*], Agent [1] -- performs --> ActionContribution [0..*], etc.
+# - DEMOOntology: Transaction [1] -- hasState --> TransactionState [1], Transaction -- involves --> [1] Initiator, [1] Executor, etc.
+# - Inconsistencies: Relations with same name paths may need inverse handling in SHACL paths
+# - @creation relation Agent [1] -- creates --> Action [0..*]
+# - @participation relation Agent [1] -- performs --> ActionContribution [0..*]
+# - @participational relation NormativeDescription [0..*] --> recognizedBy --> SocialAgent [1..*]
+# - @characterization relation IntentionalMoment [1..*] --> inheresIn --> Agent [1]
+# - roleMixin constraints implemented as sh:class restrictions
+# - ModeOntology: Intention [1..*] -- causedBy --> Action [0..*], SocialRelator [1] <>-- SocialMoment [2..*],
+# - SocialRelator [1] <>-- SocialClaim/SocialCommitment [1..*], SocialCommitment [1] -- causes --> Action [1..*]
+# - @formal normative relations Permission/Prohibition/Obligation [1] -- givesRiseTo --> SocialClaim/SocialCommitment [1..*]
+# === OBJECT ONTOLOGY CARDINALITIES ===
+# Based on ObjectOntology.tonto objects, resources, and normative descriptions
+
+# OBJECT HIERARCHY - Category and specializations
+begrip:ObjectShape a sh:NodeShape ;
+  sh:targetClass begrip:Object ;
+  sh:class begrip:Individual . # Objects are individuals
+
+begrip:SocialObjectShape a sh:NodeShape ;
+  sh:targetClass begrip:SocialObject ;
+  sh:class begrip:Object . # Social objects specialize objects
+
+begrip:PhysicalObjectShape a sh:NodeShape ;
+  sh:targetClass begrip:PhysicalObject ;
+  sh:class begrip:Object . # Physical objects specialize objects
+
+# NORMATIVE DESCRIPTIONS - Social objects containing norms
+begrip:NormativeDescriptionShape a sh:NodeShape ;
+  sh:targetClass begrip:NormativeDescription ;
+  sh:property [
+    sh:path begrip:contains ;
+    sh:class begrip:Norm ; # Normative descriptions contain norms
+    sh:minCount 1 ;
+  ] , [
+    sh:path begrip:defines ;
+    sh:class begrip:Object ; # Normative descriptions can define objects
+  ] ;
+  sh:class begrip:SocialObject . # Normative descriptions are social objects
+
+# NORMS - Individual rules inhering in normative descriptions
+begrip:NormShape a sh:NodeShape ;
+  sh:targetClass begrip:Norm . # Norms are modes (no specific constraints in ObjectOntology)
+
+# NORMATIVE SPECIALIZATIONS - Permission as obligation vs prohibition
+begrip:PermissionShape a sh:NodeShape ;
+  sh:targetClass begrip:Permission ;
+  sh:property [
+    sh:path begrip:givesRiseTo ;
+    sh:class begrip:SocialClaim ;
+    sh:minCount 1 ; # Permissions give rise to at least one social claim
+  ] ;
+  sh:class begrip:Norm .
+
+begrip:ProhibitionShape a sh:NodeShape ;
+  sh:targetClass begrip:Prohibition ;
+  sh:property [
+    sh:path begrip:givesRiseTo ;
+    sh:class begrip:SocialCommitment ;
+    sh:minCount 1 ; # Prohibitions give rise to at least one social commitment
+  ] ;
+  sh:class begrip:Norm .
+
+begrip:ObligationShape a sh:NodeShape ;
+  sh:targetClass begrip:Obligation ;
+  sh:property [
+    sh:path begrip:givesRiseTo ;
+    sh:class begrip:SocialCommitment ;
+    sh:minCount 1 ; # Obligations give rise to at least one social commitment
+  ] ;
+  sh:class begrip:Norm .
+
+begrip:ExceptionShape a sh:NodeShape ;
+  sh:targetClass begrip:Exception ;
+  sh:property [
+    sh:path begrip:modifies ;
+    sh:class begrip:Permission ; # Exceptions can modify permissions
+  ] , [
+    sh:path begrip:modifies ;
+    sh:class begrip:Prohibition ; # Exceptions can modify prohibitions
+  ] , [
+    sh:path begrip:modifies ;
+    sh:class begrip:Obligation ; # Exceptions can modify obligations
+  ] ;
+  sh:class begrip:Norm .
+
+# LEGAL DOCUMENTS - Written normative descriptions
+begrip:LegalDocumentShape a sh:NodeShape ;
+  sh:targetClass begrip:LegalDocument ;
+  sh:class begrip:NormativeDescription . # Legal documents specialize normative descriptions
+
+begrip:ContractShape a sh:NodeShape ;
+  sh:targetClass begrip:Contract ;
+  sh:class begrip:LegalDocument . # Contracts specialize legal documents
+
+begrip:RegulationShape a sh:NodeShape ;
+  sh:targetClass begrip:Regulation ;
+  sh:class begrip:LegalDocument . # Regulations specialize legal documents
+
+begrip:DecreeShape a sh:NodeShape ;
+  sh:targetClass begrip:Decree ;
+  sh:class begrip:LegalDocument . # Decrees specialize legal documents
+
+begrip:PrecedentShape a sh:NodeShape ;
+  sh:targetClass begrip:Precedent ;
+  sh:class begrip:NormativeDescription . # Precedents specialize normative descriptions
+
+begrip:InternationalAgreementShape a sh:NodeShape ;
+  sh:targetClass begrip:InternationalAgreement ;
+  sh:class begrip:NormativeDescription . # International agreements specialize normative descriptions
+
+begrip:TreatyShape a sh:NodeShape ;
+  sh:targetClass begrip:Treaty ;
+  sh:class begrip:InternationalAgreement . # Treaties specialize international agreements
+
+begrip:SoftLawShape a sh:NodeShape ;
+  sh:targetClass begrip:SoftLaw ;
+  sh:class begrip:NormativeDescription . # Soft law specializes normative descriptions
+
+# RESOURCES - Mixin for usable objects
+begrip:ResourceShape a sh:NodeShape ;
+  sh:targetClass begrip:Resource ;
+  sh:class begrip:Object . # Resources are objects (mixin constraint)
+
+# - @formal Exception [1] -- modifies --> Permission/Prohibition/Obligation [1..*]
+# - ObjectOntology: Object category of Individual, SocialObject/PhysicalObject subkinds
+# - NormativeDescription subkind, contains [1..*] Norm, defines [0..*] Object
+# - Norm mode, Permission/Prohibition/Obligation subkinds with givesRiseTo relations
+# - Exception subkind with modifies relations to all normative types
+# - Legal documents specialize NormativeDescription with specific subkinds
+
+# === VALUE ASCRIPTION ONTOLOGY CARDINALITIES ===
+# Based on ValueAscriptionOntology.tonto value assessment and attribution processes
+
+# VALUE ASCRIPTION PROCESS - Core important relations
+begrip:ValueAscriptionShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueAscription ;
+  sh:class begrip:SocialRelator . # Value ascription trends social relator
+
+# VALUE ASSESSMENT PHASES - Ex-ante and ex-post specialization
+begrip:VAExAnteShape a sh:NodeShape ;
+  sh:targetClass begrip:VAExAnte ;
+  sh:class begrip:ValueAscription .
+
+begrip:VAExPostShape a sh:NodeShape ;
+  sh:targetClass begrip:VAExPost ;
+  sh:class begrip:ValueAscription .
+
+# VALUE ATTRIBUTION TYPES - Perception and assertion for agents
+begrip:ValuePerceptionShape a sh:NodeShape ;
+  sh:targetClass begrip:ValuePerception ;
+  sh:class begrip:ValueAscription .
+
+begrip:ValueAssertionShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueAssertion ;
+  sh:class begrip:ValueAscription .
+
+# VALUE COMPONENTS - Benefits and sacrifices with quality relations
+begrip:VAComponentShape a sh:NodeShape ;
+  sh:targetClass begrip:VAComponent ;
+  sh:class begrip:ValueAscription .
+
+begrip:ValueComponentShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueComponent ;
+  sh:property [
+    sh:path begrip:inheresIn ;
+    sh:class begrip:VAComponent ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:class begrip:Quality . # Value components are quality aspects
+
+begrip:BenefitShape a sh:NodeShape ;
+  sh:targetClass begrip:Benefit ;
+  sh:class begrip:ValueComponent .
+
+begrip:SacrificeShape a sh:NodeShape ;
+  sh:targetClass begrip:Sacrifice ;
+  sh:class begrip:ValueComponent .
+
+# VALUE RELATIONS - Agents and beneficiaries in value ascription
+begrip:isFocusOfShape a sh:NodeShape ;
+  sh:targetClass begrip:isFocusOf ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:isFocusOf ;
+    ] ;
+    sh:class begrip:ValueAscription ;
+  ] .
+
+begrip:involvesShape a sh:NodeShape ;
+  sh:targetClass begrip:involves ;
+  sh:property [
+    sh:path [
+      sh:inversePath begrip:involves ;
+    ] ;
+    sh:class begrip:Agent ;
+    sh:minCount 1 ; # Value ascription must involve at least one agent
+  ] .
+
+# - ValueAscriptionOntology: ValueAscription social relator, phases VAExAnte/VAExPost,
+# - types ValuePerception/ValueAssertion, component VAComponent with Benefit/Sacrifice qualities,
+# - assessment relations isFocusOf (value bearers) and involves (agents/beneficiaries)
+
+# === VALUE PROPOSITION ONTOLOGY CARDINALITIES ===
+# Based on ValuePropositionOntology.tonto - Value proposition and target group relations
+
+# VALUE PROPOSITION CORE RELATIONS
+begrip:ValuePropositionShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueProposition ;
+  sh:property [
+    sh:path begrip:involves ; # ValueProposition involves 1 TargetGroup
+    sh:class begrip:TargetGroup ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:class begrip:ValueAssertion . # ValueProposition specializes ValueAssertion
+
+# TARGET GROUP COMPOSITION - Aggregation structure
+begrip:TargetGroupShape a sh:NodeShape ;
+  sh:targetClass begrip:TargetGroup ;
+  sh:property [
+    sh:path begrip:hasMember ; # TargetGroup aggregates ValueBeneficiaries (minimum 2)
+    sh:class begrip:ValueBeneficiary ;
+    sh:minCount 2 ;
+  ] , [
+    sh:path begrip:hasSub ; # TargetGroup can have sub-groups
+    sh:class begrip:TargetGroup ;
+  ] , [
+    sh:path [ sh:inversePath begrip:hasSub ] ; # TargetGroup can be a sub-group of other TargetGroups
+    sh:class begrip:TargetGroup ;
+  ] , [
+    sh:path [ sh:inversePath begrip:involves ] ; # TargetGroup is involved in 0..* ValuePropositions
+    sh:class begrip:ValueProposition ;
+  ] ;
+  sh:class begrip:CollectiveSocialAgent . # TargetGroup specializes CollectiveSocialAgent
+
+# BUSINESS VALUE PROPOSITION RELATIONS
+begrip:BusinessValuePropositionShape a sh:NodeShape ;
+  sh:targetClass begrip:BusinessValueProposition ;
+  sh:property [
+    sh:path begrip:involves ; # BusinessValueProposition involves 1 BusinessValuePortfolio
+    sh:class begrip:BusinessValuePortfolio ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:class begrip:ValueProposition . # BusinessValueProposition specializes ValueProposition
+
+# PUBLIC VALUE PROPOSITION RELATIONS
+begrip:PublicValuePropositionShape a sh:NodeShape ;
+  sh:targetClass begrip:PublicValueProposition ;
+  sh:property [
+    sh:path begrip:involves ; # PublicValueProposition involves 1 PublicValuePortfolio
+    sh:class begrip:PublicValuePortfolio ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:class begrip:ValueProposition . # PublicValueProposition specializes ValueProposition
+
+# PORTFOLIO STRUCTURES
+begrip:BusinessValuePortfolioShape a sh:NodeShape ;
+  sh:targetClass begrip:BusinessValuePortfolio ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:involves ] ; # BusinessValuePortfolio is involved in 0..* BusinessValuePropositions
+    sh:class begrip:BusinessValueProposition ;
+  ] ;
+  sh:class begrip:Portfolio, begrip:ValueBearer . # BusinessValuePortfolio specializes Portfolio and ValueBearer
+
+begrip:PublicValuePortfolioShape a sh:NodeShape ;
+  sh:targetClass begrip:PublicValuePortfolio ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:involves ] ; # PublicValuePortfolio is involved in 0..* PublicValuePropositions
+    sh:class begrip:PublicValueProposition ;
+  ] ;
+  sh:class begrip:Portfolio, begrip:ValueBearer . # PublicValuePortfolio specializes Portfolio and ValueBearer
+
+# OFFERING VALUE PROPOSITION RELATIONS
+begrip:OfferingValuePropositionShape a sh:NodeShape ;
+  sh:targetClass begrip:OfferingValueProposition ;
+  sh:property [
+    sh:path begrip:involves ; # OfferingValueProposition involves 1 ValueOffering
+    sh:class begrip:ValueOffering ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:class begrip:ValueProposition . # OfferingValueProposition specializes ValueProposition
+
+# VALUE OFFERING RELATIONS
+begrip:ValueOfferingShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueOffering ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:involves ] ; # ValueOffering is involved in 0..* OfferingValuePropositions
+    sh:class begrip:OfferingValueProposition ;
+  ] ;
+  sh:class begrip:OfferingDescription, begrip:ValueBearer . # ValueOffering specializes OfferingDescription and ValueBearer
+
+# VALUE BENEFICIARY RELATION TO VALUE BEARER
+begrip:ValueBeneficiaryShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueBeneficiary ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:hasMember ] ; # ValueBeneficiary belongs to 1..* TargetGroups (minimum 1 top-level)
+    sh:class begrip:TargetGroup ;
+    sh:minCount 1 ;
+  ] ;
+  sh:class begrip:ValueBeneficiary . # Inherits from ValueBearerOntology ValueBeneficiary
+
+# === VALUE BEARER ONTOLOGY CARDINALITIES ===
+# Based on ValueBearerOntology.tonto participation relations between value concepts and events
+
+# VALUE BEARER PARTICIPATION PATTERNS - All using @participation relations
+begrip:ValueBearerShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueBearer ;
+  sh:class begrip:Agent . # ValueBearer specializes Agent (from Tonto import)
+
+begrip:ValueExperienceShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueExperience ;
+  sh:class begrip:ValueBearer . # ValueExperience specializes ValueBearer
+
+begrip:ValueObjectShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueObject ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:participatesIn ] ; # Object participates in 0..1 ValueExperience
+    sh:class begrip:ValueExperience ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:class begrip:ValueBearer, begrip:Object . # ValueObject specializes both ValueBearer and Object
+
+begrip:ValueBeholderShape a sh:NodeShape ;
+  sh:targetClass begrip:ValueBeholder ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:participatesIn ] ; # ValueBeholder participates in 1..* Valuation
+    sh:class begrip:Valuation ;
+    sh:minCount 1 ;
+  ] ;
+  sh:class begrip:Agent . # ValueBeholder specializes Agent
+
+begrip:ContextShape a sh:NodeShape ;
+  sh:targetClass begrip:Context ;
+  sh:property [
+    sh:path [ sh:inversePath begrip:participatesIn ] ; # Context participates in 0..* Valuation
+    sh:class begrip:Valuation ;
+  ] ;
+  sh:class begrip:Situation . # Context specializes Situation

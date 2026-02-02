@@ -77,8 +77,8 @@ subkind LegalSection specializes NormativeDescription {
         @nl "Juridisch Onderdeel"
     }
     description {
-        @en "General class for any structural component within a law (chapter, title, division, article, paragraph, subparagraph)."
-        @nl "Algemene klasse voor elk structureel onderdeel binnen een wet (hoofdstuk, titel, afdeling, artikel, lid, subonderdeel)."
+        @en "General class for any structural component within a law (book, chapter, title, division, article, paragraph, subparagraph)."
+        @nl "Algemene klasse voor elk structureel onderdeel binnen een wet (boek, hoofdstuk, titel, afdeling, artikel, lid, subonderdeel)."
     }
     number : String 
     title  : String [0..1]
@@ -86,28 +86,31 @@ subkind LegalSection specializes NormativeDescription {
 }
 
 /**
- * A main division within a law that groups related titles or articles.
+ * An optional main division within a law that groups titles or chapters.
+ * Books provide high-level organization in comprehensive legal codes.
  *
- * OntoUML: This is a subkind because it is a rigid specialization of LegalSection. Chapters divide laws into logical groupings, maintaining the structural hierarchy and identity principles from LegalSection.
+ * OntoUML: This is a subkind because it is a rigid specialization of LegalSection.
+ * Books divide laws into major thematic sections when needed, maintaining structural hierarchy.
  *
- * Example: Chapter 2 of the Dutch Civil Code ("Legal Capacity") is a Chapter that contains articles about legal capacity, grouping them under a common theme.
+ * Example: Book 1 of the Dutch Civil Code ("Persons and Family") is a Book containing multiple titles.
  */
-subkind Chapter specializes LegalSection {
+subkind Book specializes LegalSection {
     label {
-        @en "Chapter"
-        @nl "Hoofdstuk"
+        @en "Book"
+        @nl "Boek"
     }
     description {
-        @en "A main division within a law, typically containing titles or articles."
-        @nl "Een hoofddeling binnen een wet, meestal bevattende titels of artikelen."
+        @en "An optional main division within a law, typically containing titles or chapters."
+        @nl "Een optionele hoofddeling binnen een wet, meestal bevattende titels of hoofdstukken."
     }
 }
+
 /**
- * A subdivision within a chapter or law, providing thematic grouping of divisions or articles.
+ * A subdivision within a book or law, providing thematic grouping of chapters or divisions.
  *
  * OntoUML: This is a subkind because it is a rigid specialization of LegalSection. Titles hierarchically organize content, inheriting the part-whole dependency from LegalSection.
  *
- * Example: Title 1 in a law might be "General Provisions" as a Title under a Chapter, providing introductory rules.
+ * Example: Title 1 in a law might be "General Provisions" as a Title under a Book, providing introductory rules.
  */
 subkind Title specializes LegalSection {
     label {
@@ -115,8 +118,26 @@ subkind Title specializes LegalSection {
         @nl "Titel"
     }
     description {
-        @en "A subdivision within a chapter or law, often grouping related divisions or articles."
-        @nl "Een onderverdeling binnen een hoofdstuk of wet, vaak groepeerend gerelateerde afdelingen of artikelen."
+        @en "A subdivision within a book or law, often grouping related chapters or divisions."
+        @nl "Een onderverdeling binnen een boek of wet, vaak groepeerend gerelateerde hoofdstukken of afdelingen."
+    }
+}
+
+/**
+ * A main division within a title that groups related divisions or articles.
+ *
+ * OntoUML: This is a subkind because it is a rigid specialization of LegalSection. Chapters divide titles into logical groupings, maintaining the structural hierarchy and identity principles from LegalSection.
+ *
+ * Example: Chapter 2 of the Dutch Civil Code ("Legal Capacity") is a Chapter that contains divisions about legal capacity, grouping them under a common theme.
+ */
+subkind Chapter specializes LegalSection {
+    label {
+        @en "Chapter"
+        @nl "Hoofdstuk"
+    }
+    description {
+        @en "A main division within a title, typically containing divisions or articles."
+        @nl "Een hoofddeling binnen een titel, meestal bevattende afdelingen of artikelen."
     }
 }
 /**
@@ -311,3 +332,42 @@ mode Amendment {
  * Example: An amendment on January 1, 2024 materially affects Article 10:1 by changing its text and creating a new version.
  */
 @material relation Amendment [0..*] -- affects -- [1] LegalSection
+
+// =============================================================
+// Specific hierarchical relations for legal structure
+// =============================================================
+
+/**
+ * Law to Book: Optional multiple books per law
+ */
+@componentOf relation Law [1] <>-- containsBook -- [0..*] Book
+
+/**
+ * Book to Title: Books contain titles
+ */
+@componentOf relation Book [1] <>-- containsTitle -- [1..*] Title
+
+/**
+ * Title to Chapter: Titles contain chapters
+ */
+@componentOf relation Title [1] <>-- containsChapter -- [1..*] Chapter
+
+/**
+ * Chapter to Division: Chapters contain divisions
+ */
+@componentOf relation Chapter [1] <>-- containsDivision -- [1..*] Division
+
+/**
+ * Division to Article: Divisions contain articles
+ */
+@componentOf relation Division [1] <>-- containsArticle -- [1..*] Article
+
+/**
+ * Article to Paragraph: Articles contain paragraphs
+ */
+@componentOf relation Article [1] <>-- containsParagraph -- [1..*] Paragraph
+
+/**
+ * Paragraph to Subparagraph: Paragraphs contain subparagraphs
+ */
+@componentOf relation Paragraph [1] <>-- containsSubparagraph -- [1..*] Subparagraph

@@ -41,7 +41,12 @@ category Agent {
 }
 
 @creation relation Agent [1] -- creates -- [0..*] Action
+@participation relation Agent [1] -- particatesIn -- [1..*] Action
 @participation relation Agent [1] -- performs -- [0..*] ActionContribution
+@characterization relation IntentionalMoment [1..*] -- inheresIn -- [1..*] Agent
+@characterization relation Intention [1..*] -- inheresIn -- [1] Agent
+@characterization relation MentalMoment [1..*] -- inheresIn -- [1] Agent
+@manifestation relation Intention [0..*] -- manifestedIn -- [1] Intention
 
 /**
  * SocialAgent: Een agent die deelneemt aan sociale structuren en collectieve intentionele toestanden.

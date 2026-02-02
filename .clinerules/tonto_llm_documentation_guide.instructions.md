@@ -20,14 +20,14 @@ Labels are the primary, human-readable identifiers for an element.
 -   **Brevity**: A label should be a short, concise name for the concept. Typically one to three words.
 -   **Capitalization**: Use PascalCase for class names (e.g., `ClassFeature`) and camelCase for attributes/relations (e.g., `featureName`).
 -   **Multi-language Support**:
-    -   Always provide labels in both English (`@en`) and Brazilian Portuguese (`@pt-br`).
+    -   Always provide labels in both English (`@en`) and Dutch (`@nl`).
     -   Ensure the translations are accurate and culturally appropriate.
 
 **Example:**
 ```tonto
 label {
     @en "Class Feature"
-    @pt-br "Característica de Classe"
+    @nl "Klassekenmerk"
 }
 ```
 
@@ -37,14 +37,14 @@ Descriptions provide a summary of the element's meaning in the context of the do
 
 -   **Contextualize**: Explain what the concept is within its domain. For RPGs, referencing well-known games (like Dungeons & Dragons, Pathfinder, World of Warcraft) is an excellent way to provide context.
 -   **Define the Concept**: The description should be a simple, clear definition. What is this thing? What is its purpose?
--   **Multi-language Support**: Provide descriptions in both `@en` and `@pt-br`, ensuring high-quality translation.
+-   **Multi-language Support**: Provide descriptions in both `@en` and `@nl`, ensuring high-quality translation.
 
 **Example:**
 ```tonto
 class Class {
     description {
         @en "A special ability, trait, or proficiency granted by an adventuring class, often at a specific level."
-        @pt-br "Uma habilidade especial, traço ou proficiência concedida por uma classe de aventureiro, frequentemente em um nível específico."
+        @nl "Een speciale vaardigheid, eigenschap of proficiëntie die wordt verleend door een avonturenklasse, vaak op een bepaald niveau."
     }
 }
 ```
@@ -80,11 +80,11 @@ The JSDoc-style block comment (`/** ... */`) is crucial for explaining the *onto
 role Student specializes Person {
     label {
         @en "Student"
-        @pt-br "Estudante"
+        @nl "Student"
     }
     description {
         @en "A person who is studying at a school or college."
-        @pt-br "Uma pessoa que está estudando em uma escola ou faculdade."
+        @nl "Een persoon die studeert aan een school of college."
     }
     // ... relations to a School relator
 }
@@ -99,7 +99,7 @@ role Student specializes Person {
 role Student specializes Person {
     label {
         @en "Student"
-        @pt-br "Estudante"
+        @nl "Student"
     }
     description {
         // Missing description

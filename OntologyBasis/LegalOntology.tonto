@@ -205,7 +205,7 @@ LegalRelator: Een SocialRelator gespecialiseerd voor juridische contexten, samen
 Dit verschilt van algemene sociale relators door binding aan juridische normen en enforcement.
 Voorbeelden: Relator voor "recht op leven" (Griffo et al., 2016), waarin rechtshouder claim heeft tegen plichthouder.
 */
-role LegalRelator specializes SocialRelator, Transaction {
+subkind LegalRelator specializes SocialRelator, Transaction {
     label {
         @en "Legal Relator"
         @nl "Rechtsbetrekking"

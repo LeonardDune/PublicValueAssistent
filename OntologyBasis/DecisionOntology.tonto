@@ -1,0 +1,121 @@
+import AgentOntology
+import EventOntology
+import ModeOntology
+import IndividualOntology
+
+package DecisionOntology
+
+kind DecisionSituation specializes Situation {
+    label {
+        @en "Decision Situation"
+        @nl "Besluit Situatie"
+    }
+    description {
+        @en "A Decision Situation is a Situation in which an Agent is faced with multiple alternatives and must make a choice among them."
+        @nl "Een Besluit Situatie is een Toestand waarin een Agent wordt geconfronteerd met meerdere alternatieven en een keuze moet maken uit deze alternatieven."
+    }
+    /*
+        Beschrijving: een decision situation is een situatie waarin een agent wordt geconfronteerd met meerdere alternatieven en een keuze moet maken uit deze alternatieven - het is de context waarin beslissingen worden genomen.
+        Examples: a person deciding which job offer to accept, a committee choosing between different policy options, a jury deliberating on a verdict
+    */
+}
+
+@creation relation Action [0..1] -- creates -- [1] DecisionSituation
+@formalization relation Intention [0..*] -- isSatisfiedBy -- [0..1] DecisionSituation
+
+event SuccessfulAction specializes Action {
+    label {
+        @en "Successful Action"
+        @nl "Succesvolle Activiteit"
+    }
+    description {
+        @en "A Successful Action is an Action that achieves its intended goal or purpose."
+        @nl "Een Succesvolle Activiteit is een Activiteit die zijn beoogde doel of doel bereikt."
+    }
+    /*
+        Beschrijving: een successful action is een action die zijn beoogde doel of doel bereikt - het is een actie die succesvol is uitgevoerd door een agent.
+        Examples: the successful action of a person completing a project on time, the successful action of a person winning a competition, the successful action of a person achieving a personal goal
+    */
+}
+
+phase FullfilledIntention specializes Intention {
+    label {
+        @en "Fulfilled Intention"
+        @en "Achieved Goal"
+        @nl "Vervulde Intentie"
+        @nl "Bereikt Doel"
+    }
+    description {
+        @en "A Fulfilled Intention is an Intention that has been successfully realized through the execution of a Successful Action."
+        @nl "Een Vervulde Intentie is een Intentie die succesvol is gerealiseerd door de uitvoering van een Succesvolle Activiteit."
+    }
+    /*
+        Beschrijving: een fulfilled intention is een intention die succesvol is gerealiseerd door de uitvoering van een successful action - het is een intentie die is vervuld door een agent.
+        Examples: the fulfilled intention of a person completing a project, the fulfilled intention of a person winning a competition, the fulfilled intention of a person achieving a personal goal
+    */
+}
+
+event Deliberation specializes Action {
+    label {
+        @en "Deliberation"
+        @nl "Overweging"
+    }
+    description {
+        @en "Deliberation is an Action in which an Agent carefully considers various options and their potential outcomes before making a decision."
+        @nl "Overweging is een Activiteit waarin een Agent zorgvuldig verschillende opties en hun potentiële uitkomsten overweegt voordat hij een beslissing neemt."
+    }
+    /*
+        Beschrijving: een deliberation is een action waarin een agent zorgvuldig verschillende opties en hun potentiële uitkomsten overweegt voordat hij een beslissing neemt - het is een proces van nadenken en afwegen van mogelijkheden.
+        Examples: a person deliberating on which job offer to accept, a committee deliberating on a policy decision, a jury deliberating on a verdict
+    */
+}
+
+event DecisionResultingAction specializes Action {
+    label {
+        @en "Decision Resulting Action"
+        @nl "Besluituitvoeringshandeling"
+    }
+    description {
+        @en "Action performed to implement a Decision made by an Agent."
+        @nl "Handeling waarmee een genomen besluit feitelijk wordt uitgevoerd en effecten in de werkelijkheid veroorzaakt."
+    }
+    /*
+        Beschrijving: een decision resulting action is een action die wordt uitgevoerd om een door een agent genomen decision uit te voeren - het is de actie die volgt op het nemen van een beslissing.
+        Examples: the action of a person accepting a job offer after deciding to do so, the action of a committee implementing a policy decision, the action of a jury delivering a verdict after deliberation
+    */
+}
+
+role Decision specializes Intention {
+    label {
+        @en "Decision"
+        @nl "Beslissing"
+    }
+    description {
+        @en "A Decision is an Intention that represents a commitment made by an Agent to choose a specific course of action among various alternatives."
+        @nl "Een Beslissing is een Intentie die een verbintenis vertegenwoordigt die door een Agent is aangegaan om een specifieke handelwijze te kiezen uit verschillende alternatieven."
+    }
+    /*
+        Beschrijving: een decision is een intention die een verbintenis vertegenwoordigt die door een agent is aangegaan om een specifieke handelwijze te kiezen uit verschillende alternatieven - het is een keuze die wordt gemaakt na zorgvuldige overweging.
+        Examples: the decision to accept a job offer, the decision to implement a new policy, the decision to pursue a particular course of action
+    */
+}
+
+@creation relation Deliberation [1] -- creates -- [1] Decision
+@manifestation relation Decision [1] -- manifestedIn -- [0..*] DecisionResultingAction
+
+role Consequence specializes DecisionSituation {
+    label {
+        @en "Consequence"
+        @nl "Gevolg"
+    }
+    description {
+        @en "Situation that represents the outcome or result of a Decision Resulting Action created by an Agent."
+        @nl "Situatie die het resultaat representeert van een door een Agent uitgevoerde Besluituitvoeringshandeling."
+    }
+    /*
+        Beschrijving: een consequence is een decision situation die de uitkomst of het resultaat vertegenwoordigt van een door een agent genomen decision - het is de situatie die volgt op het nemen van een beslissing.
+        Examples: the consequence of accepting a job offer, the consequence of implementing a new policy, the consequence of pursuing a particular course of action
+    */
+}
+
+@creation relation DecisionResultingAction [1] -- creates -- [1] Consequence

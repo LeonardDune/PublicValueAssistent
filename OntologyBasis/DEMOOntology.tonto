@@ -314,7 +314,7 @@ subkind CClaim specializes SocialClaim {
  * - "payment promised" (inhering in a Payment transaction)
  * - "delivery accepted" (inhering in a Delivery transaction)
  */
-mode CoordinationFact {
+situation CoordinationFact {
     label {
         @en "Coordination Fact"
         @nl "Coördinatiefeit"
@@ -340,7 +340,7 @@ mode CoordinationFact {
  * - "contract signed" (inhering in a Contract object)
  * - "product manufactured" (inhering in a Product object)
  */
-mode ProductionFact {
+situation ProductionFact {
     label {
         @en "Production Fact"
         @nl "Productiefeit"

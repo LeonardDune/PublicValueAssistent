@@ -1,0 +1,3297 @@
+@prefix begrip: <http://data.recht.nl/begrip/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rov: <http://www.w3.org/ns/reg-en-ovid#> .
+@prefix voc: <http://data.recht.nl/begrippenkader/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ob: <https://example.com#>.
+@prefix gufo: <http://purl.org/nemo/gufo#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix : <https://example.com#>.
+
+
+<https://example.com> rdf:type owl:Ontology;
+    owl:imports gufo:.
+:ValueProposition rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "ValueProposition"@en.
+:TargetGroup rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "TargetGroup"@en.
+:BusinessValueProposition rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "BusinessValueProposition"@en.
+:PublicValueProposition rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "PublicValueProposition"@en.
+:OfferingValueProposition rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "OfferingValueProposition"@en.
+:BusinessValuePortfolio rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "BusinessValuePortfolio"@en.
+:PublicValuePortfolio rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "PublicValuePortfolio"@en.
+:ValueOffering rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ValueOffering"@en.
+:Value rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "Value"@en.
+:PublicValue rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "PublicValue"@en.
+:BusinessValue rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "BusinessValue"@en.
+:PersonalValue rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "PersonalValue"@en.
+:ValueBearer rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "ValueBearer"@en.
+:Valuation rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "Valuation"@en.
+:ValueExperience rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ValueExperience"@en.
+:ValueObject rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ValueObject"@en.
+:ValueBenificiary rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ValueBenificiary"@en.
+:ValueBeholder rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ValueBeholder"@en.
+:Context rdf:type owl:Class, gufo:SituationType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Situation;
+    rdfs:label "Context"@en.
+:ValueAscription rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "ValueAscription"@en.
+:VAExAnte rdf:type owl:Class, gufo:Phase, owl:NamedIndividual;
+    rdfs:label "VAExAnte"@en.
+:VAExPost rdf:type owl:Class, gufo:Phase, owl:NamedIndividual;
+    rdfs:label "VAExPost"@en.
+:ValuePerception rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "ValuePerception"@en.
+:ValueAssertion rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "ValueAssertion"@en.
+:VAComponent rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "VAComponent"@en.
+:ValueComponent rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "ValueComponent"@en.
+:Benefit rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Benefit"@en.
+:Sacrifice rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Sacrifice"@en.
+:Offeror rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "Offeror"@en.
+:Offer rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "Offer"@en.
+:Offering rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Offering"@en.
+:EligiblePopulation rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "EligiblePopulation"@en.
+:EligibleAgent rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "EligibleAgent"@en.
+:OfferingCommitment rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "OfferingCommitment"@en.
+:OfferingClaim rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "OfferingClaim"@en.
+:Description rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "Description"@en.
+:OfferingDescription rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "OfferingDescription"@en.
+:ExperienceDescription rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "ExperienceDescription"@en.
+:Content rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "Content"@en.
+:Condition rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "Condition"@en.
+:Portfolio rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Portfolio"@en.
+:Object rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "Object"@en.
+:SocialObject rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "SocialObject"@en.
+:PhysicalObject rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "PhysicalObject"@en.
+:Resource rdf:type owl:Class, gufo:Mixin, owl:NamedIndividual;
+    rdfs:label "Resource"@en.
+:NormativeDescription rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "NormativeDescription"@en.
+:Norm rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "Norm"@en.
+:Permission rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Permission"@en.
+:Prohibition rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Prohibition"@en.
+:Obligation rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Obligation"@en.
+:Exception rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Exception"@en.
+:LegalDocument rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "LegalDocument"@en.
+:Contract rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Contract"@en.
+:Regulation rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Regulation"@en.
+:Decree rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Decree"@en.
+:Precedent rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Precedent"@en.
+:InternationalAgreement rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "InternationalAgreement"@en.
+:Treaty rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Treaty"@en.
+:SoftLaw rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "SoftLaw"@en.
+:Disposition rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "Disposition"@en.
+:IntentionalMoment rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "IntentionalMoment"@en.
+:MentalMoment rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "MentalMoment"@en.
+:Intention rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Intention"@en.
+:Desire rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Desire"@en.
+:Belief rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Belief"@en.
+:SocialMoment rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "SocialMoment"@en.
+:SocialRelator rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "SocialRelator"@en.
+:SocialClaim rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "SocialClaim"@en.
+:SocialCommitment rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "SocialCommitment"@en.
+:LegalSubject rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "LegalSubject"@en.
+:Claimant rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "Claimant"@en.
+:Committor rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "Committor"@en.
+:LegalObject rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "LegalObject"@en.
+:LegalCondition rdf:type owl:Class, gufo:SituationType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Situation;
+    rdfs:label "LegalCondition"@en.
+:DerivationRule rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "DerivationRule"@en.
+:LegalVariable rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "LegalVariable"@en.
+:LegalOperator rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "LegalOperator"@en.
+:TimeIndication rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "TimeIndication"@en.
+:PlaceIndication rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "PlaceIndication"@en.
+:DelegationFilling rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "DelegationFilling"@en.
+:LegalRelator rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "LegalRelator"@en.
+:LegalClaim rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "LegalClaim"@en.
+:LegalCommitment rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "LegalCommitment"@en.
+:Right rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Right"@en.
+:Duty rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Duty"@en.
+:LegalPosition rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "LegalPosition"@en.
+:Power rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Power"@en.
+:Subjection rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Subjection"@en.
+:Disability rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Disability"@en.
+:Immunity rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Immunity"@en.
+:InstitutionalAct rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "InstitutionalAct"@en.
+:RightDutyRelator rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "RightDutyRelator"@en.
+:PowerSubjectionRelator rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "PowerSubjectionRelator"@en.
+:DisabilityImmunityRelator rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "DisabilityImmunityRelator"@en.
+:Law rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Law"@en.
+:Code rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Code"@en.
+:Statute rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Statute"@en.
+:LegalSection rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "LegalSection"@en.
+:Chapter rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Chapter"@en.
+:Title rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Title"@en.
+:Division rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Division"@en.
+:Article rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Article"@en.
+:Paragraph rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Paragraph"@en.
+:Subparagraph rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Subparagraph"@en.
+:ValidityPeriod rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "ValidityPeriod"@en.
+:Jurisdiction rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "Jurisdiction"@en.
+:Amendment rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "Amendment"@en.
+:Individual rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Individual"@en.
+:Quality rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Quality;
+    rdfs:label "Quality"@en.
+:AtomicEvent rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Event;
+    rdfs:label "AtomicEvent"@en.
+:ComplexEvent rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Event;
+    rdfs:label "ComplexEvent"@en.
+:Participation rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Relator;
+    rdfs:label "Participation"@en.
+:Action rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:Event;
+    rdfs:label "Action"@en.
+:ActionContribution rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "ActionContribution"@en.
+:AtomicAction rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "AtomicAction"@en.
+:ComplexAction rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "ComplexAction"@en.
+:CommunicativeAct rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "CommunicativeAct"@en.
+:Interaction rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "Interaction"@en.
+:Actor rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "Actor"@en.
+:Initiator rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Initiator"@en.
+:Executor rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "Executor"@en.
+:ActorRole rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "ActorRole"@en.
+:Transaction rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Transaction"@en.
+:TransactorRole rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "TransactorRole"@en.
+:TransactionState rdf:type owl:Class, gufo:AbstractIndividualType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:QualityValue;
+    owl:equivalentClass [
+  rdf:type owl:Class;
+  owl:oneOf (:Requested :Promised :Declared :Accepted :Declined :Rejected :Revoked :Allowed :Refused :Expired :Completed)
+].
+:Requested rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Promised rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Declared rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Accepted rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Declined rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Rejected rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Revoked rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Allowed rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Refused rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Expired rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:Completed rdf:type :TransactionState;
+    rdf:label "[object Object]".
+:TransactionState rdfs:label "TransactionState"@en.
+:CCommitment rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "CCommitment"@en.
+:CClaim rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "CClaim"@en.
+:CoordinationFact rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "CoordinationFact"@en.
+:ProductionFact rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:subClassOf gufo:IntrinsicMode;
+    rdfs:label "ProductionFact"@en.
+:WorkProduct rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "WorkProduct"@en.
+:TransactionEvent rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "TransactionEvent"@en.
+:CoordinationActType rdf:type owl:Class, gufo:AbstractIndividualType, owl:NamedIndividual;
+    rdfs:subClassOf gufo:QualityValue;
+    owl:equivalentClass [
+  rdf:type owl:Class;
+  owl:oneOf (:Request :Promise :Declare :Accept :Decline :Reject :Revoke :Allow :Refuse)
+].
+:Request rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Promise rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Declare rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Accept rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Decline rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Reject rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Revoke rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Allow rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:Refuse rdf:type :CoordinationActType;
+    rdf:label "[object Object]".
+:CoordinationActType rdfs:label "CoordinationActType"@en.
+:CoordinationAct rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "CoordinationAct"@en.
+:ProductionAct rdf:type owl:Class, gufo:EventType, owl:NamedIndividual;
+    rdfs:label "ProductionAct"@en.
+:Agent rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:subClassOf gufo:FunctionalComplex;
+    rdfs:label "Agent"@en.
+:SocialAgent rdf:type owl:Class, gufo:Category, owl:NamedIndividual;
+    rdfs:label "SocialAgent"@en.
+:InstitutionalAgent rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "InstitutionalAgent"@en.
+:CollectiveSocialAgent rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "CollectiveSocialAgent"@en.
+:Society rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Society"@en.
+:Ecosystem rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "Ecosystem"@en.
+:PhysicalAgent rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "PhysicalAgent"@en.
+:NaturalPerson rdf:type owl:Class, gufo:SubKind, owl:NamedIndividual;
+    rdfs:label "NaturalPerson"@en.
+:PublicNaturalPerson rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "PublicNaturalPerson"@en.
+:LegalPerson rdf:type owl:Class, gufo:Kind, owl:NamedIndividual;
+    rdfs:label "LegalPerson"@en.
+:PrivateLegalPerson rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "PrivateLegalPerson"@en.
+:PublicLegalPerson rdf:type owl:Class, gufo:Role, owl:NamedIndividual;
+    rdfs:label "PublicLegalPerson"@en.
+:SocialRole rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "SocialRole"@en.
+:GovernmentBody rdf:type owl:Class, gufo:RoleMixin, owl:NamedIndividual;
+    rdfs:label "GovernmentBody"@en.
+:ValueProposition rdfs:subClassOf :ValueAssertion.
+:TargetGroup rdfs:subClassOf :CollectiveSocialAgent.
+:BusinessValueProposition rdfs:subClassOf :ValueProposition.
+:PublicValueProposition rdfs:subClassOf :ValueProposition.
+:OfferingValueProposition rdfs:subClassOf :ValueProposition.
+:BusinessValuePortfolio rdfs:subClassOf :Portfolio, :ValueBearer.
+:PublicValuePortfolio rdfs:subClassOf :Portfolio, :ValueBearer.
+:ValueOffering rdfs:subClassOf :OfferingDescription, :ValueBearer.
+:PublicValue rdfs:subClassOf :Value.
+:BusinessValue rdfs:subClassOf :Value.
+:PersonalValue rdfs:subClassOf :Value.
+:Valuation rdfs:subClassOf :Action.
+:ValueExperience rdfs:subClassOf :ValueBearer.
+:ValueObject rdfs:subClassOf :ValueBearer, :Object.
+:ValueBenificiary rdfs:subClassOf :Agent.
+:ValueBeholder rdfs:subClassOf :Agent.
+:VAExAnte rdfs:subClassOf :ValueAscription.
+:VAExPost rdfs:subClassOf :ValueAscription.
+:ValuePerception rdfs:subClassOf :ValueAscription.
+:ValueAssertion rdfs:subClassOf :ValueAscription.
+:Benefit rdfs:subClassOf :ValueComponent.
+:Sacrifice rdfs:subClassOf :ValueComponent.
+:Offeror rdfs:subClassOf :Agent, :ValueBeholder.
+:Offer rdfs:subClassOf :CommunicativeAct.
+:Offering rdfs:subClassOf :SocialRelator.
+:EligiblePopulation rdfs:subClassOf :CollectiveSocialAgent.
+:EligibleAgent rdfs:subClassOf :SocialAgent.
+:OfferingCommitment rdfs:subClassOf :SocialCommitment.
+:OfferingClaim rdfs:subClassOf :SocialClaim.
+:Description rdfs:subClassOf :Individual.
+:OfferingDescription rdfs:subClassOf :Description.
+:ExperienceDescription rdfs:subClassOf :Description.
+:Content rdfs:subClassOf :ExperienceDescription.
+:Condition rdfs:subClassOf :ExperienceDescription.
+:Object rdfs:subClassOf :Individual.
+:SocialObject rdfs:subClassOf :Object.
+:PhysicalObject rdfs:subClassOf :Object.
+:Resource rdfs:subClassOf :Object.
+:NormativeDescription rdfs:subClassOf :SocialObject.
+:Permission rdfs:subClassOf :Norm.
+:Prohibition rdfs:subClassOf :Norm.
+:Obligation rdfs:subClassOf :Norm.
+:Exception rdfs:subClassOf :Norm.
+:LegalDocument rdfs:subClassOf :NormativeDescription.
+:Contract rdfs:subClassOf :LegalDocument.
+:Regulation rdfs:subClassOf :LegalDocument.
+:Decree rdfs:subClassOf :LegalDocument.
+:Precedent rdfs:subClassOf :NormativeDescription.
+:InternationalAgreement rdfs:subClassOf :NormativeDescription.
+:Treaty rdfs:subClassOf :InternationalAgreement.
+:SoftLaw rdfs:subClassOf :NormativeDescription.
+:MentalMoment rdfs:subClassOf :IntentionalMoment.
+:Intention rdfs:subClassOf :MentalMoment.
+:Desire rdfs:subClassOf :MentalMoment.
+:Belief rdfs:subClassOf :MentalMoment.
+:SocialMoment rdfs:subClassOf :IntentionalMoment.
+:SocialClaim rdfs:subClassOf :SocialMoment.
+:SocialCommitment rdfs:subClassOf :SocialMoment.
+:LegalSubject rdfs:subClassOf :Agent.
+:Claimant rdfs:subClassOf :LegalSubject.
+:Committor rdfs:subClassOf :LegalSubject.
+:LegalObject rdfs:subClassOf :ValueBearer, :WorkProduct.
+:DelegationFilling rdfs:subClassOf :InstitutionalAct.
+:LegalRelator rdfs:subClassOf :SocialRelator, :Transaction.
+:LegalClaim rdfs:subClassOf :SocialClaim, :CClaim.
+:LegalCommitment rdfs:subClassOf :SocialCommitment, :CCommitment.
+:Right rdfs:subClassOf :LegalClaim.
+:Duty rdfs:subClassOf :LegalCommitment.
+:LegalPosition rdfs:subClassOf :SocialMoment.
+:Power rdfs:subClassOf :LegalPosition.
+:Subjection rdfs:subClassOf :LegalPosition.
+:Disability rdfs:subClassOf :LegalPosition.
+:Immunity rdfs:subClassOf :LegalPosition.
+:InstitutionalAct rdfs:subClassOf :CommunicativeAct, :TransactionEvent.
+:RightDutyRelator rdfs:subClassOf :LegalRelator.
+:PowerSubjectionRelator rdfs:subClassOf :LegalRelator.
+:DisabilityImmunityRelator rdfs:subClassOf :LegalRelator.
+:Law rdfs:subClassOf :LegalDocument.
+:Code rdfs:subClassOf :Law.
+:Statute rdfs:subClassOf :Law.
+:LegalSection rdfs:subClassOf :NormativeDescription.
+:Chapter rdfs:subClassOf :LegalSection.
+:Title rdfs:subClassOf :LegalSection.
+:Division rdfs:subClassOf :LegalSection.
+:Article rdfs:subClassOf :LegalSection.
+:Paragraph rdfs:subClassOf :LegalSection.
+:Subparagraph rdfs:subClassOf :LegalSection.
+:ActionContribution rdfs:subClassOf :Action.
+:AtomicAction rdfs:subClassOf :Action.
+:ComplexAction rdfs:subClassOf :Action.
+:CommunicativeAct rdfs:subClassOf :AtomicAction.
+:Interaction rdfs:subClassOf :ComplexAction.
+:Actor rdfs:subClassOf :SocialAgent.
+:Initiator rdfs:subClassOf :Actor.
+:Executor rdfs:subClassOf :Actor.
+:ActorRole rdfs:subClassOf :SocialAgent.
+:Transaction rdfs:subClassOf :SocialRelator.
+:CCommitment rdfs:subClassOf :SocialCommitment.
+:CClaim rdfs:subClassOf :SocialClaim.
+:WorkProduct rdfs:subClassOf :Individual.
+:TransactionEvent rdfs:subClassOf :Interaction.
+:CoordinationAct rdfs:subClassOf :CommunicativeAct.
+:ProductionAct rdfs:subClassOf :AtomicAction.
+:SocialAgent rdfs:subClassOf :Agent.
+:InstitutionalAgent rdfs:subClassOf :SocialAgent.
+:CollectiveSocialAgent rdfs:subClassOf :SocialAgent.
+:Society rdfs:subClassOf :CollectiveSocialAgent.
+:Ecosystem rdfs:subClassOf :CollectiveSocialAgent.
+:PhysicalAgent rdfs:subClassOf :Agent.
+:NaturalPerson rdfs:subClassOf :PhysicalAgent.
+:PublicNaturalPerson rdfs:subClassOf :NaturalPerson, :GovernmentBody.
+:LegalPerson rdfs:subClassOf :SocialAgent.
+:PrivateLegalPerson rdfs:subClassOf :LegalPerson.
+:PublicLegalPerson rdfs:subClassOf :LegalPerson, :GovernmentBody.
+:SocialRole rdfs:subClassOf :Agent.
+:GovernmentBody rdfs:subClassOf :SocialRole.
+:number_1 rdfs:domain :LegalSection;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "number"@en.
+:title rdfs:domain :LegalSection;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "title"@en.
+:text rdfs:domain :LegalSection;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "text"@en.
+:validFrom rdfs:domain :ValidityPeriod;
+    rdfs:range xsd:date;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "validFrom"@en.
+:validTo rdfs:domain :ValidityPeriod;
+    rdfs:range xsd:date;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "validTo"@en.
+:amendmentDate rdfs:domain :ValidityPeriod;
+    rdfs:range xsd:date;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "amendmentDate"@en.
+:country rdfs:domain :Jurisdiction;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "country"@en.
+:region rdfs:domain :Jurisdiction;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "region"@en.
+:level rdfs:domain :Jurisdiction;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "level"@en.
+:amendmentDate_1 rdfs:domain :Amendment;
+    rdfs:range xsd:date;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "amendmentDate"@en.
+:amendmentType rdfs:domain :Amendment;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "amendmentType"@en.
+:previousText rdfs:domain :Amendment;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "previousText"@en.
+:newText rdfs:domain :Amendment;
+    rdfs:range xsd:string;
+    rdf:type owl:DatatypeProperty;
+    rdfs:subPropertyOf gufo:hasQualityValue;
+    rdfs:label "newText"@en.
+:involves rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueProposition;
+    rdfs:range :TargetGroup;
+    rdfs:label "involves"@en.
+:hasMember rdf:type owl:ObjectProperty;
+    rdfs:domain :TargetGroup;
+    rdfs:range :ValueBenificiary;
+    rdfs:label "hasMember"@en.
+:hasSub rdf:type owl:ObjectProperty;
+    rdfs:domain :TargetGroup;
+    rdfs:range :TargetGroup;
+    rdfs:label "hasSub"@en.
+:involves_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :BusinessValueProposition;
+    rdfs:range :BusinessValuePortfolio;
+    rdfs:label "involves"@en.
+:involves_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :PublicValueProposition;
+    rdfs:range :PublicValuePortfolio;
+    rdfs:label "involves"@en.
+:involves_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingValueProposition;
+    rdfs:range :ValueOffering;
+    rdfs:label "involves"@en.
+:participatesIn rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueObject;
+    rdfs:range :ValueExperience;
+    rdfs:label "participatesIn"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:participatesIn_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueBenificiary;
+    rdfs:range :ValueExperience;
+    rdfs:label "participatesIn"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:participatesIn_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueBeholder;
+    rdfs:range :Valuation;
+    rdfs:label "participatesIn"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:participatesIn_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :Context;
+    rdfs:range :Valuation;
+    rdfs:label "participatesIn"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:isFocusOf rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueAscription;
+    rdfs:range :Valuation;
+    rdfs:label "isFocusOf"@en.
+:valueAscriptionHasVaComponent rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueAscription;
+    rdfs:range :VAComponent.
+:involves_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueAscription;
+    rdfs:range :ValueBeholder;
+    rdfs:label "involves"@en.
+:involves_5 rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueAscription;
+    rdfs:range :ValueBenificiary;
+    rdfs:label "involves"@en.
+:involves_6 rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueAscription;
+    rdfs:range :ValueBearer;
+    rdfs:label "involves"@en.
+:inheresIn rdf:type owl:ObjectProperty;
+    rdfs:domain :Value;
+    rdfs:range :ValueAscription;
+    rdfs:label "inheresIn"@en.
+:vaComponentHasQuality rdf:type owl:ObjectProperty;
+    rdfs:domain :VAComponent;
+    rdfs:range :Quality.
+:vaComponentHasMentalMoment rdf:type owl:ObjectProperty;
+    rdfs:domain :VAComponent;
+    rdfs:range :MentalMoment.
+:involves_7 rdf:type owl:ObjectProperty;
+    rdfs:domain :VAComponent;
+    rdfs:range :ValueBenificiary;
+    rdfs:label "involves"@en.
+:inheresIn_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :ValueComponent;
+    rdfs:range :VAComponent;
+    rdfs:label "inheresIn"@en.
+:creates rdf:type owl:ObjectProperty;
+    rdfs:domain :Offer;
+    rdfs:range :Offering;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:wasCreatedIn.
+:providedBy rdf:type owl:ObjectProperty;
+    rdfs:domain :Offering;
+    rdfs:range :Offeror;
+    rdfs:label "providedBy"@en.
+:offeredTo rdf:type owl:ObjectProperty;
+    rdfs:domain :Offering;
+    rdfs:range :EligiblePopulation;
+    rdfs:label "offeredTo"@en.
+:composedOf rdf:type owl:ObjectProperty;
+    rdfs:domain :EligiblePopulation;
+    rdfs:range :EligibleAgent;
+    rdfs:label "composedOf"@en;
+    rdfs:subPropertyOf gufo:isCollectionMemberOf.
+:offeringIsComponentOfOfferingCommitment rdf:type owl:ObjectProperty;
+    rdfs:domain :Offering;
+    rdfs:range :OfferingCommitment;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:offeringIsComponentOfOfferingClaim rdf:type owl:ObjectProperty;
+    rdfs:domain :Offering;
+    rdfs:range :OfferingClaim;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:inheresIn_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingCommitment;
+    rdfs:range :Offeror;
+    rdfs:label "inheresIn"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:inheresIn_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingClaim;
+    rdfs:range :EligiblePopulation;
+    rdfs:label "inheresIn"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:dependentOn rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingCommitment;
+    rdfs:range :EligiblePopulation;
+    rdfs:label "dependentOn"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:describes rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingDescription;
+    rdfs:range :Offering;
+    rdfs:label "describes"@en.
+:offeringDescriptionHasContent rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingDescription;
+    rdfs:range :Content.
+:offeringDescriptionHasCondition rdf:type owl:ObjectProperty;
+    rdfs:domain :OfferingDescription;
+    rdfs:range :Condition.
+:describes_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :ExperienceDescription;
+    rdfs:range :Action;
+    rdfs:label "describes"@en.
+:portfolioHasOfferingDescription rdf:type owl:ObjectProperty;
+    rdfs:domain :Portfolio;
+    rdfs:range :OfferingDescription.
+:documentedBy rdf:type owl:ObjectProperty;
+    rdfs:domain :Offering;
+    rdfs:range :Contract;
+    rdfs:label "documentedBy"@en.
+:contains rdf:type owl:ObjectProperty;
+    rdfs:domain :NormativeDescription;
+    rdfs:range :Norm;
+    rdfs:label "contains"@en.
+:defines rdf:type owl:ObjectProperty;
+    rdfs:domain :NormativeDescription;
+    rdfs:range :Object;
+    rdfs:label "defines"@en.
+:causedBy rdf:type owl:ObjectProperty;
+    rdfs:domain :Intention;
+    rdfs:range :Action;
+    rdfs:label "causedBy"@en;
+    rdfs:subPropertyOf gufo:contributedToTrigger.
+:socialRelatorIsComponentOfSocialMoment rdf:type owl:ObjectProperty;
+    rdfs:domain :SocialRelator;
+    rdfs:range :SocialMoment;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:socialRelatorIsComponentOfSocialClaim rdf:type owl:ObjectProperty;
+    rdfs:domain :SocialRelator;
+    rdfs:range :SocialClaim;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:socialRelatorIsComponentOfSocialCommitment rdf:type owl:ObjectProperty;
+    rdfs:domain :SocialRelator;
+    rdfs:range :SocialCommitment;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:causes rdf:type owl:ObjectProperty;
+    rdfs:domain :SocialCommitment;
+    rdfs:range :Action;
+    rdfs:label "causes"@en;
+    rdfs:subPropertyOf gufo:contributedToTrigger.
+:givesRiseTo rdf:type owl:ObjectProperty;
+    rdfs:domain :Permission;
+    rdfs:range :SocialClaim;
+    rdfs:label "givesRiseTo"@en.
+:givesRiseTo_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Prohibition;
+    rdfs:range :SocialCommitment;
+    rdfs:label "givesRiseTo"@en.
+:givesRiseTo_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Obligation;
+    rdfs:range :SocialCommitment;
+    rdfs:label "givesRiseTo"@en.
+:modifies rdf:type owl:ObjectProperty;
+    rdfs:domain :Exception;
+    rdfs:range :Permission;
+    rdfs:label "modifies"@en.
+:modifies_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Exception;
+    rdfs:range :Prohibition;
+    rdfs:label "modifies"@en.
+:modifies_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Exception;
+    rdfs:range :Obligation;
+    rdfs:label "modifies"@en.
+:inheresIn_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :Right;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en.
+:inheresIn_5 rdf:type owl:ObjectProperty;
+    rdfs:domain :Duty;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en.
+:inheresIn_6 rdf:type owl:ObjectProperty;
+    rdfs:domain :Power;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en.
+:inheresIn_7 rdf:type owl:ObjectProperty;
+    rdfs:domain :Subjection;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en.
+:inheresIn_8 rdf:type owl:ObjectProperty;
+    rdfs:domain :Disability;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en.
+:inheresIn_9 rdf:type owl:ObjectProperty;
+    rdfs:domain :Immunity;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en.
+:involves_8 rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :Claimant;
+    rdfs:label "involves"@en.
+:involves_9 rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :Committor;
+    rdfs:label "involves"@en.
+:concerns rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :LegalObject;
+    rdfs:label "concerns"@en.
+:conditions rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalCondition;
+    rdfs:range :LegalRelator;
+    rdfs:label "conditions"@en.
+:governs rdf:type owl:ObjectProperty;
+    rdfs:domain :DerivationRule;
+    rdfs:range :LegalRelator;
+    rdfs:label "governs"@en.
+:usedIn rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalOperator;
+    rdfs:range :DerivationRule;
+    rdfs:label "usedIn"@en.
+:inheresIn_10 rdf:type owl:ObjectProperty;
+    rdfs:domain :TimeIndication;
+    rdfs:range :LegalRelator;
+    rdfs:label "inheresIn"@en.
+:inheresIn_11 rdf:type owl:ObjectProperty;
+    rdfs:domain :PlaceIndication;
+    rdfs:range :LegalRelator;
+    rdfs:label "inheresIn"@en.
+:fulfills rdf:type owl:ObjectProperty;
+    rdfs:domain :DelegationFilling;
+    rdfs:range :Power;
+    rdfs:label "fulfills"@en.
+:composedOf_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :LegalClaim;
+    rdfs:label "composedOf"@en.
+:composedOf_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :LegalCommitment;
+    rdfs:label "composedOf"@en.
+:composedOf_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :RightDutyRelator;
+    rdfs:range :Right;
+    rdfs:label "composedOf"@en.
+:composedOf_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :RightDutyRelator;
+    rdfs:range :Duty;
+    rdfs:label "composedOf"@en.
+:composedOf_5 rdf:type owl:ObjectProperty;
+    rdfs:domain :PowerSubjectionRelator;
+    rdfs:range :Power;
+    rdfs:label "composedOf"@en.
+:composedOf_6 rdf:type owl:ObjectProperty;
+    rdfs:domain :PowerSubjectionRelator;
+    rdfs:range :Subjection;
+    rdfs:label "composedOf"@en.
+:composedOf_7 rdf:type owl:ObjectProperty;
+    rdfs:domain :DisabilityImmunityRelator;
+    rdfs:range :Disability;
+    rdfs:label "composedOf"@en.
+:composedOf_8 rdf:type owl:ObjectProperty;
+    rdfs:domain :DisabilityImmunityRelator;
+    rdfs:range :Immunity;
+    rdfs:label "composedOf"@en.
+:manifests rdf:type owl:ObjectProperty;
+    rdfs:domain :InstitutionalAct;
+    rdfs:range :LegalRelator;
+    rdfs:label "manifests"@en.
+:participatesIn_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalSubject;
+    rdfs:range :LegalRelator;
+    rdfs:label "participatesIn"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:hasPosition rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalSubject;
+    rdfs:range :LegalPosition;
+    rdfs:label "hasPosition"@en.
+:holds rdf:type owl:ObjectProperty;
+    rdfs:domain :Claimant;
+    rdfs:range :LegalClaim;
+    rdfs:label "holds"@en.
+:has rdf:type owl:ObjectProperty;
+    rdfs:domain :Committor;
+    rdfs:range :LegalCommitment;
+    rdfs:label "has"@en.
+:implements rdf:type owl:ObjectProperty;
+    rdfs:domain :Permission;
+    rdfs:range :RightDutyRelator;
+    rdfs:label "implements"@en.
+:implements_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Permission;
+    rdfs:range :PowerSubjectionRelator;
+    rdfs:label "implements"@en.
+:implements_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Prohibition;
+    rdfs:range :DisabilityImmunityRelator;
+    rdfs:label "implements"@en.
+:implements_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :Obligation;
+    rdfs:range :RightDutyRelator;
+    rdfs:label "implements"@en.
+:implements_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :Obligation;
+    rdfs:range :DisabilityImmunityRelator;
+    rdfs:label "implements"@en.
+:overrides rdf:type owl:ObjectProperty;
+    rdfs:domain :Exception;
+    rdfs:range :Permission;
+    rdfs:label "overrides"@en.
+:overrides_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Exception;
+    rdfs:range :Prohibition;
+    rdfs:label "overrides"@en.
+:overrides_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Exception;
+    rdfs:range :Obligation;
+    rdfs:label "overrides"@en.
+:defines_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Norm;
+    rdfs:range :LegalRelator;
+    rdfs:label "defines"@en.
+:defines_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Norm;
+    rdfs:range :LegalPosition;
+    rdfs:label "defines"@en.
+:defines_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :NormativeDescription;
+    rdfs:range :LegalRelator;
+    rdfs:label "defines"@en.
+:defines_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :NormativeDescription;
+    rdfs:range :LegalPosition;
+    rdfs:label "defines"@en.
+:hasPart rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalSection;
+    rdfs:range :LegalSection;
+    rdfs:label "hasPart"@en;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:refersTo rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalSection;
+    rdfs:range :LegalSection;
+    rdfs:label "refersTo"@en;
+    rdf:type gufo:MaterialRelationshipType.
+:containsSection rdf:type owl:ObjectProperty;
+    rdfs:domain :Law;
+    rdfs:range :LegalSection;
+    rdfs:label "containsSection"@en;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:characterizes rdf:type owl:ObjectProperty;
+    rdfs:domain :ValidityPeriod;
+    rdfs:range :LegalSection;
+    rdfs:label "characterizes"@en.
+:characterizes_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Jurisdiction;
+    rdfs:range :LegalSection;
+    rdfs:label "characterizes"@en.
+:affects rdf:type owl:ObjectProperty;
+    rdfs:domain :Amendment;
+    rdfs:range :LegalSection;
+    rdfs:label "affects"@en;
+    rdf:type gufo:MaterialRelationshipType.
+:inheresIn_12 rdf:type owl:ObjectProperty;
+    rdfs:domain :Quality;
+    rdfs:range :Individual;
+    rdfs:label "inheresIn"@en.
+:participationOf rdf:type owl:ObjectProperty;
+    rdfs:domain :Participation;
+    rdfs:range :Object;
+    rdfs:label "participationOf"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:participationOf_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Action;
+    rdfs:range :Object;
+    rdfs:label "participationOf"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:complexActionIsComponentOfParticipation rdf:type owl:ObjectProperty;
+    rdfs:domain :ComplexAction;
+    rdfs:range :Participation;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:interactionIsComponentOfActionContribution rdf:type owl:ObjectProperty;
+    rdfs:domain :Interaction;
+    rdfs:range :ActionContribution;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:participatesIn_5 rdf:type owl:ObjectProperty;
+    rdfs:domain :ActorRole;
+    rdfs:range :Transaction;
+    rdfs:label "participatesIn"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:involves_10 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :Initiator;
+    rdfs:label "involves"@en;
+    rdfs:subPropertyOf gufo:mediates.
+:involves_11 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :Executor;
+    rdfs:label "involves"@en;
+    rdfs:subPropertyOf gufo:mediates.
+:has_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :CCommitment;
+    rdfs:label "has"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:has_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :CClaim;
+    rdfs:label "has"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:Initiator gufo:categorizes :ActorRole.
+:Executor gufo:categorizes :ActorRole.
+:composedOf_9 rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactionEvent;
+    rdfs:range :CoordinationAct;
+    rdfs:label "composedOf"@en;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:composedOf_10 rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactionEvent;
+    rdfs:range :ProductionAct;
+    rdfs:label "composedOf"@en;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:manifestedBy rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :TransactionEvent;
+    rdfs:label "manifestedBy"@en;
+    rdfs:subPropertyOf gufo:manifestedIn.
+:creates_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :CoordinationAct;
+    rdfs:range :CClaim;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:wasCreatedIn.
+:creates_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :CoordinationAct;
+    rdfs:range :CCommitment;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:wasCreatedIn.
+:composedOf_11 rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactorRole;
+    rdfs:range :Transaction;
+    rdfs:label "composedOf"@en;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:composedOf_12 rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactorRole;
+    rdfs:range :ActorRole;
+    rdfs:label "composedOf"@en;
+    rdfs:subPropertyOf gufo:isComponentOf.
+:hasExecutor rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :ActorRole;
+    rdfs:label "hasExecutor"@en;
+    rdfs:subPropertyOf gufo:mediates.
+:performsProduction rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactorRole;
+    rdfs:range :ProductionAct;
+    rdfs:label "performsProduction"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:initiates rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactorRole;
+    rdfs:range :TransactorRole;
+    rdfs:label "initiates"@en;
+    rdfs:subPropertyOf gufo:mediates.
+:hasAccessTo rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactorRole;
+    rdfs:range :TransactorRole;
+    rdfs:label "hasAccessTo"@en.
+:impedes rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactorRole;
+    rdfs:range :TransactorRole;
+    rdfs:label "impedes"@en;
+    rdfs:subPropertyOf gufo:contributedToTrigger.
+:hasAccessTo_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :ActorRole;
+    rdfs:range :Transaction;
+    rdfs:label "hasAccessTo"@en.
+:impedes_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :ActorRole;
+    rdfs:label "impedes"@en;
+    rdfs:subPropertyOf gufo:contributedToTrigger.
+:creates_3 rdf:type owl:ObjectProperty;
+    rdfs:domain :CoordinationAct;
+    rdfs:range :CoordinationFact;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:broughtAbout.
+:creates_4 rdf:type owl:ObjectProperty;
+    rdfs:domain :ProductionAct;
+    rdfs:range :ProductionFact;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:broughtAbout.
+:inheresIn_13 rdf:type owl:ObjectProperty;
+    rdfs:domain :CoordinationFact;
+    rdfs:range :SocialObject;
+    rdfs:label "inheresIn"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:inheresIn_14 rdf:type owl:ObjectProperty;
+    rdfs:domain :ProductionFact;
+    rdfs:range :WorkProduct;
+    rdfs:label "inheresIn"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:contains_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :CoordinationFact;
+    rdfs:label "contains"@en.
+:contains_2 rdf:type owl:ObjectProperty;
+    rdfs:domain :Transaction;
+    rdfs:range :ProductionFact;
+    rdfs:label "contains"@en.
+:constrains rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :Transaction;
+    rdfs:label "constrains"@en;
+    rdfs:subPropertyOf gufo:historicallyDependsOn.
+:manifests_1 rdf:type owl:ObjectProperty;
+    rdfs:domain :LegalRelator;
+    rdfs:range :TransactionEvent;
+    rdfs:label "manifests"@en;
+    rdfs:subPropertyOf gufo:manifestedIn.
+:dependedOn rdf:type owl:ObjectProperty;
+    rdfs:domain :TransactionEvent;
+    rdfs:range :InstitutionalAct;
+    rdfs:label "dependedOn"@en;
+    rdfs:subPropertyOf gufo:historicallyDependsOn.
+:creates_5 rdf:type owl:ObjectProperty;
+    rdfs:domain :Agent;
+    rdfs:range :Action;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:wasCreatedIn.
+:performs rdf:type owl:ObjectProperty;
+    rdfs:domain :Agent;
+    rdfs:range :ActionContribution;
+    rdfs:label "performs"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+:recognizedBy rdf:type owl:ObjectProperty;
+    rdfs:domain :NormativeDescription;
+    rdfs:range :SocialAgent;
+    rdfs:label "recognizedBy"@en;
+    rdfs:subPropertyOf gufo:isEventProperPartOf.
+:inheresIn_15 rdf:type owl:ObjectProperty;
+    rdfs:domain :IntentionalMoment;
+    rdfs:range :Agent;
+    rdfs:label "inheresIn"@en;
+    rdfs:subPropertyOf gufo:inheresIn.
+:creates_6 rdf:type owl:ObjectProperty;
+    rdfs:domain :Agent;
+    rdfs:range :Action;
+    rdfs:label "creates"@en;
+    rdfs:subPropertyOf gufo:participatedIn.
+
+# === DOCUMENTATION POINTERS (rdfs:isDefinedBy) ===
+# Alle concepten verwijzen naar hun corresponderende SKOS concepten in OntologyBasis-begrippenkader.ttl
+
+# Value Ontology
+:ValueProposition rdfs:isDefinedBy begrip:ValueProposition .
+:TargetGroup rdfs:isDefinedBy begrip:TargetGroup .
+:BusinessValueProposition rdfs:isDefinedBy begrip:BusinessValueProposition .
+:PublicValueProposition rdfs:isDefinedBy begrip:PublicValueProposition .
+:OfferingValueProposition rdfs:isDefinedBy begrip:OfferingValueProposition .
+:BusinessValuePortfolio rdfs:isDefinedBy begrip:BusinessValuePortfolio .
+:PublicValuePortfolio rdfs:isDefinedBy begrip:PublicValuePortfolio .
+:ValueOffering rdfs:isDefinedBy begrip:ValueOffering .
+:Value rdfs:isDefinedBy begrip:Value .
+:PublicValue rdfs:isDefinedBy begrip:PublicValue .
+:BusinessValue rdfs:isDefinedBy begrip:BusinessValue .
+:PersonalValue rdfs:isDefinedBy begrip:PersonalValue .
+
+#ValueBearer Ontology
+:ValueBearer rdfs:isDefinedBy begrip:ValueBearer .
+:Valuation rdfs:isDefinedBy begrip:Valuation .
+:ValueExperience rdfs:isDefinedBy begrip:ValueExperience .
+:ValueObject rdfs:isDefinedBy begrip:ValueObject .
+:ValueBenificiary rdfs:isDefinedBy begrip:ValueBenificiary .
+:ValueBeholder rdfs:isDefinedBy begrip:ValueBeholder .
+:Context rdfs:isDefinedBy begrip:Context .
+
+#ValueAscription Ontology
+:ValueAscription rdfs:isDefinedBy begrip:ValueAscription .
+:VAExAnte rdfs:isDefinedBy begrip:VAExAnte .
+:VAExPost rdfs:isDefinedBy begrip:VAExPost .
+:ValuePerception rdfs:isDefinedBy begrip:ValuePerception .
+:ValueAssertion rdfs:isDefinedBy begrip:ValueAssertion .
+:VAComponent rdfs:isDefinedBy begrip:VAComponent .
+:ValueComponent rdfs:isDefinedBy begrip:ValueComponent .
+:Benefit rdfs:isDefinedBy begrip:Benefit .
+:Sacrifice rdfs:isDefinedBy begrip:Sacrifice .
+
+#Offering Ontology
+:Offeror rdfs:isDefinedBy begrip:Offeror .
+:Offer rdfs:isDefinedBy begrip:Offer .
+:Offering rdfs:isDefinedBy begrip:Offering .
+:EligiblePopulation rdfs:isDefinedBy begrip:EligiblePopulation .
+:EligibleAgent rdfs:isDefinedBy begrip:EligibleAgent .
+:OfferingCommitment rdfs:isDefinedBy begrip:OfferingCommitment .
+:OfferingClaim rdfs:isDefinedBy begrip:OfferingClaim .
+:Description rdfs:isDefinedBy begrip:Description .
+:OfferingDescription rdfs:isDefinedBy begrip:OfferingDescription .
+:ExperienceDescription rdfs:isDefinedBy begrip:ExperienceDescription .
+:Content rdfs:isDefinedBy begrip:Content .
+:Condition rdfs:isDefinedBy begrip:Condition .
+
+# Agent Ontology
+:Agent rdfs:isDefinedBy begrip:Agent .
+:SocialAgent rdfs:isDefinedBy begrip:SocialAgent .
+:InstitutionalAgent rdfs:isDefinedBy begrip:InstitutionalAgent .
+:CollectiveSocialAgent rdfs:isDefinedBy begrip:CollectiveSocialAgent .
+:Society rdfs:isDefinedBy begrip:Society .
+:Ecosystem rdfs:isDefinedBy begrip:Ecosystem .
+:PhysicalAgent rdfs:isDefinedBy begrip:PhysicalAgent .
+:NaturalPerson rdfs:isDefinedBy begrip:NaturalPerson .
+:PublicNaturalPerson rdfs:isDefinedBy begrip:PublicNaturalPerson .
+:LegalPerson rdfs:isDefinedBy begrip:LegalPerson .
+:PrivateLegalPerson rdfs:isDefinedBy begrip:PrivateLegalPerson .
+:PublicLegalPerson rdfs:isDefinedBy begrip:PublicLegalPerson .
+:SocialRole rdfs:isDefinedBy begrip:SocialRole .
+:GovernmentBody rdfs:isDefinedBy begrip:GovernmentBody .
+
+# Object Ontology
+:Portfolio rdfs:isDefinedBy begrip:Portfolio .
+:Object rdfs:isDefinedBy begrip:Object .
+:SocialObject rdfs:isDefinedBy begrip:SocialObject .
+:PhysicalObject rdfs:isDefinedBy begrip:PhysicalObject .
+:Resource rdfs:isDefinedBy begrip:Resource .
+:NormativeDescription rdfs:isDefinedBy begrip:NormativeDescription .
+:Norm rdfs:isDefinedBy begrip:Norm .
+:Permission rdfs:isDefinedBy begrip:Permission .
+:Prohibition rdfs:isDefinedBy begrip:Prohibition .
+:Obligation rdfs:isDefinedBy begrip:Obligation .
+:Exception rdfs:isDefinedBy begrip:Exception .
+:LegalDocument rdfs:isDefinedBy begrip:LegalDocument .
+:Contract rdfs:isDefinedBy begrip:Contract .
+:Regulation rdfs:isDefinedBy begrip:Regulation .
+:Decree rdfs:isDefinedBy begrip:Decree .
+:Precedent rdfs:isDefinedBy begrip:Precedent .
+:InternationalAgreement rdfs:isDefinedBy begrip:InternationalAgreement .
+:Treaty rdfs:isDefinedBy begrip:Treaty .
+:SoftLaw rdfs:isDefinedBy begrip:SoftLaw .
+
+# Mode Ontology
+:Disposition rdfs:isDefinedBy begrip:Disposition .
+:IntentionalMoment rdfs:isDefinedBy begrip:IntentionalMoment .
+:MentalMoment rdfs:isDefinedBy begrip:MentalMoment .
+:Intention rdfs:isDefinedBy begrip:Intention .
+:Desire rdfs:isDefinedBy begrip:Desire .
+:Belief rdfs:isDefinedBy begrip:Belief .
+:SocialMoment rdfs:isDefinedBy begrip:SocialMoment .
+:SocialRelator rdfs:isDefinedBy begrip:SocialRelator .
+:SocialClaim rdfs:isDefinedBy begrip:SocialClaim .
+:SocialCommitment rdfs:isDefinedBy begrip:SocialCommitment .
+
+#Legal Ontology
+:LegalSubject rdfs:isDefinedBy begrip:LegalSubject .
+:Claimant rdfs:isDefinedBy begrip:Claimant .
+:Committor rdfs:isDefinedBy begrip:Committor .
+:LegalObject rdfs:isDefinedBy begrip:LegalObject .
+:LegalCondition rdfs:isDefinedBy begrip:LegalCondition .
+:DerivationRule rdfs:isDefinedBy begrip:DerivationRule .
+:LegalVariable rdfs:isDefinedBy begrip:LegalVariable .
+:LegalOperator rdfs:isDefinedBy begrip:LegalOperator .
+:TimeIndication rdfs:isDefinedBy begrip:TimeIndication .
+:PlaceIndication rdfs:isDefinedBy begrip:PlaceIndication .
+:DelegationFilling rdfs:isDefinedBy begrip:DelegationFilling .
+:LegalRelator rdfs:isDefinedBy begrip:LegalRelator .
+:LegalClaim rdfs:isDefinedBy begrip:LegalClaim .
+:LegalCommitment rdfs:isDefinedBy begrip:LegalCommitment .
+:Right rdfs:isDefinedBy begrip:Right .
+:Duty rdfs:isDefinedBy begrip:Duty .
+:LegalPosition rdfs:isDefinedBy begrip:LegalPosition .
+:Power rdfs:isDefinedBy begrip:Power .
+:Subjection rdfs:isDefinedBy begrip:Subjection .
+:Disability rdfs:isDefinedBy begrip:Disability .
+:Immunity rdfs:isDefinedBy begrip:Immunity .
+:InstitutionalAct rdfs:isDefinedBy begrip:InstitutionalAct .
+:RightDutyRelator rdfs:isDefinedBy begrip:RightDutyRelator .
+:PowerSubjectionRelator rdfs:isDefinedBy begrip:PowerSubjectionRelator .
+:DisabilityImmunityRelator rdfs:isDefinedBy begrip:DisabilityImmunityRelator .
+
+# Law Ontology
+:Law rdfs:isDefinedBy begrip:Law .
+:Code rdfs:isDefinedBy begrip:Code .
+:Statute rdfs:isDefinedBy begrip:Statute .
+:LegalSection rdfs:isDefinedBy begrip:LegalSection .
+:Chapter rdfs:isDefinedBy begrip:Chapter .
+:Title rdfs:isDefinedBy begrip:Title .
+:Division rdfs:isDefinedBy begrip:Division .
+:Article rdfs:isDefinedBy begrip:Article .
+:Paragraph rdfs:isDefinedBy begrip:Paragraph .
+:Subparagraph rdfs:isDefinedBy begrip:Subparagraph .
+:ValidityPeriod rdfs:isDefinedBy begrip:ValidityPeriod .
+:Jurisdiction rdfs:isDefinedBy begrip:Jurisdiction .
+:Amendment rdfs:isDefinedBy begrip:Amendment .
+
+# Individual Ontology
+:Individual rdfs:isDefinedBy begrip:Individual .
+:Quality rdfs:isDefinedBy begrip:Quality .
+
+# Event Ontology
+:AtomicEvent rdfs:isDefinedBy begrip:AtomicEvent .
+:ComplexEvent rdfs:isDefinedBy begrip:ComplexEvent .
+:Participation rdfs:isDefinedBy begrip:Participation .
+:Action rdfs:isDefinedBy begrip:Action .
+:ActionContribution rdfs:isDefinedBy begrip:ActionContribution .
+:AtomicAction rdfs:isDefinedBy begrip:AtomicAction .
+:ComplexAction rdfs:isDefinedBy begrip:ComplexAction .
+:CommunicativeAct rdfs:isDefinedBy begrip:CommunicativeAct .
+:Interaction rdfs:isDefinedBy begrip:Interaction .
+:Actor rdfs:isDefinedBy begrip:Actor .
+:Initiator rdfs:isDefinedBy begrip:Initiator .
+:Executor rdfs:isDefinedBy begrip:Executor .
+:ActorRole rdfs:isDefinedBy begrip:ActorRole .
+:Transaction rdfs:isDefinedBy begrip:Transaction .
+:TransactorRole rdfs:isDefinedBy begrip:TransactorRole .
+:CCommitment rdfs:isDefinedBy begrip:CCommitment .
+:CClaim rdfs:isDefinedBy begrip:CClaim .
+:CoordinationFact rdfs:isDefinedBy begrip:CoordinationFact .
+:ProductionFact rdfs:isDefinedBy begrip:ProductionFact .
+:WorkProduct rdfs:isDefinedBy begrip:WorkProduct .
+:TransactionEvent rdfs:isDefinedBy begrip:TransactionEvent .
+:CoordinationActType rdfs:isDefinedBy begrip:CoordinationActType .
+:CoordinationAct rdfs:isDefinedBy begrip:CoordinationAct .
+:ProductionAct rdfs:isDefinedBy begrip:ProductionAct .
+
+# === ONTOLOGYBASIS-BEGRIPPENKADER ===
+# Geconsolideerd begrippenkader voor alle OntologyBasis concepten
+# Volgend patroon zoals beschreven in de Tonto bestanden
+
+voc:OntologyBasis
+  a skos:ConceptScheme ;
+  dcterms:title "OntologyBasis"@en ;
+  dcterms:description "Begrippenkader voor de OntologyBasis ontologie"@nl ;
+  dcterms:creator <https://pubvalue-definitions.nl/organization> ;
+  owl:versionInfo "1.0.0" ;
+  skos:hasTopConcept begrip:Individual, begrip:Agent, begrip:ValueBearer .
+
+# === INDIVIDUAL ONTOLOGY ===
+# All concepts are already documented and remain unchanged
+begrip:Individual
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Individual"^^xsd:string ;
+  skos:prefLabel "Individual"@en ;
+  skos:definition "A basic entity that can possess qualities and participate in relations."@en .
+
+# Quality concept remains unchanged but documented here
+begrip:Quality
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Quality"^^xsd:string ;
+  skos:prefLabel "Quality"@en ;
+  skos:prefLabel "Kenmerk"@nl ;
+  skos:definition "A Quality is an intrinsic property or characteristic that inheres in an Individual, enabling it to possess certain attributes or features."@en ;
+  skos:definition "Een Kwaliteit is een intrinsieke eigenschap of kenmerk dat inherent is aan een Individu, waardoor het bepaalde attributen of kenmerken kan bezitten."@nl ;
+  skos:scopeNote "A quality is a fundamental aspect of an individual that defines its characteristics and properties. Qualities are dependent on the individuals they inhere in and cannot exist independently. They can be perceivable (like color, shape, size) or non-perceivable (like mass, charge). Qualities are essential for distinguishing between different individuals and for understanding their behavior and interactions within a system."@en ;
+  skos:example "color, shape, size, mass, charge, temperature, texture"@en .
+
+# RELATION CONCEPTS FOR INDIVIDUAL ONTOLOGY
+# Already documented above: inheresIn
+# All IndividualOntology concepts are pre-existing.
+
+# === AGENT ONTOLOGY ===
+
+# CATEGORIES & KINDS
+begrip:Agent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Agent"^^xsd:string ;
+  skos:prefLabel "Agent"@en ;
+  skos:prefLabel "Agent"@nl ;
+  skos:definition "An individual capable of intentional actions who can be held accountable for their behavior."@en ;
+  skos:definition "Een individu dat intentionele acties kan uitvoeren en verantwoordelijk kan worden gehouden voor zijn gedrag."@nl ;
+  skos:broader begrip:Individual ;
+  skos:topConceptOf voc:OntologyBasis .
+
+# SOCIAL AGENTS
+begrip:SocialAgent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-SocialAgent"^^xsd:string ;
+  skos:prefLabel "Social Agent"@en ;
+  skos:prefLabel "Sociale Agent"@nl ;
+  skos:definition "An agent that participates in social structures and collective intentional contexts."@en ;
+  skos:definition "Een agent die deelneemt aan sociale structuren en collectieve intentionele contexten."@nl ;
+  skos:broader begrip:Agent .
+
+begrip:InstitutionalAgent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-InstitutionalAgent"^^xsd:string ;
+  skos:prefLabel "Institutional Agent"@en ;
+  skos:prefLabel "Institutionele Agent"@nl ;
+  skos:definition "A formal organization or institution that acts as a single agent with its own identity and agency."@en ;
+  skos:definition "Een formele organisatie of instelling die als een enkele agent handelt met zijn eigen identiteit en agency."@nl ;
+  skos:broader begrip:SocialAgent .
+
+begrip:CollectiveSocialAgent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CollectiveSocialAgent"^^xsd:string ;
+  skos:prefLabel "Collective Social Agent"@en ;
+  skos:prefLabel "Collectieve Sociale Agent"@nl ;
+  skos:definition "A collective of social agents that acts as a single agent with emergent group agency."@en ;
+  skos:definition "Een collectief van sociale agenten die als een enkele agent handelt met emergente groepsagency."@nl ;
+  skos:broader begrip:SocialAgent .
+
+begrip:Society
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Society"^^xsd:string ;
+  skos:prefLabel "Society"@en ;
+  skos:prefLabel "Samenleving"@nl ;
+  skos:definition "A human society as a collective social agent with shared norms and institutions."@en ;
+  skos:definition "Een menselijke samenleving als collectieve sociale agent met gedeelde normen en instituties."@nl ;
+  skos:broader begrip:CollectiveSocialAgent .
+
+begrip:Ecosystem
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Ecosystem"^^xsd:string ;
+  skos:prefLabel "Ecosystem"@en ;
+  skos:prefLabel "Ecosysteem"@nl ;
+  skos:definition "A social ecosystem as a collective agent with interdependent networks and systemic behavior."@en ;
+  skos:definition "Een sociaal ecosysteem als collectieve agent met interdependent netwerken en systemisch gedrag."@nl ;
+  skos:broader begrip:CollectiveSocialAgent .
+
+# PHYSICAL AGENTS
+begrip:PhysicalAgent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PhysicalAgent"^^xsd:string ;
+  skos:prefLabel "Physical Agent"@en ;
+  skos:prefLabel "Fysische Agent"@nl ;
+  skos:definition "An individual physical entity capable of intentional action as an autonomous agent."@en ;
+  skos:definition "Een individueel fysiek individu dat intentioneel kan handelen als een autonome agent."@nl ;
+  skos:broader begrip:Agent .
+
+begrip:NaturalPerson
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-NaturalPerson"^^xsd:string ;
+  skos:prefLabel "Natural Person"@en ;
+  skos:prefLabel "Natuurlijk Persoon"@nl ;
+  skos:definition "A physical agent with full legal capacity as a natural person, entitled to rights and subject to duties"@en ;
+  skos:definition "Een fysieke agent met volledige juridische capaciteit als natuurlijk persoon, gerechtigd tot rechten en onderworpen aan plichten"@nl ;
+  skos:broader begrip:PhysicalAgent .
+
+begrip:PublicNaturalPerson
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PublicNaturalPerson"^^xsd:string ;
+  skos:prefLabel "Public Natural Person"@en ;
+  skos:prefLabel "Publiekrechtelijke Natuurlijke Persoon"@nl ;
+  skos:definition "A natural person operating in a public law context, such as public officials or civil servants"@en ;
+  skos:definition "Een natuurlijke persoon die opereert in een publiekrechtelijke context, zoals ambtenaren of bestuurders"@nl ;
+  skos:broader begrip:NaturalPerson ;
+  skos:broader begrip:GovernmentBody .
+
+begrip:LegalPerson
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalPerson"^^xsd:string ;
+  skos:prefLabel "Legal Person"@en ;
+  skos:prefLabel "Rechtspersoon"@nl ;
+  skos:definition "A social agent with legal personality and capacity, capable of holding rights and obligations"@en ;
+  skos:definition "Een sociale agent met juridische persoonlijkheid en capaciteit, in staat om rechten en verplichtingen te hebben"@nl ;
+  skos:broader begrip:SocialAgent .
+
+begrip:PrivateLegalPerson
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PrivateLegalPerson"^^xsd:string ;
+  skos:prefLabel "Private Legal Person"@en ;
+  skos:prefLabel "Privaatrechtelijke Rechtspersoon"@nl ;
+  skos:definition "A legal person operating in the private law sphere, such as companies and associations"@en ;
+  skos:definition "Een rechtspersoon die opereert in de privaatrechtelijke sfeer, zoals bedrijven en verenigingen"@nl ;
+  skos:broader begrip:LegalPerson .
+
+begrip:PublicLegalPerson
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PublicLegalPerson"^^xsd:string ;
+  skos:prefLabel "Public Legal Person"@en ;
+  skos:prefLabel "Publiekrechtelijke Rechtspersoon"@nl ;
+  skos:definition "A legal person in the public law sphere, such as government agencies and public bodies"@en ;
+  skos:definition "Een rechtspersoon in de publiekrechtelijke sfeer, zoals overheidsorganen en publieke instellingen"@nl ;
+  skos:broader begrip:LegalPerson ;
+  skos:broader begrip:GovernmentBody .
+
+# ROLES
+begrip:SocialRole
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-SocialRole"^^xsd:string ;
+  skos:prefLabel "Social Role"@en ;
+  skos:prefLabel "Sociale Rol"@nl ;
+  skos:definition "A Social Role is a Role that an individual or group can assume within a social context, which is defined by a set of norms, expectations, and behaviors associated with that role."@en ;
+  skos:definition "Een Sociale Rol is een Rol die een individu of groep kan aannemen binnen een sociale context, die wordt gedefinieerd door een reeks normen, verwachtingen en gedragingen die met die rol zijn geassocieerd."@nl ;
+  skos:broader begrip:Agent .
+
+begrip:GovernmentBody
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-GovernmentBody"^^xsd:string ;
+  skos:prefLabel "Government Body"@en ;
+  skos:prefLabel "Bestuursorgaan"@nl ;
+  skos:definition "A governmental body that exercises executive or administrative authority within public legal persons"@en ;
+  skos:definition "Een bestuursorgaan dat uitvoerende of bestuurlijke bevoegdheid uitoefent binnen publiekrechtelijke rechtspersonen"@nl ;
+  skos:broader begrip:SocialRole .
+
+# === VALUE ONTOLOGY ===
+begrip:Value
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueOntology-Value"^^xsd:string ;
+  skos:prefLabel "Value"@en ;
+  skos:prefLabel "Waarde"@nl ;
+  skos:definition "Value is an emergent quality (mode) that exists through value ascription — that is, a mental state of an agent (value holder) in which value is attributed to a value bearer in a given context, based on the extent to which the properties of the value bearer meet the goals, needs, or preferences of the value holder, weighing benefits as losses against each other."@en ;
+  skos:definition "Waarde is een emergente kwaliteit (mode) die bestaat door waardetoekenning — dat wil zeggen een mentale toestand van een agent (waardehouder) waarin waarde wordt toegekend aan een waardedrager in een gegeven context, gebaseerd op de mate waarin de eigenschappen van de waardedrager de doelen, behoeften of voorkeuren van de waardehouder tegemoetkomen, waarbij baten als lasten tegen elkaar worden afgewogen."@nl ;
+  skos:scopeNote "Value is a relational and relationally dependent entitity (mode). It arises via a Value Ascription: an agent (value holder) attributes value to a 'value bearer'. The functioning of Value depends on: the mental states of the value holder (goals, preferences, desires, needs); the properties of the value bearer being valuated (qualities, use features, etc.); the context in which the value attribution takes place; the balancing between benefits ('benefits') and sacrifices/loads ('sacrifices'). Examples: The value of a family heirloom may be sentimental rather than monetary, while the value of a service may be assessed based on its utility and impact on well-being."@en .
+
+begrip:PublicValue
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PublicValue"^^xsd:string ;
+  skos:prefLabel "Public Value"@en ;
+  skos:prefLabel "Publieke Waarde"@nl ;
+  skos:definition "Public Value is a type of Value that emerges from value ascription focused on societal or communal benefits, collective well-being, and public goods. It emphasizes contributions to the broader community, social equity, and long-term societal impact rather than individual or commercial gains."@en ;
+  skos:broader begrip:Value .
+
+begrip:BusinessValue
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-BusinessValue"^^xsd:string ;
+  skos:prefLabel "Business Value"@en ;
+  skos:prefLabel "Zakelijke Waarde"@nl ;
+  skos:definition "Business Value is a type of Value that emerges from value ascription in commercial contexts, focusing on economic benefits, efficiency, and competitive advantages for organizations and customers."@en ;
+  skos:broader begrip:Value .
+
+begrip:PersonalValue
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PersonalValue"^^xsd:string ;
+  skos:prefLabel "Personal Value"@en ;
+  skos:prefLabel "Persoonlijke Waarde"@nl ;
+  skos:definition "Personal Value is a type of Value that emerges from individual value ascription, based on personal goals, emotions, and subjective preferences."@en ;
+  skos:broader begrip:Value .
+
+# === LEGAL ONTOLOGY ===
+begrip:LegalSubject
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalSubject"^^xsd:string ;
+  skos:prefLabel "Legal Subject"@en ;
+  skos:prefLabel "Rechtssubject"@nl ;
+  skos:definition "A legal subject is the bearer of rights and duties. It is a party in a legal relation."@en ;
+  skos:broader begrip:Agent .
+
+begrip:Claimant
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Claimant"^^xsd:string ;
+  skos:prefLabel "Claimant"@en ;
+  skos:prefLabel "Rechthebbende"@nl ;
+  skos:definition "A legal subject that holds a claim or right in a legal relation."@en ;
+  skos:broader begrip:LegalSubject .
+
+begrip:Committor
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Committor"^^xsd:string ;
+  skos:prefLabel "Committor"@en ;
+  skos:prefLabel "Plichthebbende"@nl ;
+  skos:definition "A legal subject that has a commitment or duty in a legal relation."@en ;
+  skos:broader begrip:LegalSubject .
+
+begrip:LegalObject
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalObject"^^xsd:string ;
+  skos:prefLabel "Legal Object"@en ;
+  skos:prefLabel "Rechtsobject"@nl ;
+  skos:definition "A legal object is the subject of a legal relation and/or legal fact."@en .
+
+begrip:LegalCondition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalCondition"^^xsd:string ;
+  skos:prefLabel "Legal Condition"@en ;
+  skos:prefLabel "Voorwaarde"@nl ;
+  skos:definition "A condition is a circumstance that must be fulfilled for a legal consequence to occur."@en .
+
+begrip:DerivationRule
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-DerivationRule"^^xsd:string ;
+  skos:prefLabel "Derivation Rule"@en ;
+  skos:prefLabel "Afleidingsregel"@nl ;
+  skos:definition "A derivation rule is a rule that creates new facts or values using existing facts or values."@en .
+
+begrip:LegalVariable
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalVariable"^^xsd:string ;
+  skos:prefLabel "Legal Variable"@en ;
+  skos:prefLabel "Variabele"@nl ;
+  skos:definition "A variable is a characteristic of a legal subject, legal object, legal relation or legal fact that can have different values for different instances."@en .
+
+begrip:LegalOperator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalOperator"^^xsd:string ;
+  skos:prefLabel "Legal Operator"@en ;
+  skos:prefLabel "Operator"@nl ;
+  skos:definition "An operator expresses a calculation, comparison, or logical connection between values."@en .
+
+begrip:TimeIndication
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-TimeIndication"^^xsd:string ;
+  skos:prefLabel "Time Indication"@en ;
+  skos:prefLabel "Tijdsaanduiding"@nl ;
+  skos:definition "A time indication specifies a point in time or time period relevant to legal relations."@en .
+
+begrip:PlaceIndication
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PlaceIndication"^^xsd:string ;
+  skos:prefLabel "Place Indication"@en ;
+  skos:prefLabel "Plaatsaanduiding"@nl ;
+  skos:definition "A place indication determines the territorial scope of application of legal rules."@en .
+
+begrip:DelegationFilling
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-DelegationFilling"^^xsd:string ;
+  skos:prefLabel "Delegation Filling"@en ;
+  skos:prefLabel "Delegatie-invulling"@nl ;
+  skos:definition "A delegation filling is the regulation or provision in which a delegation authority is exercised."@en .
+
+begrip:LegalRelator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalRelator"^^xsd:string ;
+  skos:prefLabel "Legal Relator"@en ;
+  skos:prefLabel "Rechtsbetrekking"@nl ;
+  skos:definition "A SocialRelator specialized for legal contexts, mediating legal relations between agents via legal positions (claims/commitments)."@en .
+
+begrip:LegalClaim
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalClaim"^^xsd:string ;
+  skos:prefLabel "Legal Claim"@en ;
+  skos:prefLabel "Juridische Claim"@nl ;
+  skos:definition "A SocialClaim in a legal context, representing entitlements like rights."@en ;
+  skos:broader begrip:LegalRelator .
+
+begrip:LegalCommitment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalCommitment"^^xsd:string ;
+  skos:prefLabel "Legal Commitment"@en ;
+  skos:prefLabel "Juridische Commitment"@nl ;
+  skos:definition "A SocialCommitment in a legal context, representing obligations like duties."@en ;
+  skos:broader begrip:LegalRelator .
+
+begrip:Right
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Right"^^xsd:string ;
+  skos:prefLabel "Right"@en ;
+  skos:prefLabel "Recht"@nl ;
+  skos:definition "A legal claim entitling an agent to something, correlative to duty."@en ;
+  skos:broader begrip:LegalClaim .
+
+begrip:Duty
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Duty"^^xsd:string ;
+  skos:prefLabel "Duty"@en ;
+  skos:prefLabel "Plicht"@nl ;
+  skos:definition "A legal commitment obliging an agent to act or omit, correlative to right."@en ;
+  skos:broader begrip:LegalCommitment .
+
+begrip:LegalPosition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalPosition"^^xsd:string ;
+  skos:prefLabel "Legal Position"@en ;
+  skos:prefLabel "Juridische Positie"@nl ;
+  skos:definition "A mode representing legal positions inhering in agents, including powers, etc."@en .
+
+begrip:Power
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Power"^^xsd:string ;
+  skos:prefLabel "Power"@en ;
+  skos:prefLabel "Bevoegdheid"@nl ;
+  skos:definition "A legal position enabling creation/modification/extinction of legal relations via institutional acts."@en ;
+  skos:broader begrip:LegalPosition .
+
+begrip:Subjection
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Subjection"^^xsd:string ;
+  skos:prefLabel "Subjection"@en ;
+  skos:prefLabel "Onderwerping"@nl ;
+  skos:definition "The correlative position to power, subjecting an agent to another's power."@en ;
+  skos:broader begrip:LegalPosition .
+
+begrip:Disability
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Disability"^^xsd:string ;
+  skos:prefLabel "Disability"@en ;
+  skos:prefLabel "Onbevoegdheid"@nl ;
+  skos:definition "The absence of legal power, preventing institutional acts."@en ;
+  skos:broader begrip:LegalPosition .
+
+begrip:Immunity
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Immunity"^^xsd:string ;
+  skos:prefLabel "Immunity"@en ;
+  skos:prefLabel "Immuniteit"@nl ;
+  skos:definition "The correlative position to disability, protecting against another's power."@en ;
+  skos:broader begrip:LegalPosition .
+
+begrip:InstitutionalAct
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-InstitutionalAct"^^xsd:string ;
+  skos:prefLabel "Institutional Act"@en ;
+  skos:prefLabel "Institutionele Actie"@nl ;
+  skos:definition "A communicative act that creates, modifies, or extinguishes legal relations through institutional means."@en .
+
+begrip:RightDutyRelator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-RightDutyRelator"^^xsd:string ;
+  skos:prefLabel "Right-Duty Relator"@en ;
+  skos:prefLabel "Recht-Plicht Relator"@nl ;
+  skos:definition "A LegalRelator composed of right and duty positions."@en ;
+  skos:broader begrip:LegalRelator .
+
+begrip:PowerSubjectionRelator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-PowerSubjectionRelator"^^xsd:string ;
+  skos:prefLabel "Power-Subjection Relator"@en ;
+  skos:prefLabel "Bevoegdheid-Onderwerping Relator"@nl ;
+  skos:definition "A LegalRelator composed of power and subjection positions."@en ;
+  skos:broader begrip:LegalRelator .
+
+begrip:DisabilityImmunityRelator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-DisabilityImmunityRelator"^^xsd:string ;
+  skos:prefLabel "Disability-Immunity Relator"@en ;
+  skos:prefLabel "Onbevoegdheid-Immuniteit Relator"@nl ;
+  skos:definition "A LegalRelator composed of disability and immunity positions."@en ;
+  skos:broader begrip:LegalRelator .
+
+# === LAW ONTOLOGY ===
+
+begrip:Law
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Law"^^xsd:string ;
+  skos:prefLabel "Law"@en ;
+  skos:prefLabel "Wet"@nl ;
+  skos:definition "A formal, public legal normative description with legal binding (law in the formal sense)."@en ;
+  skos:definition "Een formele, publiekrechtelijke normatieve beschrijving met juridische binding (wet in formele zin)."@nl .
+
+begrip:Code
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Code"^^xsd:string ;
+  skos:prefLabel "Code"@en ;
+  skos:prefLabel "Wetboek"@nl ;
+  skos:definition "A systematic collection of laws on a particular subject"@en ;
+  skos:definition "Een systematische verzameling van wetten over een bepaald onderwerp"@nl ;
+  skos:broader begrip:Law .
+
+begrip:Statute
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Statute"^^xsd:string ;
+  skos:prefLabel "Statute"@en ;
+  skos:prefLabel "Statuut"@nl ;
+  skos:definition "A formal written enactment of a legislative body"@en ;
+  skos:definition "Een formele schriftelijke uitvaardiging van een wetgevende instantie"@nl ;
+  skos:broader begrip:Law .
+
+begrip:LegalSection
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalSection"^^xsd:string ;
+  skos:prefLabel "Legal Section"@en ;
+  skos:prefLabel "Juridisch Onderdeel"@nl ;
+  skos:definition "General class for any structural component within a law (chapter, title, division, article, paragraph, subparagraph)."@en ;
+  skos:definition "Algemene klasse voor elk structureel onderdeel binnen een wet (hoofdstuk, titel, afdeling, artikel, lid, subonderdeel)."@nl .
+
+begrip:Chapter
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Chapter"^^xsd:string ;
+  skos:prefLabel "Chapter"@en ;
+  skos:prefLabel "Hoofdstuk"@nl ;
+  skos:definition "A main division within a law, typically containing titles or articles."@en ;
+  skos:definition "Een hoofddeling binnen een wet, meestal bevattende titels of artikelen."@nl ;
+  skos:broader begrip:LegalSection .
+
+begrip:Title
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Title"^^xsd:string ;
+  skos:prefLabel "Title"@en ;
+  skos:prefLabel "Titel"@nl ;
+  skos:definition "A subdivision within a chapter or law, often grouping related divisions or articles."@en ;
+  skos:definition "Een onderverdeling binnen een hoofdstuk of wet, vaak groepeerend gerelateerde afdelingen of artikelen."@nl ;
+  skos:broader begrip:LegalSection .
+
+begrip:Division
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Division"^^xsd:string ;
+  skos:prefLabel "Division"@en ;
+  skos:prefLabel "Afdeling"@nl ;
+  skos:definition "A subdivision within titles or chapters, organizing articles thematically."@en ;
+  skos:definition "Een onderverdeling binnen titels of hoofdstukken, organiseren van artikelen thematisch."@nl ;
+  skos:broader begrip:LegalSection .
+
+begrip:Article
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Article"^^xsd:string ;
+  skos:prefLabel "Article"@en ;
+  skos:prefLabel "Artikel"@nl ;
+  skos:definition "The primary unit of legal content, typically containing a specific provision or rule."@en ;
+  skos:definition "De primaire eenheid van juridische inhoud, meestal bevattende een specifieke bepaling of regel."@nl ;
+  skos:broader begrip:LegalSection .
+
+begrip:Paragraph
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Paragraph"^^xsd:string ;
+  skos:prefLabel "Paragraph"@en ;
+  skos:prefLabel "Lid"@nl ;
+  skos:definition "A subdivision within an article, providing finer granularity in legal provisions."@en ;
+  skos:definition "Een onderverdeling binnen een artikel, bieden van fijnere granulariteit in juridische bepalingen."@nl ;
+  skos:broader begrip:LegalSection .
+
+begrip:Subparagraph
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Subparagraph"^^xsd:string ;
+  skos:prefLabel "Subparagraph"@en ;
+  skos:prefLabel "Subonderdeel"@nl ;
+  skos:definition "The most detailed unit within a paragraph, containing specific clauses or sentences."@en ;
+  skos:definition "De meest gedetailleerde eenheid binnen een lid, bevattende specifieke clausules of zinnen."@nl ;
+  skos:broader begrip:LegalSection .
+
+begrip:ValidityPeriod
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ValidityPeriod"^^xsd:string ;
+  skos:prefLabel "Validity Period"@en ;
+  skos:prefLabel "Geldigheid Periode"@nl ;
+  skos:definition "Temporal scope of validity for a legal section or law."@en ;
+  skos:definition "Tijdelijke reikwijdte van geldigheid voor een juridisch onderdeel of wet."@nl .
+
+begrip:Jurisdiction
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Jurisdiction"^^xsd:string ;
+  skos:prefLabel "Jurisdiction"@en ;
+  skos:prefLabel "Territoriale Jurisdictie"@nl ;
+  skos:definition "Territorial scope where legal sections or laws are applicable."@en ;
+  skos:definition "Territoriale reikwijdte waar juridische onderdelen of wetten van toepassing zijn."@nl .
+
+begrip:Amendment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Amendment"^^xsd:string ;
+  skos:prefLabel "Legal Amendment"@en ;
+  skos:prefLabel "Juridische Wijziging"@nl ;
+  skos:definition "Historical record of changes and amendments to legal sections."@en ;
+  skos:definition "Historisch overzicht van wijzigingen en amendementen aan juridische onderdelen."@nl .
+
+# === LAW ONTOLOGY RELATIONS ===
+
+begrip:hasPart
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-hasPart"^^xsd:string ;
+  skos:prefLabel "Has Part"@en ;
+  skos:prefLabel "Heeft deel"@nl ;
+  skos:definition "Relation representing component-of parthood between legal sections."@en ;
+  skos:definition "Betrekking die component-of parthood vertegenwoordigt tussen juridische onderdelen."@nl .
+
+begrip:refersTo
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-refersTo"^^xsd:string ;
+  skos:prefLabel "Refers To"@en ;
+  skos:prefLabel "Verwijst naar"@nl ;
+  skos:definition "Relation representing cross-references between legal sections."@en ;
+  skos:definition "Betrekking die kruisverwijzingen vertegenwoordigt tussen juridische onderdelen."@nl .
+
+begrip:containsSection
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-containsSection"^^xsd:string ;
+  skos:prefLabel "Contains Section"@en ;
+  skos:prefLabel "Bevat sectie"@nl ;
+  skos:definition "Relation representing exclusive ownership of legal sections by a law."@en ;
+  skos:definition "Betrekking die exclusieve eigendom vertegenwoordigt van juridische secties door een wet."@nl .
+
+begrip:affects
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-affects"^^xsd:string ;
+  skos:prefLabel "Affects"@en ;
+  skos:prefLabel "Beïnvloedt"@nl ;
+  skos:definition "Relation representing how amendments materially affect legal sections."@en ;
+  skos:definition "Betrekking die vertegenwoordigt hoe amendementen juridische secties materieel beïnvloeden."@nl .
+
+# Also missing from LawOntology imports: NormativeDescription, LegalDocument
+
+begrip:NormativeDescription
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-NormativeDescription"^^xsd:string ;
+  skos:prefLabel "Normative Description"@en ;
+  skos:prefLabel "Normatieve Beschrijving"@nl ;
+  skos:definition "A description that carries normative force and expresses legal norms."@en ;
+  skos:definition "Een beschrijving die normatieve kracht draagt en juridische normen uitdrukt."@nl .
+
+begrip:LegalDocument
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-LegalDocument"^^xsd:string ;
+  skos:prefLabel "Legal Document"@en ;
+  skos:prefLabel "Juridisch Document"@nl ;
+  skos:definition "A document that contains legal content and normative descriptions."@en ;
+  skos:definition "Een document dat juridische inhoud en normatieve beschrijvingen bevat."@nl ;
+  skos:broader begrip:NormativeDescription .
+
+# === RELATION CONCEPTS ===
+
+# Legal Position Relations
+begrip:InheresIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-InheresIn"^^xsd:string ;
+  skos:prefLabel "Inheres In"@en ;
+  skos:prefLabel "Houdt In"@nl ;
+  skos:definition "Relation expressing that a mode (quality/mode) inheres in or is instantiated by an individual."@en ;
+  skos:definition "Betrekking die uitdrukt dat een mode (quality/mode) inheert in of wordt geïnstantieerd door een individu."@nl .
+
+begrip:hasPosition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-hasPosition"^^xsd:string ;
+  skos:prefLabel "Has Position"@en ;
+  skos:prefLabel "Heeft Positie"@nl ;
+  skos:definition "Relation expressing that an agent has a legal position."@en ;
+  skos:definition "Betrekking die uitdrukt dat een agent een juridische positie heeft."@nl .
+
+begrip:holds
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-holds"^^xsd:string ;
+  skos:prefLabel "Holds"@en ;
+  skos:prefLabel "Houdt"@nl ;
+  skos:definition "Relation expressing that a legal subject holds a legal claim."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtssubject een juridische claim heeft."@nl .
+
+begrip:has
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-has"^^xsd:string ;
+  skos:prefLabel "Has"@en ;
+  skos:prefLabel "Heeft"@nl ;
+  skos:definition "Relation expressing that a legal subject has a legal commitment."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtssubject een juridische commitment heeft."@nl .
+
+begrip:involves
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-involves"^^xsd:string ;
+  skos:prefLabel "Involves"@en ;
+  skos:prefLabel "Betrekt in"@nl ;
+  skos:definition "Relation expressing that a legal relator involves a legal subject."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtsbetrekking een rechtssubject betrekt."@nl .
+
+begrip:concerns
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-concerns"^^xsd:string ;
+  skos:prefLabel "Concerns"@en ;
+  skos:prefLabel "Betreft"@nl ;
+  skos:definition "Relation expressing that a legal relator concerns a legal object."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtsbetrekking een rechtsobject betreft."@nl .
+
+begrip:conditions
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-conditions"^^xsd:string ;
+  skos:prefLabel "Conditions"@en ;
+  skos:prefLabel "Voorwaarden stelt aan"@nl ;
+  skos:definition "Relation expressing that a legal condition applies to a legal relator."@en ;
+  skos:definition "Betrekking die uitdrukt dat een voorwaarde van toepassing is op een rechtsbetrekking."@nl .
+
+begrip:governs
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-governs"^^xsd:string ;
+  skos:prefLabel "Governs"@en ;
+  skos:prefLabel "Regelt"@nl ;
+  skos:definition "Relation expressing that a derivation rule governs a legal relator."@en ;
+  skos:definition "Betrekking die uitdrukt dat een afleidingsregel een rechtsbetrekking regelt."@nl .
+
+begrip:usedIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-usedIn"^^xsd:string ;
+  skos:prefLabel "Used In"@en ;
+  skos:prefLabel "Gebruikt in"@nl ;
+  skos:definition "Relation expressing that a legal operator is used in a derivation rule."@en ;
+  skos:definition "Betrekking die uitdrukt dat een operator wordt gebruikt in een afleidingsregel."@nl .
+
+begrip:fulfills
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-fulfills"^^xsd:string ;
+  skos:prefLabel "Fulfills"@en ;
+  skos:prefLabel "Vervult"@nl ;
+  skos:definition "Relation expressing that a delegation filling fulfills a legal position."@en ;
+  skos:definition "Betrekking die uitdrukt dat een delegatie-invulling een juridische positie vervult."@nl .
+
+begrip:composedOf
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-composedOf"^^xsd:string ;
+  skos:prefLabel "Composed Of"@en ;
+  skos:prefLabel "Samengesteld uit"@nl ;
+  skos:definition "Relation expressing that a legal relator is composed of legal claims or commitments."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtsbetrekking samengesteld is uit juridische claims of commitments."@nl .
+
+# === MODE ONTOLOGY ===
+# Mental and intentional moments in agents
+
+# MODES - Inhering characteristics
+begrip:Disposition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-Disposition"^^xsd:string ;
+  skos:prefLabel "Disposition"@en ;
+  skos:prefLabel "Dispositie"@nl ;
+  skos:definition "A Disposition is a Mode that potentially exists in an entity, can be activated under certain triggers or circumstances, and if activated leads to a certain event."@en .
+
+begrip:IntentionalMoment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-IntentionalMoment"^^xsd:string ;
+  skos:prefLabel "Intentional Moment"@en ;
+  skos:prefLabel "Intentioneel Moment"@nl ;
+  skos:definition "An Intentional Moment is a Mode that exists in an agent and is directed towards an object or state of affairs."@en .
+
+# MENTAL MOMENTS
+begrip:MentalMoment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-MentalMoment"^^xsd:string ;
+  skos:prefLabel "Mental Moment"@en ;
+  skos:prefLabel "Mentaal Moment"@nl ;
+  skos:definition "A Mental Moment is an Intentional Moment that exists in an Agent and is related to cognitive or emotional states."@en ;
+  skos:broader begrip:IntentionalMoment .
+
+begrip:Intention
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-Intention"^^xsd:string ;
+  skos:prefLabel "Intention"@en ;
+  skos:prefLabel "Intentie"@nl ;
+  skos:definition "An Intention is a Mental Moment that represents a internal commitment that inheres within the Agent to perform a specific action or achieve a particular goal."@en ;
+  skos:broader begrip:MentalMoment .
+
+begrip:Desire
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-Desire"^^xsd:string ;
+  skos:prefLabel "Desire"@en ;
+  skos:prefLabel "Verlangen"@nl ;
+  skos:definition "A Desire is a Mental Moment that represents a wish or aspiration that an Agent has towards a particular object or state of affairs."@en ;
+  skos:broader begrip:MentalMoment .
+
+begrip:Belief
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-Belief"^^xsd:string ;
+  skos:prefLabel "Belief"@en ;
+  skos:prefLabel "Geloof"@nl ;
+  skos:definition "A Belief is a Mental Moment that represents a conviction or acceptance that an Agent has towards a particular proposition or state of affairs."@en ;
+  skos:broader begrip:MentalMoment .
+
+# SOCIAL MOMENTS
+begrip:SocialMoment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-SocialMoment"^^xsd:string ;
+  skos:prefLabel "Social Moment"@en ;
+  skos:prefLabel "Sociaal Moment"@nl ;
+  skos:definition "A Social Moment is an Intentional Moment that exists in a Social Agent and is related to social roles, norms, or institutions."@en ;
+  skos:broader begrip:IntentionalMoment .
+
+# SOCIAL RELATOR
+begrip:SocialRelator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-SocialRelator"^^xsd:string ;
+  skos:prefLabel "Social Relator"@en ;
+  skos:prefLabel "Sociaal Relator"@nl ;
+  skos:definition "A Social Relator is an example of a relator composed of two or more pairs of associated commitments/claims (Social Moments). Finally, a commitment (internal or social) is fulfilled by an Agent A if this Agent performs an Action X such that the post-state of that Action is a Situation that satisfies that Commitment."@en .
+
+# SOCIAL POSITION TYPES
+begrip:SocialClaim
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-SocialClaim"^^xsd:string ;
+  skos:prefLabel "Social Claim"@en ;
+  skos:prefLabel "Sociale Claim"@nl ;
+  skos:definition "A Social Claim is a Social Moment that represents a right or entitlement that an agent has within a social context."@en ;
+  skos:broader begrip:SocialMoment .
+
+begrip:SocialCommitment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-SocialCommitment"^^xsd:string ;
+  skos:prefLabel "Social Commitment"@en ;
+  skos:prefLabel "Sociale Verplichting"@nl ;
+  skos:definition "A Social Commitment is a Social Moment that represents an obligation or duty that an agent has within a social context."@en ;
+  skos:broader begrip:SocialMoment .
+
+# === MODE ONTOLOGY RELATIONS ===
+
+begrip:causedBy
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-causedBy"^^xsd:string ;
+  skos:prefLabel "Caused By"@en ;
+  skos:prefLabel "Veroorzaakt door"@nl ;
+  skos:definition "Relation expressing that an intention is triggered by or followed from actions."@en ;
+  skos:definition "Betrekking die uitdrukt dat een intentie wordt geactiveerd door of volgt uit acties."@nl .
+
+begrip:causes
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-causes"^^xsd:string ;
+  skos:prefLabel "Causes"@en ;
+  skos:prefLabel "Veroorzaakt"@nl ;
+  skos:definition "Relation expressing that a social commitment causes or leads to actions."@en ;
+  skos:definition "Betrekking die uitdrukt dat een sociale verplichting acties veroorzaakt of tot stand brengt."@nl .
+
+# NORMATIVE RELATIONS
+begrip:givesRiseTo
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-givesRiseTo"^^xsd:string ;
+  skos:prefLabel "Gives Rise To"@en ;
+  skos:prefLabel "Geeft aanleiding tot"@nl ;
+  skos:definition "Relation expressing that norms create social moments (claims/commitments)."@en ;
+  skos:definition "Betrekking die uitdrukt dat normen sociale momenten (claims/verplichtingen) creëren."@nl .
+
+begrip:modifies
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Mode-modifies"^^xsd:string ;
+  skos:prefLabel "Modifies"@en ;
+  skos:prefLabel "Wijzigt"@nl ;
+  skos:definition "Relation expressing that exceptions modify permissions/prohibitions/obligations."@en ;
+  skos:definition "Betrekking die uitdrukt dat uitzonderingen permissies/verboden/verplichtingen wijzigen."@nl .
+
+# === EVENT ONTOLOGY ===
+# Based on UFO event aspects - perdurants and their participation relations
+
+begrip:AtomicEvent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-AtomicEvent"^^xsd:string ;
+  skos:prefLabel "Atomic Event"@en ;
+  skos:prefLabel "Atomische Gebeurtenis"@nl ;
+  skos:definition "An Atomic Event is an Event that cannot be decomposed into smaller Events."@en ;
+  skos:definition "Een Atomische Gebeurtenis is een Gebeurtenis die niet kan worden opgesplitst in kleinere Gebeurtenissen."@nl .
+
+begrip:ComplexEvent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ComplexEvent"^^xsd:string ;
+  skos:prefLabel "Complex Event"@en ;
+  skos:prefLabel "Complexe Gebeurtenis"@nl ;
+  skos:definition "A Complex Event is an Event that can be decomposed into smaller Events."@en ;
+  skos:definition "Een Complexe Gebeurtenis is een Gebeurtenis die kan worden opgesplitst in kleinere Gebeurtenissen."@nl .
+
+begrip:Participation
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Participation"^^xsd:string ;
+  skos:prefLabel "Participation"@en ;
+  skos:prefLabel "Participatie"@nl ;
+  skos:definition "Participation is a Relation that connects an Object to an Event in which it participates."@en ;
+  skos:definition "Participatie is een Relatie die een Object verbindt met een Gebeurtenis waaraan het deelneemt."@nl .
+
+begrip:Action
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Action"^^xsd:string ;
+  skos:prefLabel "Action"@en ;
+  skos:prefLabel "Activiteit"@nl ;
+  skos:definition "An Action is a Event that is intentionally performed by an Agent to achieve a specific goal or purpose."@en ;
+  skos:definition "Een Activiteit is een Gebeurtenis die opzettelijk wordt uitgevoerd door een Agent om een specifiek doel of doel te bereiken."@nl .
+
+begrip:ActionContribution
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ActionContribution"^^xsd:string ;
+  skos:prefLabel "Action Contribution"@en ;
+  skos:prefLabel "Actie Bijdrage"@nl ;
+  skos:definition "An action contribution specializes action patterns in complex interactions."@en ;
+  skos:definition "Een actie bijdrage specialiseert actiepatronen in complexe interacties."@nl .
+
+begrip:AtomicAction
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-AtomicAction"^^xsd:string ;
+  skos:prefLabel "Atomic Action"@en ;
+  skos:prefLabel "Atomische Activiteit"@nl ;
+  skos:definition "An Atomic Action is an Action that cannot be decomposed into smaller Actions."@en ;
+  skos:definition "Een Atomische Activiteit is een Activiteit die niet kan worden opgesplitst in kleinere Activiteiten."@nl .
+
+begrip:ComplexAction
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ComplexAction"^^xsd:string ;
+  skos:prefLabel "Complex Action"@en ;
+  skos:prefLabel "Complexe Activiteit"@nl ;
+  skos:definition "A Complex Action is an Action that can be decomposed into smaller Actions."@en ;
+  skos:definition "Een Complexe Activiteit is een Activiteit die kan worden opgesplitst in kleinere Activiteiten."@nl .
+
+begrip:CommunicativeAct
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CommunicativeAct"^^xsd:string ;
+  skos:prefLabel "Communicative Act"@en ;
+  skos:prefLabel "Communicatieve Handeling"@nl ;
+  skos:definition "A Communicative Act is an Atomic Action that involves the exchange of information or messages between Agents."@en ;
+  skos:definition "Een Communicatieve Handeling is een Atomische Activiteit die de uitwisseling van informatie of berichten tussen Agenten omvat."@nl .
+
+begrip:Interaction
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Interaction"^^xsd:string ;
+  skos:prefLabel "Interaction"@en ;
+  skos:prefLabel "Interactie"@nl ;
+  skos:definition "An Interaction is a Complex Action that involves multiple Agents engaging in a coordinated activity or exchange."@en ;
+  skos:definition "Een Interactie is een Complexe Activiteit waarbij meerdere Agenten betrokken zijn bij een gecoördineerde activiteit of uitwisseling."@nl .
+
+# === EVENT ONTOLOGY RELATIONS ===
+
+begrip:participationOf
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-participationOf"^^xsd:string ;
+  skos:prefLabel "Participation Of"@en ;
+  skos:prefLabel "Deelname van"@nl ;
+  skos:definition "Relation connecting objects to events they participate in."@en ;
+  skos:definition "Betrekking die objecten verbindt met gebeurtenissen waaraan zij deelnamen."@nl .
+
+# === AGENT ONTOLOGY RELATIONS ===
+
+begrip:creates
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-creates"^^xsd:string ;
+  skos:prefLabel "Creates"@en ;
+  skos:prefLabel "Creëert"@nl ;
+  skos:definition "Relation expressing that an agent creates an action (creation relation in UFO-C agent ontology)."@en ;
+  skos:definition "Betrekking die uitdrukt dat een agent een actie creëert (creatie relatie in UFO-C agent ontologie)."@nl .
+
+begrip:performs
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-performs"^^xsd:string ;
+  skos:prefLabel "Performs"@en ;
+  skos:prefLabel "Voert uit"@nl ;
+  skos:definition "Relation expressing that an agent performs an action contribution (participation relation in UFO-C agent ontology)."@en ;
+  skos:definition "Betrekking die uitdrukt dat een agent een actie bijdrage uitvoert (participatie relatie in UFO-C agent ontologie)."@nl .
+
+begrip:recognizedBy
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-recognizedBy"^^xsd:string ;
+  skos:prefLabel "Recognized By"@en ;
+  skos:prefLabel "Erkend door"@nl ;
+  skos:definition "Relation expressing that a normative description is recognized by a social agent (participation relation in UFO-C)."@en ;
+  skos:definition "Betrekking die uitdrukt dat een normatieve beschrijving erkend wordt door een sociale agent (participatie relatie in UFO-C)."@nl .
+
+begrip:inheresIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-inheresIn"^^xsd:string ;
+  skos:prefLabel "Inheres In"@en ;
+  skos:prefLabel "Houdt in"@nl ;
+  skos:definition "Relation expressing that an intentional moment inheres in an agent (characterization relation in UFO-C)."@en ;
+  skos:definition "Betrekking die uitdrukt dat een intentioneel moment inherent is aan een agent (karakterisering relatie in UFO-C)."@nl .
+
+# === DEMO ONTOLOGY (ENTERPRISE ONTOLOGY) ===
+# Based on DEMO methodology - Transaction Pattern and Complete Transaction Pattern (CTP)
+
+# ACTOR ROLES AND PARTICIPATION
+begrip:Actor
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Actor"^^xsd:string ;
+  skos:prefLabel "Actor"@en ;
+  skos:prefLabel "Actor"@nl ;
+  skos:prefLabel "Supplier"@nl ;
+  skos:definition "A social individual who participates in business transactions, either as initiator or executor."@en ;
+  skos:definition "Een sociaal individu die deelneemt aan zakelijke transacties, als initiator of executor."@nl ;
+  skos:broader begrip:SocialAgent .
+
+begrip:Initiator
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Initiator"^^xsd:string ;
+  skos:prefLabel "Initiator"@en ;
+  skos:prefLabel "Initiator"@nl ;
+  skos:prefLabel "Aanvrager"@nl ;
+  skos:definition "An actor who initiates a transaction by requesting achievement of a goal."@en ;
+  skos:definition "Een actor die een transactie initieert door het vragen om verwezenlijking van een doel."@nl ;
+  skos:broader begrip:Actor .
+
+begrip:Executor
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Executor"^^xsd:string ;
+  skos:prefLabel "Executor"@en ;
+  skos:prefLabel "Executor"@nl ;
+  skos:prefLabel "Uitvoerder"@nl ;
+  skos:definition "An actor who executes a transaction by committing to achieve the requested goal."@en ;
+  skos:definition "Een actor die een transactie uitvoert door zich te committeren aan het bereiken van het gevraagde doel."@nl ;
+  skos:broader begrip:Actor .
+
+begrip:ActorRole
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ActorRole"^^xsd:string ;
+  skos:prefLabel "Actor Role"@en ;
+  skos:prefLabel "Acteurrol"@nl ;
+  skos:definition "A contingent social role assumed by agents in organizational transaction contexts."@en ;
+  skos:definition "Een contingente sociale rol die agenten aannemen in organisatorische transactiecontexten."@nl ;
+  skos:broader begrip:SocialAgent .
+
+# TRANSACTION ENTITIES
+begrip:Transaction
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-Transaction"^^xsd:string ;
+  skos:prefLabel "Transaction"@en ;
+  skos:prefLabel "Transactie"@nl ;
+  skos:definition "A social relator representing a business transaction between initiator and executor."@en ;
+  skos:definition "Een sociale relator die een zakelijke transactie tussen initiator en executor vertegenwoordigt."@nl ;
+  skos:broader begrip:SocialRelator .
+
+begrip:TransactorRole
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-TransactorRole"^^xsd:string ;
+  skos:prefLabel "Transactor Role"@en ;
+  skos:prefLabel "Transactorrol"@nl ;
+  skos:prefLabel "TAR"@nl ;
+  skos:definition "Universal building block combining transaction and executor role."@en ;
+  skos:definition "Universele bouwsteen die transactie en uitvoerende actorrol combineert."@nl .
+
+begrip:TransactionState
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-TransactionState"^^xsd:string ;
+  skos:prefLabel "Transaction State"@en ;
+  skos:prefLabel "Transactietoestand"@nl ;
+  skos:definition "Current coordination state of a transaction in the Complete Transaction Pattern."@en ;
+  skos:definition "Huidige coördinatie-toestand van een transactie in het Complete Transaction Pattern."@nl .
+
+# COMMITMENTS AND CLAIMS
+begrip:CCommitment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CCommitment"^^xsd:string ;
+  skos:prefLabel "C-Commitment"@en ;
+  skos:prefLabel "C-Commitment"@nl ;
+  skos:prefLabel "Coördinatie commitment"@nl ;
+  skos:definition "A coordination commitment resulting from coordination acts."@en ;
+  skos:definition "Een coördinatie-commitment dat voortkomt uit coördinatie-handelingen."@nl ;
+  skos:broader begrip:SocialCommitment .
+
+begrip:CClaim
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CClaim"^^xsd:string ;
+  skos:prefLabel "C-Claim"@en ;
+  skos:prefLabel "C-Claim"@nl ;
+  skos:prefLabel "Coördinatie claim"@nl ;
+  skos:definition "A coordination claim resulting from coordination acts."@en ;
+  skos:definition "Een coördinatie-claim dat voortkomt uit coördinatie-handelingen."@nl ;
+  skos:broader begrip:SocialClaim .
+
+# FACTS
+begrip:CoordinationFact
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CoordinationFact"^^xsd:string ;
+  skos:prefLabel "Coordination Fact"@en ;
+  skos:prefLabel "Coördinatiefeit"@nl ;
+  skos:definition "A fact representing the coordination state of a transaction."@en ;
+  skos:definition "Een feit dat de coördinatie-toestand van een transactie vertegenwoordigt."@nl .
+
+begrip:ProductionFact
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ProductionFact"^^xsd:string ;
+  skos:prefLabel "Production Fact"@en ;
+  skos:prefLabel "Productiefeit"@nl ;
+  skos:definition "A fact representing a new state of affairs in the production world."@en ;
+  skos:definition "Een feit dat een nieuwe toestand in de productie-wereld vertegenwoordigt."@nl .
+
+# WORK PRODUCTS
+begrip:WorkProduct
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-WorkProduct"^^xsd:string ;
+  skos:prefLabel "Work Product"@en ;
+  skos:prefLabel "Werkproduct"@nl ;
+  skos:definition "Any Individual that can be affected by production acts, including objects, collectives, and quantities."@en ;
+  skos:definition "Elk Individu dat beïnvloed kan worden door productie-handelingen, inclusief objecten, collectives en quantities."@nl ;
+  skos:broader begrip:Individual .
+
+# === DEMO EVENTS ===
+
+begrip:TransactionEvent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-TransactionEvent"^^xsd:string ;
+  skos:prefLabel "Transaction Event"@en ;
+  skos:prefLabel "Transactiegebeurtenis"@nl ;
+  skos:definition "A perdurant representing the temporal unfolding of a transaction."@en ;
+  skos:definition "Een perdurant die het temporele verloop van een transactie vertegenwoordigt."@nl .
+
+begrip:CoordinationAct
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CoordinationAct"^^xsd:string ;
+  skos:prefLabel "Coordination Act"@en ;
+  skos:prefLabel "Coördinatie-handeling"@nl ;
+  skos:definition "A communicative act that creates coordination commitments and claims."@en ;
+  skos:definition "Een communicatie-handeling die coördinatiecommitments en -claims creëert."@nl .
+
+begrip:CoordinationActType
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-CoordinationActType"^^xsd:string ;
+  skos:prefLabel "Coordination Act Type"@en ;
+  skos:prefLabel "Coördinatie-handeling type"@nl ;
+  skos:definition "One of the nine coordination act types in DEMO Complete Transaction Pattern."@en ;
+  skos:definition "Een van de negen coördinatie-handeling typen in DEMO Complete Transaction Pattern."@nl .
+
+begrip:ProductionAct
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-ProductionAct"^^xsd:string ;
+  skos:prefLabel "Production Act"@en ;
+  skos:prefLabel "Productie-handeling"@nl ;
+  skos:definition "An atomic act that creates a production fact."@en ;
+  skos:definition "Een atomaire handeling die een productiefeit creëert."@nl .
+
+# === DEMO ONTOLOGY RELATIONS ===
+# Relations specific to DEMO Transaction Pattern
+
+begrip:participatesIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-participatesIn"^^xsd:string ;
+  skos:prefLabel "Participates In"@en ;
+  skos:prefLabel "Neemt deel in"@nl ;
+  skos:definition "Relation expressing that an actor role participates in a transaction."@en ;
+  skos:definition "Betrekking die uitdrukt dat een acteurrol deelneemt in een transactie."@nl .
+
+begrip:hasState
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-hasState"^^xsd:string ;
+  skos:prefLabel "Has State"@en ;
+  skos:prefLabel "Heeft toestand"@nl ;
+  skos:definition "Relation expressing that a transaction has a current coordination state."@en ;
+  skos:definition "Betrekking die uitdrukt dat een transactie een huidige coördinatie-toestand heeft."@nl .
+
+begrip:constrains
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-constrains"^^xsd:string ;
+  skos:prefLabel "Constrains"@en ;
+  skos:prefLabel "Beperkt"@nl ;
+  skos:definition "Relation expressing that a legal relator constrains a transaction."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtsbetrekking een transactie beperkt."@nl .
+
+begrip:dependedOn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-dependedOn"^^xsd:string ;
+  skos:prefLabel "Depended On"@en ;
+  skos:prefLabel "Was afhankelijk van"@nl ;
+  skos:definition "Relation expressing historical dependence on institutional acts."@en ;
+  skos:definition "Betrekking die uitdrukt dat sprake is van historische afhankelijkheid van institutionele acties."@nl .
+
+begrip:hasType
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-hasType"^^xsd:string ;
+  skos:prefLabel "Has Type"@en ;
+  skos:prefLabel "Heeft type"@nl ;
+  skos:definition "Relation expressing that a coordination act has a specific DEMO coordination act type."@en ;
+  skos:definition "Betrekking die uitdrukt dat een coördinatie-handeling een specifiek DEMO coördinatie-handeling type heeft."@nl .
+
+begrip:changes
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-changes"^^xsd:string ;
+  skos:prefLabel "Changes"@en ;
+  skos:prefLabel "Verandert"@nl ;
+  skos:definition "Relation expressing that a coordination act changes the transaction state."@en ;
+  skos:definition "Betrekking die uitdrukt dat een coördinatie-handeling de transactietoestand verandert."@nl .
+
+begrip:classifies
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-classifies"^^xsd:string ;
+  skos:prefLabel "Classifies"@en ;
+  skos:prefLabel "Classificeert"@nl ;
+  skos:definition "Relation expressing that an actor role classifies specific initiators or executors."@en ;
+  skos:definition "Betrekking die uitdrukt dat een acteurrol specifieke initiators of executors classificeert."@nl .
+
+begrip:manifestedBy
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-manifestedBy"^^xsd:string ;
+  skos:prefLabel "Manifested By"@en ;
+  skos:prefLabel "Gemanifesteerd door"@nl ;
+  skos:definition "Relation expressing that a transaction is manifested by a transaction event."@en ;
+  skos:definition "Betrekking die uitdrukt dat een transactie gemanifesteerd wordt door een transactiegebeurtenis."@nl .
+
+begrip:hasExecutor
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-hasExecutor"^^xsd:string ;
+  skos:prefLabel "Has Executor"@en ;
+  skos:prefLabel "Heeft executor"@nl ;
+  skos:definition "Relation expressing that a transaction has an actor role as executor."@en ;
+  skos:definition "Betrekking die uitdrukt dat een transactie een acteurrol heeft als executor."@nl .
+
+begrip:performsProduction
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-performsProduction"^^xsd:string ;
+  skos:prefLabel "Performs Production"@en ;
+  skos:prefLabel "Voert productie uit"@nl ;
+  skos:definition "Relation expressing that a transactor role performs production acts."@en ;
+  skos:definition "Betrekking die uitdrukt dat een transactorrol productiehandelingen uitvoert."@nl .
+
+begrip:initiates
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-initiates"^^xsd:string ;
+  skos:prefLabel "Initiates"@en ;
+  skos:prefLabel "Initieert"@nl ;
+  skos:definition "Relation expressing interaction structure between transactor roles."@en ;
+  skos:definition "Betrekking die uitdrukt dat sprake is van interactiestructuur tussen transactorrollen."@nl .
+
+begrip:impedes
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-impedes"^^xsd:string ;
+  skos:prefLabel "Impedes"@en ;
+  skos:prefLabel "Belemmert"@nl ;
+  skos:definition "Relation expressing wait dependencies in DEMO organization structure."@en ;
+  skos:definition "Betrekking die uitdrukt dat sprake is van wachttijden in DEMO organisatiestructuur."@nl .
+
+begrip:contains
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-contains"^^xsd:string ;
+  skos:prefLabel "Contains"@en ;
+  skos:prefLabel "Bevat"@nl ;
+  skos:definition "Relation expressing that a transaction contains coordination or production facts."@en ;
+  skos:definition "Betrekking die uitdrukt dat een transactie coördinatie- of productiefeiten bevat."@nl .
+
+begrip:manifests
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-manifests"^^xsd:string ;
+  skos:prefLabel "Manifests"@en ;
+  skos:prefLabel "Manifesteert"@nl ;
+  skos:definition "Relation expressing that an institutional act manifests legal relations."@en ;
+  skos:definition "Betrekking die uitdrukt dat een institutionele actie juridische betrekkingen manifesteert."@nl .
+
+begrip:participatesIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Basis-participatesIn"^^xsd:string ;
+  skos:prefLabel "Participates In"@en ;
+  skos:prefLabel "Neemt deel in"@nl ;
+  skos:definition "Relation expressing that a legal subject participates in a legal relator."@en ;
+  skos:definition "Betrekking die uitdrukt dat een rechtssubject deelneemt in een rechtsbetrekking."@nl .
+
+# === OFFERING ONTOLOGY ===
+# Based on OfferingOntology.tonto - Service and offering concepts
+
+begrip:Offeror
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Offeror"^^xsd:string ;
+  skos:prefLabel "Offeror"@en ;
+  skos:prefLabel "Aanbieder"@nl ;
+  skos:definition "An Offeror is an Agent that makes an Offering."@en ;
+  skos:definition "Een Aanbieder is een Agent die een Aanbod doet."@nl ;
+  skos:broader begrip:Agent .
+
+begrip:Offer
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Offer"^^xsd:string ;
+  skos:prefLabel "Offer"@en ;
+  skos:prefLabel "Aanbieding"@nl ;
+  skos:definition "A communicative act, and what counts as a offer depends ultimately on the (social) context in which services are offered."@en ;
+  skos:definition "Een communicatieve handeling; wat als een Aanbod wordt beschouwd, hangt uiteindelijk af van de (sociale) context waarin diensten worden aangeboden."@nl ;
+  skos:broader begrip:CommunicativeAct .
+
+begrip:Offering
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Offering"^^xsd:string ;
+  skos:prefLabel "Offering"@en ;
+  skos:prefLabel "Aanbod"@nl ;
+  skos:definition "An Offering is a promise with a conditional content, made by an Agent, the offeror, towards a group of agents, the Eligible Population."@en ;
+  skos:definition "Een Aanbod is een belofte met een voorwaardelijke inhoud, gedaan door een Agent, de aanbieder, naar een groep van agenten, de Bevoegde Populatie."@nl ;
+  skos:broader begrip:SocialRelator .
+
+begrip:EligiblePopulation
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-EligiblePopulation"^^xsd:string ;
+  skos:prefLabel "Eligible Population"@en ;
+  skos:prefLabel "Bevoegde Populatie"@nl ;
+  skos:definition "The Eligible Population is the group of agents to whom an Offering is directed. It is the collection of actors who fall within the factual or formal boundaries of those who can receive, utilize, or experience the value of a particular offering, given the contextual conditions (such as legislation, capacity, accessibility, or suitability)."@en ;
+  skos:definition "De Bevoegde Populatie is de groep van agenten naar wie een Aanbod gericht is. Het is de verzameling actoren die binnen de feitelijke of formele grenzen vallen van wie de waarde van een bepaald aanbod kan ontvangen, benutten of ervaren, gegeven de contextuele voorwaarden (zoals wetgeving, capaciteit, toegankelijkheid of geschiktheid)."@nl ;
+  skos:broader begrip:CollectiveSocialAgent .
+
+begrip:EligibleAgent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-EligibleAgent"^^xsd:string ;
+  skos:prefLabel "Eligible Agent"@en ;
+  skos:prefLabel "Bevoegde Agent"@nl ;
+  skos:definition "A Social Agent (usually an individual or organization) that, within the context of a specific mandate or policy unit, belongs to the population entitled to participate in or receive value from a particular offering."@en ;
+  skos:definition "Social Agent (meestal een individu of organisatie) die binnen de context van een bepaald mandaat of beleidseenheid behoort tot de populatie die gerechtigd is om deel te nemen aan of waarde te ontvangen uit een bepaald aanbod."@nl ;
+  skos:broader begrip:SocialAgent .
+
+begrip:OfferingCommitment
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-OfferingCommitment"^^xsd:string ;
+  skos:prefLabel "Offering Commitment"@en ;
+  skos:prefLabel "Aanbod Verplichting"@nl ;
+  skos:definition "A commitment as part of an offering relationship from the offeror side."@en ;
+  skos:definition "Een verplichting als onderdeel van een aanbodsrelatie van de aanbiederkant."@nl ;
+  skos:broader begrip:SocialCommitment .
+
+begrip:OfferingClaim
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-OfferingClaim"^^xsd:string ;
+  skos:prefLabel "Offering Claim"@en ;
+  skos:prefLabel "Aanbod Claim"@nl ;
+  skos:definition "A claim as part of an offering relationship from the eligible population side."@en ;
+  skos:definition "Een claim als onderdeel van een aanbodsrelatie van de bevoegde populatie kant."@nl ;
+  skos:broader begrip:SocialClaim .
+
+begrip:Description
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Description"^^xsd:string ;
+  skos:prefLabel "Description"@en ;
+  skos:prefLabel "Beschrijving"@nl ;
+  skos:definition "A Description is an information artifact that describes some entity."@en ;
+  skos:definition "Een Beschrijving is een informatie-artifact dat een entiteit beschrijft."@nl ;
+  skos:broader begrip:Individual .
+
+begrip:OfferingDescription
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-OfferingDescription"^^xsd:string ;
+  skos:prefLabel "Offering Description"@en ;
+  skos:prefLabel "Aanbodbeschrijving"@nl ;
+  skos:definition "An Offering Description is an information artifact that describes the content of an Offering, composed by to parts, the content description en the condition description."@en ;
+  skos:definition "Een Aanbodbeschrijving is een informatie-artifact dat de inhoud van een Aanbod beschrijft, bestaande uit twee delen, de inhoudsbeschrijving en de voorwaardebeschrijving."@nl ;
+  skos:broader begrip:Description .
+
+begrip:ExperienceDescription
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-ExperienceDescription"^^xsd:string ;
+  skos:prefLabel "Experience Description"@en ;
+  skos:prefLabel "Ervaringsbeschrijving"@nl ;
+  skos:definition "An Experience Description is an information artifact that describes one or more Events."@en ;
+  skos:definition "Een Ervaringsbeschrijving is een informatie-artifact dat een of meer Gebeurtenissen beschrijft."@nl ;
+  skos:broader begrip:Description .
+
+begrip:Content
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Content"^^xsd:string ;
+  skos:prefLabel "Content Description"@en ;
+  skos:prefLabel "Beschrijving van de inhoud"@nl ;
+  skos:definition "A Content Description describes actions to be performed by the Offeror."@en ;
+  skos:definition "Een Beschrijving van de inhoud beschrijft acties die door de Aanbieder moeten worden uitgevoerd."@nl ;
+  skos:broader begrip:ExperienceDescription .
+
+begrip:Condition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Condition"^^xsd:string ;
+  skos:prefLabel "Condition Description"@en ;
+  skos:prefLabel "Voorwaardebeschrijving"@nl ;
+  skos:definition "Expected actions (usually some sort of payment) the offerees must perform if they want to take advantage of the offerings content."@en ;
+  skos:definition "Een Voorwaardebeschrijving beschrijft acties die door de potentiële afnemer moet worden uitgevoerd."@nl ;
+  skos:broader begrip:ExperienceDescription .
+
+begrip:Portfolio
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-Portfolio"^^xsd:string ;
+  skos:prefLabel "Portfolio"@en ;
+  skos:prefLabel "Portefeuille"@nl ;
+  skos:definition "A Portfolio is a collection of Offering Descriptions made by an Offeror."@en ;
+  skos:definition "Een Portefeuille is een verzameling van Aanbodbeschrijvingen gemaakt door een Aanbieder."@nl .
+
+# === OFFERING ONTOLOGY RELATIONS ===
+
+begrip:creates
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-creates"^^xsd:string ;
+  skos:prefLabel "Creates Offer"@en ;
+  skos:prefLabel "Creëert Aanbod"@nl ;
+  skos:definition "Relation expressing that an offer creates an offering."@en ;
+  skos:definition "Betrekking die uitdrukt dat een aanbieding een aanbod creëert."@nl .
+
+begrip:providedBy
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-providedBy"^^xsd:string ;
+  skos:prefLabel "Provided By"@en ;
+  skos:prefLabel "Geleverd door"@nl ;
+  skos:definition "Relation expressing that an offering is provided by an offeror."@en ;
+  skos:definition "Betrekking die uitdrukt dat een aanbod geleverd wordt door een aanbieder."@nl .
+
+begrip:offeredTo
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-offeredTo"^^xsd:string ;
+  skos:prefLabel "Offered To"@en ;
+  skos:prefLabel "Aangeboden aan"@nl ;
+  skos:definition "Relation expressing that an offering is offered to an eligible population."@en ;
+  skos:definition "Betrekking die uitdrukt dat een aanbod aangeboden wordt aan een bevoegde populatie."@nl .
+
+begrip:composedOf
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-composedOf"^^xsd:string ;
+  skos:prefLabel "Composed Of"@en ;
+  skos:prefLabel "Samengesteld uit"@nl ;
+  skos:definition "Relation expressing that an eligible population is composed of eligible agents."@en ;
+  skos:definition "Betrekking die uitdrukt dat een bevoegde populatie samengesteld is uit bevoegde agenten."@nl .
+
+begrip:inheresIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-inheresIn"^^xsd:string ;
+  skos:prefLabel "Inheres In"@en ;
+  skos:prefLabel "Houdt In"@nl ;
+  skos:definition "Relation expressing that commitment/claim inheres in offeror/population."@en ;
+  skos:definition "Betrekking die uitdrukt dat verplichting/claim inherent is aan aanbieder/populatie."@nl .
+
+begrip:dependentOn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-dependentOn"^^xsd:string ;
+  skos:prefLabel "Dependent On"@en ;
+  skos:prefLabel "Afhankelijk van"@nl ;
+  skos:definition "Relation expressing that an offering commitment is dependent on the eligible population."@en ;
+  skos:definition "Betrekking die uitdrukt dat een aanbodsverplichting afhankelijk is van de bevoegde populatie."@nl .
+
+begrip:describes
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-describes"^^xsd:string ;
+  skos:prefLabel "Describes"@en ;
+  skos:prefLabel "Beschrijft"@nl ;
+  skos:definition "Relation expressing that a description describes an offering or action."@en ;
+  skos:definition "Betrekking die uitdrukt dat een beschrijving een aanbod of actie beschrijft."@nl .
+
+begrip:documentedBy
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "Offering-documentedBy"^^xsd:string ;
+  skos:prefLabel "Documented By"@en ;
+  skos:prefLabel "Gedocumenteerd door"@nl ;
+  skos:definition "Relation expressing that an offering is documented by a contract."@en ;
+  skos:definition "Betrekking die uitdrukt dat een aanbod gedocumenteerd wordt door een contract."@nl .
+
+# === VALUE ASCRIPTION ONTOLOGY ===
+# Based on ValueAscriptionOntology.tonto - Value assessment and attribution concepts
+
+begrip:ValueAscription
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-ValueAscription"^^xsd:string ;
+  skos:prefLabel "Value Ascription"@en ;
+  skos:prefLabel "Waardetoekenning"@nl ;
+  skos:definition "Value Ascription is a relator that captures the relationship between agents, value bearers, and the valuation process. It represents the act of ascribing value to an entity, which can be influenced by various factors including the perspectives of value beholders and beneficiaries."@en ;
+  skos:broader begrip:SocialRelator .
+
+begrip:VAExAnte
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-VAExAnte"^^xsd:string ;
+  skos:prefLabel "Value Ascription Ex-Ante"@en ;
+  skos:prefLabel "Waardetoekenning Ex-Ante"@nl ;
+  skos:definition "Value Ascription Ex-Ante refers to the process of ascribing value to an entity before the actual experience or realization of that value. This phase focuses on anticipated benefits and sacrifices associated with the value bearer, based on expectations and projections."@en ;
+  skos:broader begrip:ValueAscription .
+
+begrip:VAExPost
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-VAExPost"^^xsd:string ;
+  skos:prefLabel "Value Ascription Ex-Post"@en ;
+  skos:prefLabel "Waardetoekenning Ex-Post"@nl ;
+  skos:definition "Value Ascription Ex-Post refers to the process of ascribing value to an entity after the experience or realization of that value. This phase focuses on the actual benefits and sacrifices associated with the value bearer, based on real outcomes and experiences."@en ;
+  skos:broader begrip:ValueAscription .
+
+begrip:ValuePerception
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-ValuePerception"^^xsd:string ;
+  skos:prefLabel "Value Perception"@en ;
+  skos:prefLabel "Waardeperceptie"@nl ;
+  skos:definition "Value ascription in which the agent ascribes value to a value bearer for themselves."@en ;
+  skos:broader begrip:ValueAscription .
+
+begrip:ValueAssertion
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-ValueAssertion"^^xsd:string ;
+  skos:prefLabel "Value Assertion"@en ;
+  skos:prefLabel "Waardeverklaring"@nl ;
+  skos:definition "Value ascription in which an agent ascribes value to a value bearer on behalf of another."@en ;
+  skos:broader begrip:ValueAscription .
+
+begrip:VAComponent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-VAComponent"^^xsd:string ;
+  skos:prefLabel "Value Ascription Component"@en ;
+  skos:prefLabel "Waardetoeschrijvingscomponent"@nl ;
+  skos:definition "A Value Ascription Component is a relator that represents a specific aspect or element of the overall value ascription process. It captures the individual contributions to the valuation, such as benefits and sacrifices associated with the value bearer."@en ;
+  skos:broader begrip:ValueAscription .
+
+begrip:ValueComponent
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-ValueComponent"^^xsd:string ;
+  skos:prefLabel "Value Component"@en ;
+  skos:prefLabel "Waardecomponent"@nl ;
+  skos:definition "A Value Component is a quality that inheres in a Value Ascription Component, representing either a Benefit or a Sacrifice associated with the value bearer. This quality captures the specific contributions to the overall value ascribed during the valuation process."@en ;
+  skos:broader begrip:Quality .
+
+begrip:Benefit
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-Benefit"^^xsd:string ;
+  skos:prefLabel "Benefit"@en ;
+  skos:prefLabel "Bate"@nl ;
+  skos:definition "A Benefit is a Value Component that represents a positive contribution to the overall value ascribed to a Value Bearer. It captures the advantageous aspects or outcomes associated with the value bearer, enhancing its perceived worth."@en ;
+  skos:broader begrip:ValueComponent .
+
+begrip:Sacrifice
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-Sacrifice"^^xsd:string ;
+  skos:prefLabel "Sacrifice"@en ;
+  skos:prefLabel "Last"@nl ;
+  skos:definition "A Sacrifice is a Value Component that represents a negative contribution to the overall value ascribed to a Value Bearer. It captures the disadvantageous aspects or costs associated with the value bearer, diminishing its perceived worth."@en ;
+  skos:broader begrip:ValueComponent .
+
+# === VALUE ASCRIPTION ONTOLOGY RELATIONS ===
+
+begrip:isFocusOf
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-isFocusOf"^^xsd:string ;
+  skos:prefLabel "Is Focus Of"@en ;
+  skos:prefLabel "Is focus van"@nl ;
+  skos:definition "Relation expresssing that a value ascription is the focus of a valuation."@en .
+
+begrip:involves
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueAscription-involves"^^xsd:string ;
+  skos:prefLabel "Involves"@en ;
+  skos:prefLabel "Betrekt in"@nl ;
+  skos:definition "Relation expressing that a value ascription involves value beholders and beneficiaries."@en .
+
+# === VALUE PROPOSITION ONTOLOGY ===
+# Based on ValuePropositionOntology.tonto - Integrating value propositions with offerings and targeting
+
+begrip:ValueProposition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-ValueProposition"^^xsd:string ;
+  skos:prefLabel "Value Proposition"@en ;
+  skos:prefLabel "Waardepropositie"@nl ;
+  skos:definition "Value Assertion an Offeror makes (as the Value Beholder) that a given Target Group (the Value Beneficiaries) will ascribe a particular Value to the experiences enabled by an Offering (the Value Object). Value Propositions answer what members of the Target Group value and why, whilst Offerings describe how Value is delivered by the Offeror."@en ;
+  skos:definition "Waardeverklaring die een Aanbieder maakt (als de Waardehouder) dat een bepaalde Doelgroep (de Waardebegunstigden) een specifieke Waarde zal toekennen aan de ervaringen die mogelijk worden gemaakt door een Aanbod (het Waardeobject). Waardeproposities beantwoorden wat leden van de Doelgroep waarderen en waarom, terwijl Aanbiedingen beschrijven hoe Waarde wordt geleverd door de Aanbieder."@nl ;
+  skos:broader begrip:ValueAssertion ;
+  skos:scopeNote "Value propositions fundamentally differ from offerings: the former answers 'what and why' questions about stakeholder values, whilst the latter answers 'how' questions about value delivery. Value propositions make assumptions about generalized value attribution patterns within target groups. Simply put: what from our offering would THIS specific group value and WHY would they value it?"@en .
+
+begrip:TargetGroup
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-TargetGroup"^^xsd:string ;
+  skos:prefLabel "Target Group"@en ;
+  skos:prefLabel "Doelgroep"@nl ;
+  skos:definition "Specific group of Agents for whom the Offeror has formulated the Value Proposition, and who are expected to experience or appreciate the offered value. May include reizigers die flexibiliteit waarderen boven OV, slachtoffers van geweldsmisdrijven met begeleiding bij strafproces, vrouwen in achterstandswijken met lage gezondheidspreventie deelname, jongeren met meervoudige problematiek waarvoor jeugdtabel wordt ingericht."@en ;
+  skos:definition "Specifieke groep Agenten waarvoor de Aanbieder de Waardepropositie heeft geformuleerd, en waarvan wordt verwacht dat zij de aangeboden waarde zullen ervaren of waarderen. Kan omvatten: reizigers die flexibiliteit waarderen boven OV, slachtoffers van geweldsmisdrijven met begeleiding bij strafproces, vrouwen in achterstandswijken met lage gezondheidspreventie deelname, jongeren met meervoudige problematiek waarvoor jeugdtabel wordt ingericht."@nl ;
+  skos:broader begrip:CollectiveSocialAgent ;
+  skos:example "reizigers die de flexibiliteit en het comfort van een auto boven openbaar vervoer waarderen", "slachtoffers van ernstige geweldsmisdrijven die actief begeleiding krijgen bij het strafproces", "vrouwen in achterstandswijken waar deelnamegraad aan gezondheidspreventieprogramma's laag is", "jongeren met meervoudige problematiek waarvoor een Jeugdtafel wordt ingericht"@nl .
+
+begrip:BusinessValueProposition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-BusinessValueProposition"^^xsd:string ;
+  skos:prefLabel "Business Value Proposition"@en ;
+  skos:prefLabel "Zakelijke Waardepropositie"@nl ;
+  skos:definition "A Business Value Proposition is a Value Proposition that focuses on the value delivered to customers or clients in a business context. It outlines the unique benefits and advantages that a business offers to its target market, highlighting how its products or services meet customer needs and solve their problems. Emphasizes practical and financial benefits that customers can expect to receive."@en ;
+  skos:definition "Een Zakelijke Waardepropositie is een Waardepropositie die zich richt op de waarde die wordt geleverd aan klanten of cliënten in een zakelijke context. Het schetst de unieke voordelen en voordelen die een bedrijf biedt aan zijn doelmarkt, waarbij wordt benadrukt hoe zijn producten of diensten voldoen aan de behoeften van klanten en hun problemen oplossen. Benadrukt praktische en financiële voordelen die klanten kunnen verwachten te ontvangen."@nl ;
+  skos:broader begrip:ValueProposition ;
+  skos:example "Our software solution increases productivity by automating manual tasks, allowing businesses to save time and reduce operational costs", "We offer premium quality products at competitive prices, ensuring our customers receive exceptional value for their investment", "Our consulting services provide strategic insights that help businesses achieve their growth objectives and improve overall performance"@en .
+
+begrip:PublicValueProposition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-PublicValueProposition"^^xsd:string ;
+  skos:prefLabel "Public Value Proposition"@en ;
+  skos:prefLabel "Publieke Waardepropositie"@nl ;
+  skos:definition "A Public Value Proposition is a Value Proposition that emphasizes the societal or communal benefits provided by public sector organizations, non-profits, or community initiatives. It highlights how these entities contribute to the well-being of the public, address social issues, and enhance the quality of life for individuals and communities. Focuses on broader impact, social responsibility, community engagement and promotion of public goods."@en ;
+  skos:definition "Een Publieke Waardepropositie is een Waardepropositie die de maatschappelijke of gemeenschappelijke voordelen benadrukt die worden geboden door organisaties in de publieke sector, non-profitorganisaties of gemeenschapsinitiatieven. Het benadrukt hoe deze entiteiten bijdragen aan het welzijn van het publiek, sociale kwesties aanpakken en de kwaliteit van leven voor individuen en gemeenschappen verbeteren. Richt zich op bredere impact, sociale verantwoordelijkheid, gemeenschapsbetrokkenheid en bevordering van publieke goederen."@nl ;
+  skos:broader begrip:ValueProposition ;
+  skos:example "Our community health program improves access to essential medical services for underserved populations, promoting overall well-being and reducing health disparities", "We provide educational resources and support to empower individuals and foster lifelong learning within our community", "Our environmental conservation initiatives protect natural habitats and promote sustainable practices that benefit both current and future generations"@en .
+
+begrip:OfferingValueProposition
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-OfferingValueProposition"^^xsd:string ;
+  skos:prefLabel "Offering Value Proposition"@en ;
+  skos:prefLabel "Aanbod Waardepropositie"@nl ;
+  skos:definition "An Offering Value Proposition is a Value Proposition that specifically relates to the value delivered through an Offering. It articulates how the features, benefits, and conditions of an Offering create value for the Target Group, emphasizing the unique selling points and advantages that differentiate the Offering from alternatives. Focuses on the specific attributes of an Offering that contribute to its perceived value."@en ;
+  skos:definition "Een Aanbod Waardepropositie is een Waardepropositie die specifiek betrekking heeft op de waarde die wordt geleverd via een Aanbod. Het verwoordt hoe de kenmerken, voordelen en voorwaarden van een Aanbod waarde creëren voor de Doelgroep, waarbij de unieke verkooppunten en voordelen worden benadrukt die het Aanbod onderscheiden van alternatieven. Richt zich op de specifieke attributen van een Aanbod die bijdragen aan de waargenomen waarde ervan."@nl ;
+  skos:broader begrip:ValueProposition ;
+  skos:example "Our subscription service offers unlimited access to premium content, providing exceptional value for entertainment enthusiasts who seek diverse and high-quality programming", "We provide a comprehensive warranty and dedicated customer support, ensuring peace of mind and satisfaction for our customers", "Our eco-friendly product line combines sustainability with performance, appealing to environmentally conscious consumers who prioritize both quality and ethical considerations"@en .
+
+begrip:BusinessValuePortfolio
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-BusinessValuePortfolio"^^xsd:string ;
+  skos:prefLabel "Business Value Portfolio"@en ;
+  skos:prefLabel "Businesswaardeportefeuille"@nl ;
+  skos:definition "Portfolio that represents the collection of Business Value Propositions offered by an Offeror to various Target Groups. It encompasses the diverse range of value offerings that an organization provides, reflecting its strategic approach to delivering value across different market segments and customer needs. Allows organizations to manage and optimize their value offerings, ensuring that they align with customer expectations and market demands."@en ;
+  skos:definition "Portefeuille die de verzameling Waardeproposities vertegenwoordigt die een Aanbieder aan verschillende Doelgroepen aanbiedt. Het omvat het diverse scala aan waardeaanbiedingen dat een organisatie biedt, en weerspiegelt haar strategische benadering van het leveren van waarde aan verschillende marktsegmenten en klantbehoeften. Stelt organisaties in staat hun waardeaanbiedingen te beheren en optimaliseren, ervoor zorgen dat ze aansluiten bij klantverwachtingen en marktbehoeften."@nl ;
+  skos:broader begrip:Portfolio, begrip:ValueBearer ;
+  skos:example "A technology company may have a Value Portfolio that includes software solutions for businesses, consumer electronics for individual users, and cloud services for enterprises", "A healthcare provider may offer a Value Portfolio that includes preventive care programs, specialized medical treatments, and wellness initiatives for different patient demographics", "A non-profit organization may have a Value Portfolio that encompasses community outreach programs, educational initiatives, and advocacy efforts aimed at various social causes"@en .
+
+begrip:PublicValuePortfolio
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-PublicValuePortfolio"^^xsd:string ;
+  skos:prefLabel "Public Value Portfolio"@en ;
+  skos:prefLabel "Publieke Waardeportefeuille"@nl ;
+  skos:definition "Portfolio that represents the collection of Public Value Propositions offered by an Offeror to various Target Groups. It encompasses the diverse range of value offerings that public sector organizations, non-profits, or community initiatives provide, reflecting their commitment to societal well-being and communal benefits. Allows public sector organizations and non-profits to manage and optimize their value offerings."@en ;
+  skos:definition "Portefeuille die de verzameling Publieke Waardeproposities vertegenwoordigt die een Aanbieder aan verschillende Doelgroepen aanbiedt. Het omvat het diverse scala aan waardeaanbiedingen die organisaties in de publieke sector, non-profitorganisaties of gemeenschapsinitiatieven bieden, en weerspiegelt hun inzet voor maatschappelijk welzijn en gemeenschappelijke voordelen. Stelt organisaties in de publieke sector en non-profitorganisaties in staat hun waardeaanbiedingen te beheren en optimaliseren."@nl ;
+  skos:broader begrip:Portfolio, begrip:ValueBearer ;
+  skos:example "A government agency may have a Public Value Portfolio that includes public health programs, educational initiatives, and environmental conservation efforts aimed at improving community well-being", "A non-profit organization may offer a Public Value Portfolio that encompasses social services, advocacy campaigns, and community development projects targeting various social causes", "A community initiative may have a Public Value Portfolio that includes cultural events, recreational activities, and support services designed to enhance the quality of life for local residents"@en .
+
+begrip:ValueOffering
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueProposition-ValueOffering"^^xsd:string ;
+  skos:prefLabel "Value Offering"@en ;
+  skos:prefLabel "Waardeaanbod"@nl ;
+  skos:definition "A Value Offering is an Offering Description that details the specific features, benefits, and conditions of an Offering that contribute to its perceived value by the Target Group. It articulates how the Offering meets customer needs, solves problems, and delivers benefits that are relevant and meaningful to the intended audience. Focuses on unique selling points and advantages that differentiate the Offering from alternatives."@en ;
+  skos:definition "Een Waardeaanbod is een Aanbodbeschrijving die de specifieke kenmerken, voordelen en voorwaarden van een Aanbod beschrijft die bijdragen aan de waargenomen waarde ervan door de Doelgroep. Het verwoordt hoe het Aanbod voldoet aan de behoeften van klanten, problemen oplost en voordelen biedt die relevant en betekenisvol zijn voor het beoogde publiek. Richt zich op unieke verkooppunten en voordelen die het Aanbod onderscheiden van alternatieven."@nl ;
+  skos:broader begrip:OfferingDescription, begrip:ValueBearer ;
+  skos:example "A Value Offering for a software solution may include features such as automation of routine tasks, user-friendly interface, and robust security measures that provide exceptional value for businesses seeking to enhance productivity and reduce operational costs", "A Value Offering for a consumer product may emphasize premium quality materials, innovative design, and eco-friendly attributes that appeal to environmentally conscious consumers who prioritize both quality and ethical considerations", "A Value Offering for a service may highlight personalized solutions, dedicated customer support, and flexible pricing options that ensure satisfaction and value for clients with diverse needs"@en .
+
+# === VALUE BEARER ONTOLOGY ===
+# Based on ValueBearerOntology.tonto - Concepts for entities that can possess or carry value
+
+begrip:ValueBearer
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-ValueBearer"^^xsd:string ;
+  skos:prefLabel "Value Bearer"@en ;
+  skos:prefLabel "Waardedrager"@nl ;
+  skos:definition "A Value Bearer is an entity that can possess or carry value, which can be realized through various experiences or valuations. This concept is essential in contexts where the worth or significance of an entity is evaluated, such as in economics, ethics, or personal preferences."@en ;
+  skos:definition "Een Waardedrager is een entiteit die waarde kan bezitten of dragen, wat gerealiseerd kan worden door verschillende ervaringen of waarderingen. Dit concept is essentieel in contexten waar de waarde of betekenis van een entiteit wordt geëvalueerd, zoals in economie, ethiek of persoonlijke voorkeuren."@nl ;
+  skos:broader begrip:Agent . # Updated based on ValueBearerOntology specialization
+
+begrip:ValueExperience
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-ValueExperience"^^xsd:string ;
+  skos:prefLabel "Value Experience"@en ;
+  skos:prefLabel "Waarde-ervaring"@nl ;
+  skos:definition "The direct experiences of a Value Object"@en ;
+  skos:definition "De directe ervaringen van een Waarde-object"@nl ;
+  skos:broader begrip:ValueBearer .
+
+begrip:ValueObject
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-ValueObject"^^xsd:string ;
+  skos:prefLabel "Value Object"@en ;
+  skos:prefLabel "Waarde-object"@nl ;
+  skos:definition "A Value Object is a Substantial that holds value and can be the focus of valuation and value experiences. This concept encompasses a wide range of items, from physical goods to abstract ideas, that are deemed valuable in various contexts."@en ;
+  skos:definition "Een Waarde-object is een Substantieel dat waarde heeft en het onderwerp kan zijn van waardering en waarde-ervaringen. Dit concept omvat een breed scala aan items, van fysieke goederen tot abstracte ideeën, die in verschillende contexten als waardevol worden beschouwd."@nl ;
+  skos:broader begrip:ValueBearer, begrip:Object . # Updated based on ValueBearerOntology specialization
+
+begrip:ValueBeneficiary
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-ValueBeneficiary"^^xsd:string ;
+  skos:prefLabel "Value Beneficiary"@en ;
+  skos:prefLabel "Waardebegunstigde"@nl ;
+  skos:definition "A Value Beneficiary is an Agent that experiences value from or derives value from a Value Object. This role highlights the relationship between agents and the value they receive, whether tangible or intangible."@en ;
+  skos:definition "Een Waardebegunstigde is een Agent die waarde ervaart of ontleent aan een Waarde-object. Deze rol benadrukt de relatie tussen agenten en de waarde die ze ontvangen, of deze nu tastbaar of ontastbaar is."@nl ;
+  skos:broader begrip:Agent .
+
+begrip:ValueBeholder
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-ValueBeholder"^^xsd:string ;
+  skos:prefLabel "Value Beholder"@en ;
+  skos:prefLabel "Waardehouder"@nl ;
+  skos:definition "A Value Beholder is an Agent that participates in the Valuation process, assessing or determining the value of a Value Object. This role emphasizes the active involvement of agents in evaluating worth, which can be influenced by personal, cultural, or societal factors."@en ;
+  skos:definition "Een Waardehouder is een Agent die deelneemt aan het waarderingsproces en de waarde van een Waarde-object beoordeelt of bepaalt. Deze rol benadrukt de actieve betrokkenheid van agenten bij het evalueren van waarde, wat beïnvloed kan worden door persoonlijke, culturele of maatschappelijke factoren."@nl ;
+  skos:broader begrip:Agent .
+
+begrip:Valuation
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-Valuation"^^xsd:string ;
+  skos:prefLabel "Valuation"@en ;
+  skos:prefLabel "Waardering"@nl ;
+  skos:definition "Valuation is the process or event through which an entity's value is assessed or determined. This can involve subjective judgments, market evaluations, or ethical considerations, depending on the context in which the valuation occurs."@en ;
+  skos:definition "Waardering is het proces of de gebeurtenis waarbij de waarde van een entiteit wordt beoordeeld of bepaald. Dit kan subjectieve oordelen, marktevaluaties of ethische overwegingen omvatten, afhankelijk van de context waarin de waardering plaatsvindt."@nl ;
+  skos:broader begrip:Action .
+
+begrip:Context
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-Context"^^xsd:string ;
+  skos:prefLabel "Context"@en ;
+  skos:prefLabel "Context"@nl ;
+  skos:definition "A Context is a Situation that provides the circumstances or setting in which Value Objects, Value Experiences, and Valuations occur. It encompasses the relevant factors that influence how value is perceived and assessed."@en ;
+  skos:definition "Een Context is een Situatie die de omstandigheden of setting biedt waarin Waarde-objecten, Waarde-ervaringen en Waarderingen plaatsvinden. Het omvat de relevante factoren die van invloed zijn op hoe waarde wordt waargenomen en beoordeeld."@nl ;
+  skos:broader begrip:Situation .
+
+# === VALUE BEARER ONTOLOGY RELATIONS ===
+
+begrip:participatesIn
+  a skos:Concept ;
+  skos:inScheme voc:OntologyBasis ;
+  rov:status rov:stabiel ;
+  dcterms:identifier "ValueBearer-participatesIn"^^xsd:string ;
+  skos:prefLabel "Participates In"@en ;
+  skos:prefLabel "Neemt deel in"@nl ;
+  skos:definition "Relation expressing participation in various contexts including value experiences and valuations."@en ;
+  skos:definition "Betrekking die uitdrukt deelname in verschillende contexten inclusief waarde-ervaringen en waarderingen."@nl .
+
+# === COMPLETE ONTOLOGY FOUNDATION ===
+
+# All 80+ core concepts from all 15 .tonto ontology files have been incorporated.
+# This provides a comprehensive legal and value ontology foundation including offerings:
+# - Individual Ontology: Basic entities and qualities
+# - Agent Ontology: Physical, social, institutional, and collective agents
+# - Value Ontology: Public, business, and personal value frameworks
+# - Legal Ontology: Rights, duties, powers, relators, Medina mediation concepts
+# - Law Ontology: Legal structures and sections
+# - Offering Ontology: Service offerings, commitments, and descriptions
+# - Value Ascription Ontology: Value assessment, perception, and attribution concepts
+# - Value Bearer Ontology: Concepts for entities that can possess or carry value
+# - Complete SKOS/RDF structure with Dutch/English labels and definitions
+# - Ontology-based framework for public service innovation and value creation

@@ -18,3 +18,14 @@ quality Quality {
 }
 
 relation Quality [0..*] -- inheresIn -- [1] Individual
+
+situation Situation {
+    label {
+        @en "Situation"
+        @nl "Toestand"
+    }
+    description {
+        @en "A particular configuration of a part of reality which can be understood as a whole and in which entities stand in relations."
+        @nl "Een specifieke configuratie van een deel van de realiteit die als een geheel kan worden begrepen en waarin entiteiten toe in relatie staan."
+    }
+}

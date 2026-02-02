@@ -69,7 +69,7 @@ Here's how your `Hospitalization` relator should define its mediation relations:
 relator Hospitalization {
     label {
         @en "Hospitalization"
-        @pt-br "Hospitalização"
+        @nl "Hospitalisatie"
     }
     startDate: date [1]
     endDate: date [0..1]
